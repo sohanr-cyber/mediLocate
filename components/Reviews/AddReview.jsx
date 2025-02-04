@@ -45,7 +45,7 @@ const AddReview = ({ setWriteReview, product }) => {
                     variant: "error"
                 }
             }))
-            cons
+       
             setWriteReview(false)
         } catch (error) {
             dispatch(finishLoading())
