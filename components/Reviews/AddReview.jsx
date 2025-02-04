@@ -52,7 +52,7 @@ const AddReview = ({ setWriteReview, product }) => {
             dispatch(showSnackBar({
                 message: "Failed to submit your review !",
                 option: {
-                    variant: "error"
+                    variant: "success"
                 }
             }))
             console.log(error)
