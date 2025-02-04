@@ -376,24 +376,24 @@ const base64Img = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAA
 // const outerBg = 'rgb(232, 241, 247)'
 // const borderColor = 'rgba(197, 223, 244, 255)'
 
-// const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
-// const themeTransparent = 'rgba(7, 121, 214,0.1)'
-// const themeC = 'rgb(29, 102, 12)'
-// const buttonC = 'white'
-// const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
-// const bg = 'white'
-// const outerBg = 'rgb(232, 241, 247)'
-// const borderColor = 'rgba(52, 134, 11, 0.5)'
-
-
-const themeBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(14, 14, 14))'
-const themeTransparent = 'rgba(41, 43, 44, 0.1)'
-const themeC = 'rgb(0, 0, 0)'
+const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+const themeTransparent = 'rgba(7, 121, 214,0.1)'
+const themeC = 'rgb(29, 102, 12)'
 const buttonC = 'white'
-const buttonBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 0, 0))'
+const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
 const bg = 'white'
 const outerBg = 'rgb(232, 241, 247)'
-const borderColor = 'rgba(69, 69, 68, 0.5)'
+const borderColor = 'rgba(52, 134, 11, 0.5)'
+
+
+// const themeBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(14, 14, 14))'
+// const themeTransparent = 'rgba(41, 43, 44, 0.1)'
+// const themeC = 'rgb(0, 0, 0)'
+// const buttonC = 'white'
+// const buttonBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 0, 0))'
+// const bg = 'white'
+// const outerBg = 'rgb(232, 241, 247)'
+// const borderColor = 'rgba(69, 69, 68, 0.5)'
 
 
 const orderStatusColors = {
