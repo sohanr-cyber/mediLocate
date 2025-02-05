@@ -116,7 +116,7 @@ export async function getStaticProps() {
         data,
         contents: contents.contents
       },
-      revalidate: 10 // Revalidate at most every 10 seconds
+      revalidate: 60 // Revalidate at most every 10 seconds
     }
   } catch (error) {
     console.error('Error fetching products:', error)
