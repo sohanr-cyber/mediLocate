@@ -1,0 +1,73 @@
+.wrapper {
+    background: var(--cardBg);
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.wrapper .left img {
+    object-fit: cover;
+}
+
+.wrapper .right .name {
+    font-weight: bold;
+    font-size: 125%;
+
+}
+
+.wrapper .department,
+.wrapper .education {
+    margin: 10px 0;
+}
+
+.wrapper .department {
+    background: var(--icon);
+    display: inline;
+    color: white;
+    padding: 3px 5px;
+}
+
+.wrapper .flex {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.wrapper .flex .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px
+}
+
+.wrapper .book {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--borderColor);
+    padding-top: 10px;
+}
+
+.wrapper .book .fee {
+    color: var(--theme);
+    font-weight: bold;
+    font-size: 120%;
+    margin: 7px 0;
+}
+
+.wrapper .book .btn {
+    background: var(--buttonBg);
+    color: var(--buttonC);
+    padding: var(--buttonPadding);
+
+
+}
+
+@media (max-width:570px ) {
+    .wrapper {
+        flex-direction: column;
+    }
+}

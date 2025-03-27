@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       // required: true
     },
+    fullName: {
+      type: String,
+      // required: true
+    },
     salt: {
       type: String
     },
@@ -29,33 +33,53 @@ const userSchema = new mongoose.Schema(
     phoneNumber: {
       type: String
     },
-    // Address information (optional - consider referencing an Address model)
-    shippingAddress: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Address' // Reference to a separate Address model (optional)
-    },
-    billingAddress: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Address' // Reference to a separate Address model (optional)
-    },
+
     // User roles (optional)
     role: {
       type: String,
-      enum: ['user', 'admin'], // Define allowed roles (can be extended)
+      enum: ['user', 'admin', "doctor"], // Define allowed roles (can be extended)
       default: 'user'
     },
-    // Additional information (optional)
-    wishlist: [
+
+    location: {
+      type: { type: String, enum: ['Point'], default: 'Point' },
+      coordinates: { type: [Number], required: true }, // [longitude, latitude]
+    },
+    symptoms: [
       {
-        // Array of product IDs for user's wishlist
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: 'Symptom'
       }
     ],
+    departments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Department'
+      }
+    ],
+    speciality: {
+      type: String,
+    },
+    workingIn: {
+      type: String,
+    },
+
+    bmdcNumber: {
+      type: String,
+    },
+
+    consultationFee: {
+      type: String,
+    },
+
+    totalExperience: {
+      type: String,
+    },
     phone: { type: String },
     isVerified: { type: Boolean, default: false },
     verificationCode: { type: String },
-    expirationTime: { type: Date }
+    expirationTime: { type: Date },
+
   },
 
   { timestamps: true }

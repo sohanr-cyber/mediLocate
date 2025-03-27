@@ -156,7 +156,7 @@ const SideBar = ({ setOpen }) => {
           <div
             className={styles.item}
             onClick={() =>
-              setVisible(prev => (prev == 'category' ? '' : 'category'))
+              setVisible(prev => (prev == 'department' ? '' : 'department'))
             }
           >
             <div className={styles.flex}>
@@ -164,45 +164,95 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.icon}>
                 <CategoryIcon />
               </div>
-              <div className={styles.title}>Category</div>{' '}
+              <div className={styles.title}>Department</div>{' '}
             </div>
             <div className={styles.icon}>
-              {visible == 'category' ? (
+              {visible == 'department' ? (
                 <KeyboardArrowUpIcon />
               ) : (
                 <KeyboardArrowDownIcon />
               )}{' '}
             </div>
           </div>{' '}
-          {visible == 'category' && (
+          {visible == 'department' && (
             <div className={styles.inner__items}>
               <div
                 className={styles.item}
-                onClick={() => router.push('/admin/category')}
+                onClick={() => router.push('/admin/department')}
               >
                 <div className={styles.flex}>
                   {' '}
                   <div className={styles.icon}>
                     <FormatListBulletedIcon />
                   </div>
-                  <div className={styles.title}>Category List</div>
+                  <div className={styles.title}>Department List</div>
                 </div>
               </div>{' '}
               <div
                 className={styles.item}
-                onClick={() => router.push('/admin/category/create')}
+                onClick={() => router.push('/admin/department/create')}
               >
                 <div className={styles.flex}>
                   {' '}
                   <div className={styles.icon}>
                     <AddCircleIcon />
                   </div>
-                  <div className={styles.title}>Add Category</div>
+                  <div className={styles.title}>Add Department</div>
                 </div>
               </div>
             </div>
           )}
           <div
+            className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'symptom' ? '' : 'symptom'))
+            }
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <CategoryIcon />
+              </div>
+              <div className={styles.title}>Symptom</div>{' '}
+            </div>
+            <div className={styles.icon}>
+              {visible == 'symptom' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>{' '}
+          {visible == 'symptom' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/symptom')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Symptom List</div>
+                </div>
+              </div>{' '}
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/symptom/create')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Symptom</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+
             className={styles.item}
             onClick={() => setVisible(prev => (prev == 'order' ? '' : 'order'))}
           >
@@ -251,7 +301,7 @@ const SideBar = ({ setOpen }) => {
             onClick={() =>
               setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))
             }
-            // style={{ display: 'none' }}
+          // style={{ display: 'none' }}
           >
             <div className={styles.flex}>
               {' '}

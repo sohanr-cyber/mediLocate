@@ -8,24 +8,23 @@ import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
-import { setFetchAgain } from '@/redux/categorySlice'
 
 const Categories = ({
   title,
   dashboard,
   currentPage,
   totalPages,
-  categories
+  symptoms
 }) => {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
-  const [filteredCategories, setFilteredCategories] = useState(categories)
+  const [filteredCategories, setFilteredCategories] = useState(symptoms)
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.userInfo)
   const headers = { Authorization: 'Bearer ' + userInfo?.token }
   useEffect(() => {
-    setFilteredCategories(categories)
-  }, [categories])
+    setFilteredCategories(symptoms)
+  }, [symptoms])
 
   // Function to handle search query change
   const handleSearchChange = e => {
@@ -33,7 +32,7 @@ const Categories = ({
     setSearchQuery(query)
 
     // Filter products based on the search query
-    const filtered = categories.filter(
+    const filtered = symptoms.filter(
       c =>
         c.name.toLowerCase().includes(query.toLowerCase()) ||
         c._id.toLowerCase().includes(query.toLowerCase())
@@ -44,17 +43,16 @@ const Categories = ({
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/category/${id}`, { headers })
+      const { data } = await axios.delete(`/api/symptom/${id}`, { headers })
       setFilteredCategories(filteredCategories.filter(i => i._id != id))
       dispatch(finishLoading())
-      dispatch(showSnackBar({ message: 'Category Removed !' }))
-      dispatch(setFetchAgain())
+      dispatch(showSnackBar({ message: 'Symptom Removed !' }))
     } catch (error) {
       console.log({ error })
       dispatch(finishLoading())
       dispatch(
         showSnackBar({
-          message: 'Error While Deleting Category !',
+          message: 'Error While Deleting Symptom !',
           option: {
             variant: 'error'
           }
@@ -67,7 +65,7 @@ const Categories = ({
     <>
       {' '}
       {!dashboard && <h2>{title}</h2>}
-      <div className={styles.wrapper} id='categories'>
+      <div className={styles.wrapper} id='symptoms'>
         {dashboard && <h2>{title}</h2>}
         {!dashboard && (
           <div className={styles.flex}>
@@ -82,7 +80,7 @@ const Categories = ({
               </span>
             </div>
             <div className={styles.right}>
-              <button onClick={() => router.push('/admin/category/create')}>
+              <button onClick={() => router.push('/admin/symptom/create')}>
                 <span className={styles.plus__btn}>Add One</span>
                 <span className={styles.plus__icon}>+</span>
               </button>{' '}
@@ -94,9 +92,9 @@ const Categories = ({
           <table>
             <thead>
               <tr>
-                <th>Category Id</th>
-                <th>Category Name</th>
-                <th>Category Icon</th>
+                <th>Symptom Id</th>
+                <th>Symptom Name</th>
+                <th>Symptom Icon</th>
                 {/* <th>CreatedAt</th> */}
                 <th>Action</th>
                 {/* Add more table headers as needed */}
@@ -117,7 +115,7 @@ const Categories = ({
                     <span onDoubleClick={() => remove(c._id)}>Delete</span>
                     <span
                       onClick={() =>
-                        router.push(`/admin/category/create?id=${c._id}`)
+                        router.push(`/admin/symptom/create?id=${c._id}`)
                       }
                     >
                       View

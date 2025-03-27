@@ -8,7 +8,9 @@ const ProductsByCategory2 = ({
   subCategory,
   products: data,
   rowDirection,
-  structure
+  structure,
+  title,
+  description
 }) => {
   const [products, setProducts] = useState(data)
   const style = `styles.${structure}`
@@ -20,29 +22,11 @@ const ProductsByCategory2 = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
-        <div className={styles.left}>
-          <h3 className={styles.item} onClick={() => setProducts(data)}>
-            {category}
-          </h3>
-        </div>
-        <div className={styles.right}>
-          {subCategory?.map(item => (
-            <>
-              <div
-                className={styles.item}
-                onClick={() =>
-                  setProducts(
-                    data.filter(p => p.categories.find(c => c == item._id))
-                  )
-                }
-              >
-                {item.name}
-              </div>
-            </>
-          ))}
-        </div>
+        <h2>
+          {title}
+        </h2>
+        <p>{description}</p>
       </div>
-      <ProgressBar pixel={category?.length * 11.2} />
       <div className={`${styles.products} ${style}`}>
         {products?.map((item, index) => (
           <Product

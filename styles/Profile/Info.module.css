@@ -1,0 +1,22 @@
+.wrapper {
+    padding: 10px;
+    background: var(--cardBg);
+
+}
+
+
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    border-top: 1px solid var(--borderColor);
+    padding-top: 15px;
+
+}
+
+.services .service .fee {
+    font-weight: bold;
+    margin: 7px 0;
+    /* color:var(--theme) */
+}

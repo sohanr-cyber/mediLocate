@@ -3,7 +3,7 @@ import styles from '../styles/Product.module.css'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPrice, hexToRgba } from '@/utility/helper'
+import { calculateDistance, getPrice, hexToRgba } from '@/utility/helper'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
 import { motion } from 'framer-motion'
@@ -19,7 +19,7 @@ const Product = ({ item, redirect, rowDirection }) => {
 
 
   const handleClick = () => {
-    redirect && router.push(`/product/${item.slug}`)
+    redirect && router.push(`/profile/233`)
     dispatch(handleViewProduct(item))
   }
 
@@ -36,26 +36,20 @@ const Product = ({ item, redirect, rowDirection }) => {
     // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
       <div className={styles.pic} >
-
-        {item.blurData ? (
-          <Image
-            src={item.thumbnail}
-            width={250}
-            height={250}
-            alt=''
-            placeholder='blur'
-            blurDataURL={item.blurData}
-          />
-        ) : (
-          <Image src={item.thumbnail} width={250} height={250} alt='' />
-        )}
+        <div className={styles.distance}>
+          In {" "}{calculateDistance([23.8103, 90.4125], item.location.coordinates).toFixed(2)} {" "}KM
+        </div>
+        <Image src={"/images/dr2.png"} width={250} height={250} alt='Not Found' />
       </div>
       <div className={styles.details}>
         <div className={styles.category}>
           {item.categories?.map(i => i.name)[0]}
         </div>
-        <div className={styles.title}>{item.name}</div>
+        <div className={styles.title}>{item.firstName} {" "}{item.lastName}</div>
+        <div className={styles.departments}>{item.departments.map(i => <span>{i} {" "}</span>)} </div>
+
         <Rating ratings={item.ratings} id={item._id} />
+
         {item.discount ? (
           <div className={styles.price__wrapper}>
             <div className={styles.price}>
@@ -63,13 +57,13 @@ const Product = ({ item, redirect, rowDirection }) => {
             </div>
             <div className={styles.flex}>
               <div className={styles.price}>
-                <s>৳{getPrice(item.price)}</s>
+                <s>৳{getPrice(item.fee)}</s>
               </div>
               <div className={styles.discount}>{item.discount}%</div>
             </div>
           </div>
         ) : (
-          <div className={styles.price}>৳{getPrice(item.price)}</div>
+          <div className={styles.price}>৳{getPrice(item.fee)}</div>
         )}
       </div>
     </motion.div>

@@ -1,5 +1,5 @@
 .skeleton {
-    background: var(--theme);
+    background: var(--buttonBg);
     /* Background color */
     animation: skeleton-loading 1s ease-in-out infinite alternate;
     /* Animation */
@@ -9,12 +9,12 @@
 
 @keyframes skeleton-loading {
     0% {
-        opacity: 0.2;
+        opacity: 0.15;
         /* Starting opacity */
     }
 
     100% {
-        opacity: 0.5;
+        opacity: 0.3;
         /* Ending opacity */
     }
 }

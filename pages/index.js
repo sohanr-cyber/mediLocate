@@ -27,8 +27,10 @@ import { NextSeo } from 'next-seo'
 import { generateSeoData } from '@/utility/helper'
 import { seoData } from '@/utility/const'
 import Grid from '@/components/Categories/Explore/Grid'
+import users from '@/utility/data'
+import MapPicker from '@/components/Utility/MapPicker'
 
-export default function Home({ data, contents }) {
+export default function Home({ data, contents, departments, symptoms }) {
   return (
     <>
       <NextSeo
@@ -52,49 +54,44 @@ export default function Home({ data, contents }) {
         <div className={styles.categories}>
           {/* <Categories /> */}
           {/* <List /> */}
-          <List2 />
+          {/* <List2 /> */}
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents.filter(i => i.position == "header")} />
         <div className={styles.categoriesInRow}>
-          <Row />
+          <Row items={departments} />
           {/* <Grid /> */}
         </div>
-        {data.slice(0, -3)?.length > 0 && data.slice(0, -3).map((i, index) => (
-          <ProductsByCategory2
-            category={i.category}
-            products={i.products}
-            subCategory={i.subCategory}
-            key={index}
-            structure={'grid'}
-          />
-        ))}
-        <div className={styles.off}>
-          <Off content={contents.filter(i => i.position == "deal")[0]} />
-        </div>
-        <div className={styles.off}>
-          <ShopNow content={contents.filter(i => i.position == "cta")[0]} />
-        </div>
-        <div className={styles.productsInColumn}>
-          {data.slice(-3).map((i, index) => (
-            <div className={styles.products} key={index}
-            >
-              <ProductsInColumn
-                category={i.category}
-                products={i.products?.slice(0, 4)}
-                subCategory={i.subCategory}
-                // rowDirection={(index + 1) % 2 == 0 ? true : false}
-                structure={'grid'}
-              />
-            </div>
-          ))}
+        {/* <MapPicker /> */}
+
+        <ProductsByCategory2
+          products={users}
+          structure={'grid'}
+          title={"Doctors Near You"}
+          description={"Find trusted doctors nearby and book appointments easily!"}
+        />
+
+        <ProductsByCategory2
+          products={users}
+          structure={'grid'}
+          title={"Available Doctors Now"}
+          description={"Consult verified doctors online anytime, anywhere!"}
+        />
+
+        <div className={styles.categoriesInRow} style={{ textAlign: "center" }}>
+          {/* <Row /> */}
+          <div className={styles.top}>
+            <h2>Chose A Symptom</h2>
+            <p>Select your symptoms to find relevant healthcare services and specialists</p>
+          </div>
+          <Grid items={symptoms} />
         </div>
         <div className={styles.features}>
-          <Features />
+          {/* <Features /> */}
         </div>
         <div className={styles.off}>
-          <Subscribe content={contents.filter(i => i.position == "subscription")[0]} />
+          {/* <Subscribe content={contents.filter(i => i.position == "subscription")[0]} /> */}
         </div>
       </div>
     </>
@@ -108,13 +105,24 @@ export async function getStaticProps() {
       `${BASE_URL}/api/content?show=true`
     )
 
+    const { data: departments } = await axios.get(
+      `${BASE_URL}/api/department/view`
+    )
+
+    const { data: symptoms } = await axios.get(
+      `${BASE_URL}/api/symptom/view`
+    )
+
+
     const { data } = await axios.get(`${BASE_URL}/api/product/bycategory`)
     const end = new Date()
     console.log(`time : ${end - start}ms`)
     return {
       props: {
         data,
-        contents: contents.contents
+        contents: contents.contents,
+        symptoms,
+        departments
       },
       revalidate: 60 // Revalidate at most every 10 seconds
     }
@@ -123,7 +131,9 @@ export async function getStaticProps() {
     return {
       props: {
         data: [],
-        contents: []
+        contents: [],
+        symptoms: [],
+        departments: []
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }

@@ -82,8 +82,8 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          {isClient && userInfo?.role == 'admin' && (
-            <div className={styles.item} onClick={() => router.push('/admin')}>
+          {isClient && userInfo && (
+            <div className={styles.item} onClick={() => router.push(`/profile/${userInfo.id}`)}>
               <AccountCircleIcon />
             </div>
           )}

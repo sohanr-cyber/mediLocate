@@ -5,17 +5,14 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import SkeletonDiv from '@/components/Utility/SkeletonDiv'
 import { AspectRatio } from '@mui/icons-material'
-const Grid = () => {
-    const categories = useSelector(state => state.category.categories)?.slice(
-        0,
-        12
-    )
+const Grid = ({ items }) => {
+
     const router = useRouter()
     const userInfo = useSelector(state => state.user.userInfo)
 
     return (
         <div className={styles.wrapper}>
-            {categories ? categories?.map((c, index) => (
+            {items ? items.slice(0, 12)?.map((c, index) => (
                 <div className={styles.category} onClick={() => router.push(`/shop?categories=${c._id}`)} onDoubleClick={() => userInfo?.role == "admin" && router.push(`/admin/category/create?id=${c._id}`)}>
                     <div className={styles.icon}>
                         <Image src={c?.image} width={50} height={50} alt="" />

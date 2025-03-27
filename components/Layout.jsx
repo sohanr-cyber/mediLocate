@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
   const dispatch = useDispatch()
   const fetchCategory = async () => {
     try {
-      const { data } = await axios.get('/api/category/view')
+      const { data } = await axios.get('/api/department/view')
       dispatch(setCategories(data))
     } catch (error) {
       console.log(error)

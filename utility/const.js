@@ -1,6 +1,6 @@
 import BASE_URL from '@/config'
 // const companyName = 'StyleHive '
-const companyName = "AgroFresh";
+const companyName = "MediLocate";
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -65,113 +65,20 @@ const colors = [
   { name: 'Gold', code: '#FFD700' }
 ]
 
-
-// const seoData = {
-//   title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
-//   description:
-//     'Discover the latest fashion trends with high-quality clothing and accessories. Shop stylish outfits at great prices only at FashionNest.',
-//   canonical: BASE_URL,
-//   openGraph: {
-//     url: BASE_URL,
-//     title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
-//     description:
-//       'Explore the newest fashion trends and timeless styles. Shop clothing, footwear, and accessories for men, women, and kids at FashionNest.',
-//     images: [
-//       {
-//         url: `${BASE_URL}/images/og-image.jpg`,
-//         alt: `${companyName} Fashion Store`,
-//         width: 1200,
-//         height: 630
-//       }
-//     ],
-//     site_name: companyName
-//   },
-//   twitter: {
-//     handle: `@${companyName}`,
-//     site: `@${companyName}`,
-//     cardType: 'summary_large_image'
-//   }
-// };
-
-// const orderCartSeoData = {
-//   title: `Your Shopping Cart - ${companyName}`,
-//   description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
-//   canonical: `${BASE_URL}/cart`,
-//   openGraph: {
-//     title: `Your Shopping Cart - ${companyName}`,
-//     description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
-//     url: `${BASE_URL}/cart`,
-//     images: [
-//       {
-//         url: `${BASE_URL}/images/cart.png`,
-//         width: 1200,
-//         height: 630,
-//         alt: `Your Shopping Cart - ${companyName}`
-//       }
-//     ],
-//     type: 'website'
-//   },
-//   twitter: seoData.twitter
-// };
-
-// const TermsAndConditionSeoData = {
-//   title: `Terms and Conditions - ${companyName}`,
-//   description: `Review the terms and conditions for shopping at ${companyName}.`,
-//   canonical: `${BASE_URL}/terms-and-conditions`,
-//   openGraph: {
-//     title: `Terms and Conditions - ${companyName}`,
-//     description: `Review the terms and conditions for shopping at ${companyName}.`,
-//     url: `${BASE_URL}/terms-and-conditions`,
-//     images: [
-//       {
-//         url: `${BASE_URL}/images/terms-and-conditions.png`,
-//         width: 1200,
-//         height: 630,
-//         alt: `Terms and Conditions - ${companyName}`
-//       }
-//     ],
-//     type: 'website'
-//   },
-//   twitter: seoData.twitter
-// };
-
-// const privacyPolicySeoData = {
-//   title: `Privacy Policy - ${companyName}`,
-//   description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
-//   canonical: `${BASE_URL}/privacy-policy`,
-//   openGraph: {
-//     title: `Privacy Policy - ${companyName}`,
-//     description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
-//     url: `${BASE_URL}/privacy-policy`,
-//     images: [
-//       {
-//         url: `${BASE_URL}/images/privacy-policy.png`,
-//         width: 1200,
-//         height: 630,
-//         alt: `Privacy Policy - ${companyName}`
-//       }
-//     ],
-//     type: 'website'
-//   },
-//   twitter: seoData.twitter
-// };
-
-
-
 const seoData = {
-  title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+  title: `${companyName} - Find Trusted Healthcare Services Nearby`,
   description:
-    "Buy the freshest organic fruits, vegetables, and farm produce directly from AgroFresh. We ensure quality and natural goodness in every product.",
+    "Easily locate hospitals, clinics, pharmacies, and healthcare providers with MediLocate. Your trusted platform for finding quality medical services near you.",
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+    title: `${companyName} - Find Trusted Healthcare Services Nearby`,
     description:
-      "Discover organic and farm-fresh products at AgroFresh. We bring you healthy and chemical-free food straight from trusted farmers.",
+      "Discover hospitals, clinics, and pharmacies with ease using MediLocate. We connect you to trusted healthcare providers in your area.",
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} - Fresh Organic Produce`,
+        alt: `${companyName} - Find Trusted Healthcare Services`,
         width: 1200,
         height: 630
       }
@@ -186,19 +93,19 @@ const seoData = {
 };
 
 const orderCartSeoData = {
-  title: `Your Shopping Cart - ${companyName}`,
-  description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+  title: `Your Cart - ${companyName}`,
+  description: `Review and manage your selected healthcare services and products at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
-    title: `Your Shopping Cart - ${companyName}`,
-    description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+    title: `Your Cart - ${companyName}`,
+    description: `Review and manage your selected healthcare services and products at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
         url: `${BASE_URL}/images/cart.png`,
         width: 1200,
         height: 630,
-        alt: `Your Shopping Cart - ${companyName}`
+        alt: `Your Cart - ${companyName}`
       }
     ],
     type: "website"
@@ -206,13 +113,13 @@ const orderCartSeoData = {
   twitter: seoData.twitter
 };
 
-const TermsAndConditionSeoData = {
+const termsAndConditionsSeoData = {
   title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+  description: `Review the terms and conditions for using ${companyName} to find healthcare services and providers.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
     title: `Terms and Conditions - ${companyName}`,
-    description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+    description: `Understand the guidelines and responsibilities when using ${companyName} for healthcare searches.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
@@ -229,11 +136,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+  description: `Learn how ${companyName} protects your personal data while helping you find trusted healthcare providers.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+    description: `Find out how ${companyName} ensures your data privacy and security while providing healthcare location services.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -248,15 +155,13 @@ const privacyPolicySeoData = {
   twitter: seoData.twitter
 };
 
-
-
 const orderDetailSeoData = {
   title: `Order Details - ${companyName}`,
-  description: `Check the details of your order at ${companyName}.`,
+  description: `View and track your healthcare service orders with ${companyName}.`,
   canonical: `${BASE_URL}/order-details`,
   openGraph: {
     title: `Order Details - ${companyName}`,
-    description: `Check the details of your order at ${companyName}.`,
+    description: `View and track your healthcare service orders with ${companyName}.`,
     url: `${BASE_URL}/order-details`,
     images: [
       {
@@ -266,60 +171,60 @@ const orderDetailSeoData = {
         alt: `Order Details - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const reviewSeoData = {
-  title: `Review Your Order - ${companyName}`,
-  description: `Confirm your items and details before placing your order at ${companyName}.`,
+  title: `Review Your Booking - ${companyName}`,
+  description: `Confirm your selected healthcare services and provider details before booking with ${companyName}.`,
   canonical: `${BASE_URL}/review`,
   openGraph: {
-    title: `Review Your Order - ${companyName}`,
-    description: `Confirm your items and details before placing your order at ${companyName}.`,
+    title: `Review Your Booking - ${companyName}`,
+    description: `Confirm your selected healthcare services and provider details before booking with ${companyName}.`,
     url: `${BASE_URL}/review`,
     images: [
       {
         url: `${BASE_URL}/images/review-order.png`,
         width: 1200,
         height: 630,
-        alt: `Review Your Order - ${companyName}`
+        alt: `Review Your Booking - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const addressSeoData = {
-  title: `Shipping Address - ${companyName}`,
-  description: `Enter your shipping address to complete your purchase on ${companyName}.`,
+  title: `Add Your Address - ${companyName}`,
+  description: `Enter your location details to find healthcare services near you on ${companyName}.`,
   canonical: `${BASE_URL}/address`,
   openGraph: {
-    title: `Shipping Address - ${companyName}`,
-    description: `Enter your shipping address to complete your purchase on ${companyName}.`,
+    title: `Add Your Address - ${companyName}`,
+    description: `Enter your location details to find healthcare services near you on ${companyName}.`,
     url: `${BASE_URL}/address`,
     images: [
       {
         url: `${BASE_URL}/images/shipping-address.png`,
         width: 1200,
         height: 630,
-        alt: `Shipping Address - ${companyName}`
+        alt: `Add Your Address - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const loginSeoData = {
   title: `Login - ${companyName}`,
-  description: `Log in to your account at ${companyName} to access your profile and orders.`,
+  description: `Log in to your account at ${companyName} to access your healthcare profile and appointments.`,
   canonical: `${BASE_URL}/login`,
   openGraph: {
     title: `Login - ${companyName}`,
-    description: `Log in to your account at ${companyName} to access your profile and orders.`,
+    description: `Log in to your account at ${companyName} to access your healthcare profile and appointments.`,
     url: `${BASE_URL}/login`,
     images: [
       {
@@ -329,18 +234,18 @@ const loginSeoData = {
         alt: `Login - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const registerSeoData = {
   title: `Register - ${companyName}`,
-  description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
+  description: `Create an account at ${companyName} to start booking healthcare services and appointments.`,
   canonical: `${BASE_URL}/register`,
   openGraph: {
     title: `Register - ${companyName}`,
-    description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
+    description: `Create an account at ${companyName} to start booking healthcare services and appointments.`,
     url: `${BASE_URL}/register`,
     images: [
       {
@@ -350,50 +255,24 @@ const registerSeoData = {
         alt: `Register - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const base64Img = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAApACkDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAX/xAAnEAACAgECBQQDAQAAAAAAAAABAgADEQQhEiIxQXETQlFhMjPB0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABgRAQEBAQEAAAAAAAAAAAAAAAABERJB/9oADAMBAAIRAxEAPwDYiJA6mB6SjqrmWwIpzY34jpj6lk1m3F7jX5EMg95ii2zhsdnwUwyHHKRnEtUX5uFTMSwbGRuAf8MvKdX1oxQHSEjYmRrX9DVKxBbBzg+4HYibB6SjrG01pNdythT+we1viJcZsZgrDW8KOWrIAXA5j9Y/vST0o1rqhPpVBtlQ9vPmStTWlhr9dK1bYhU4c+TLGlbToVCWBrXHcYz9AdhLpYuDpCOKRTkFmkqscOy83ffY+ZPCBANLQFI4MgjfJO/mNNNUjq6rzKMAk5k0IAIo4QP/2Q=="
-// const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-// const themeTransparent = 'rgb(8, 78, 67,0.1)'
-// const themeC = 'rgb(8, 78, 67)'
-// const buttonC = 'white'
-// const bg = 'aliceblue'
-// const outerBg = 'lightgrey'
-// const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-// const borderColor = 'rgb(8, 78, 67,0.1)'
 
-// const themeBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const themeTransparent = 'rgba(7, 121, 214,0.1)'
-// const themeC = 'rgba(7, 121, 214, 255)'
-// const buttonC = 'white'
-// const buttonBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const bg = 'white'
-// const outerBg = 'rgb(232, 241, 247)'
-// const borderColor = 'rgba(197, 223, 244, 255)'
 
-const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+const themeBg = 'linear-gradient(45deg, rgb(36, 178, 255), rgb(18, 117, 255))'
 const themeTransparent = 'rgba(7, 121, 214,0.1)'
-const themeC = 'rgb(29, 102, 12)'
+const themeC = 'rgb(56, 162, 244)'
 const buttonC = 'white'
-const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+const buttonBg = 'linear-gradient(45deg, rgb(50, 138, 246), rgb(84, 172, 244))'
 const bg = 'white'
 const outerBg = 'rgb(232, 241, 247)'
-const borderColor = 'rgba(52, 134, 11, 0.5)'
+const borderColor = 'rgba(109, 125, 126, 0.5)'
 
 
-// const themeBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(14, 14, 14))'
-// const themeTransparent = 'rgba(41, 43, 44, 0.1)'
-// const themeC = 'rgb(0, 0, 0)'
-// const buttonC = 'white'
-// const buttonBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 0, 0))'
-// const bg = 'white'
-// const outerBg = 'rgb(232, 241, 247)'
-// const borderColor = 'rgba(69, 69, 68, 0.5)'
 
 
 const orderStatusColors = {
@@ -428,7 +307,7 @@ export {
   orderCartSeoData,
   orderDetailSeoData,
   reviewSeoData,
-  TermsAndConditionSeoData,
+  termsAndConditionsSeoData,
   privacyPolicySeoData,
   addressSeoData,
   registerSeoData,

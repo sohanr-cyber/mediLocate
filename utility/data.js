@@ -1,127 +1,277 @@
+
+
+const locations = [
+  {
+    name: "Central Dhaka",
+    location: {
+      type: "Point",
+      coordinates: [90.4125, 23.8103] // [longitude, latitude]
+    }
+  },
+  {
+    name: "Gulshan",
+    location: {
+      type: "Point",
+      coordinates: [90.3956, 23.7937]
+    }
+  },
+  {
+    name: "Dhanmondi",
+    location: {
+      type: "Point",
+      coordinates: [90.3948, 23.7509]
+    }
+  },
+  {
+    name: "Mirpur",
+    location: {
+      type: "Point",
+      coordinates: [90.3548, 23.8103]
+    }
+  },
+  {
+    name: "Uttara",
+    location: {
+      type: "Point",
+      coordinates: [90.3935, 23.8608]
+    }
+  }
+];
+
+const users = [
+  {
+    email: "user1@example.com",
+    firstName: "Aminul",
+    lastName: "Islam",
+    role: "user",
+    fee: 500,
+    departments: ["Cardiology"],
+    location: { type: "Point", coordinates: [23.8200, 90.4150] } // Near Dhaka
+  },
+  {
+    email: "user2@example.com",
+    firstName: "Rahman",
+    lastName: "Hossain",
+    role: "doctor",
+    fee: 700,
+    departments: ["Dermatology"],
+    location: { type: "Point", coordinates: [23.8050, 90.4000] } // Near Dhaka
+  },
+  {
+    email: "user3@example.com",
+    firstName: "Sadia",
+    lastName: "Karim",
+    role: "admin",
+    fee: 0,
+    departments: ["Administration"],
+    location: { type: "Point", coordinates: [23.8150, 90.4200] } // Near Dhaka
+  },
+  {
+    email: "user4@example.com",
+    firstName: "Mahbub",
+    lastName: "Alam",
+    role: "doctor",
+    fee: 600,
+    departments: ["Neurology"],
+    location: { type: "Point", coordinates: [23.8250, 90.4100] } // Near Dhaka
+  },
+  {
+    email: "user5@example.com",
+    firstName: "Nasrin",
+    lastName: "Jahan",
+    role: "user",
+    fee: 550,
+    departments: ["Orthopedics"],
+    location: { type: "Point", coordinates: [23.8180, 90.4050] } // Near Dhaka
+  },
+  {
+    email: "user6@example.com",
+    firstName: "Kamrul",
+    lastName: "Hasan",
+    role: "doctor",
+    fee: 800,
+    departments: ["Gastroenterology"],
+    location: { type: "Point", coordinates: [23.8120, 90.4250] } // Near Dhaka
+  },
+  {
+    email: "user7@example.com",
+    firstName: "Mariam",
+    lastName: "Akter",
+    role: "doctor",
+    fee: 750,
+    departments: ["Pediatrics"],
+    location: { type: "Point", coordinates: [23.8190, 90.4070] } // Near Dhaka
+  },
+  {
+    email: "user8@example.com",
+    firstName: "Jamil",
+    lastName: "Ahmed",
+    role: "user",
+    fee: 450,
+    departments: ["ENT"],
+    location: { type: "Point", coordinates: [23.8135, 90.4185] } // Near Dhaka
+  },
+  {
+    email: "user9@example.com",
+    firstName: "Fahim",
+    lastName: "Uddin",
+    role: "doctor",
+    fee: 720,
+    departments: ["Ophthalmology"],
+    location: { type: "Point", coordinates: [23.8070, 90.4160] } // Near Dhaka
+  },
+  {
+    email: "user10@example.com",
+    firstName: "Tasnim",
+    lastName: "Chowdhury",
+    role: "user",
+    fee: 500,
+    departments: ["Gynecology"],
+    location: { type: "Point", coordinates: [23.8215, 90.4080] } // Near Dhaka
+  }
+];
+
+
 const termsAndConditions = [
   {
     section: 1,
     title: 'General Terms',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt vehicula ex, a congue massa efficitur in. Quisque in justo a urna pulvinar cursus in ac risus. Fusce tincidunt ex eu odio laoreet, ac consequat tortor congue.'
+      'By accessing and using MediLocate, you agree to comply with these Terms and Conditions. We reserve the right to update or modify these terms at any time without prior notice. Continued use of our services constitutes acceptance of the revised terms.'
   },
   {
     section: 2,
-    title: 'Intellectual Property',
+    title: 'Medical Disclaimer',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. All materials displayed on this website, including images, logos, text, and other graphics, are owned by or licensed to [Your Company Name]. Reproduction or redistribution of these materials without prior consent is strictly prohibited.'
+      'MediLocate provides information and connects users with healthcare services. However, we do not offer medical advice, diagnosis, or treatment. Users should consult a qualified healthcare professional for medical concerns. We are not responsible for any decisions made based on the information provided on our platform.'
   },
   {
     section: 3,
-    title: 'Purchase and Payments',
+    title: 'User Accounts',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. By placing an order, you agree to provide accurate, complete, and up-to-date information. Payments must be made via the payment methods available on our website. Quisque facilisis, eros eget feugiat suscipit, risus ligula pharetra orci, nec efficitur risus lorem nec est.'
+      'To access certain features, you may need to create an account. You are responsible for maintaining the confidentiality of your account information. We reserve the right to suspend or terminate accounts that violate our terms or policies.'
   },
   {
     section: 4,
-    title: 'Shipping and Delivery',
+    title: 'Payments and Services',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orders will be shipped according to the shipping method selected during checkout. Please allow [X] business days for processing and shipping. Quisque vehicula quam ac nisi interdum, at molestie magna malesuada.'
+      'Some services on MediLocate may require payment. By making a payment, you agree to provide accurate billing information. Payments are processed securely, and refunds are subject to our Refund Policy.'
   },
   {
     section: 5,
-    title: 'Returns and Refunds',
+    title: 'Privacy and Data Protection',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We offer returns on items in their original condition within [X] days of purchase. If your product is defective or damaged, please contact us at [Contact Information]. Aenean scelerisque euismod nunc at volutpat. Aliquam erat volutpat.'
+      'Your privacy is important to us. Personal data collected by MediLocate is used in accordance with our Privacy Policy. By using our services, you consent to data processing as described in our policy.'
   },
   {
     section: 6,
-    title: 'Limitation of Liability',
+    title: 'Prohibited Activities',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In no event shall [Your Company Name] be held liable for any damages arising out of the use or inability to use the products sold on this website. Fusce at orci eu nisl fringilla fermentum.'
+      'Users must not engage in fraudulent, abusive, or illegal activities on our platform. This includes misinformation, impersonation, spamming, or attempting to gain unauthorized access to other users’ accounts or our systems.'
   },
   {
     section: 7,
-    title: 'Privacy Policy',
+    title: 'Third-Party Services',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Your personal information is collected and used in accordance with our Privacy Policy, which can be accessed at [Privacy Policy URL]. Sed lacinia dui id ligula tincidunt, non vulputate metus pretium.'
+      'MediLocate may include links to third-party healthcare providers or services. We do not endorse or take responsibility for the quality, reliability, or accuracy of third-party services. Any transactions or interactions with third parties are at your own risk.'
   },
   {
     section: 8,
     title: 'Amendments to Terms',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. [Your Company Name] reserves the right to modify or replace these terms and conditions at any time. Any changes will be posted on this page and will take effect immediately.'
+      'MediLocate reserves the right to modify these terms at any time. Changes will be effective immediately upon posting on our website. It is your responsibility to review these terms regularly.'
   },
   {
     section: 9,
-    title: 'Governing Law',
+    title: 'Limitation of Liability',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. These terms and conditions are governed by and construed in accordance with the laws of [Country/State], and you irrevocably submit to the exclusive jurisdiction of the courts in that location.'
+      'MediLocate is not liable for any damages, losses, or issues resulting from the use of our platform or third-party services. Our services are provided "as is" without warranties of any kind.'
   },
   {
     section: 10,
     title: 'Contact Us',
     content:
-      'If you have any questions about these Terms and Conditions, please contact us at [Contact Email or Phone].'
+      'If you have any questions regarding these Terms and Conditions, please contact us at support@medilocate.com.'
   }
-]
+];
 
 const privacyPolicy = [
   {
     section: 1,
     title: 'Introduction',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We at [Your Company Name] are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website.'
+      'MediLocate is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal data when you use our services. By accessing our platform, you agree to the terms outlined in this policy.'
   },
   {
     section: 2,
     title: 'Information We Collect',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We may collect personal information such as your name, email address, shipping address, payment details, and other relevant information needed for processing orders or providing services. We also collect non-personal information such as browser type, IP address, and cookies to improve user experience.'
+      'We collect personal data, including but not limited to your name, email, phone number, medical preferences, and location. Additionally, we may collect non-personal data such as device information, cookies, and usage analytics to enhance our services.'
   },
   {
     section: 3,
     title: 'How We Use Your Information',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We use the information we collect to process transactions, provide customer support, improve our services, and send promotional communications. Quisque tincidunt libero sed dolor consectetur, a tempus libero efficitur.'
+      'Your information is used to provide and improve our services, including appointment scheduling, connecting you with healthcare providers, processing payments, sending notifications, and ensuring platform security.'
   },
   {
     section: 4,
-    title: 'Sharing Your Information',
+    title: 'Data Sharing and Third Parties',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We do not share your personal information with third parties, except for essential services like payment processing, order fulfillment, and as required by law. All third-party service providers are bound by confidentiality agreements.'
+      'MediLocate does not sell your personal data. However, we may share your information with healthcare providers, payment processors, or legal authorities when required by law. All third-party partners adhere to strict confidentiality agreements.'
   },
   {
     section: 5,
-    title: 'Cookies',
+    title: 'Data Security',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our website uses cookies to collect data about browsing behavior to improve site performance. You may choose to disable cookies in your browser settings, but this may affect your experience on our site.'
+      'We implement industry-standard security measures to protect your data from unauthorized access, breaches, or misuse. However, no system is completely secure, and we encourage users to take precautions when sharing sensitive information online.'
   },
   {
     section: 6,
-    title: 'Data Security',
+    title: 'Cookies and Tracking Technologies',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We implement security measures to protect your personal information from unauthorized access, loss, misuse, or alteration. However, no method of transmission over the internet is completely secure, and we cannot guarantee its absolute security.'
+      'We use cookies and tracking technologies to enhance user experience, analyze website traffic, and provide personalized content. You can manage cookie preferences through your browser settings.'
   },
   {
     section: 7,
-    title: 'Your Rights',
+    title: 'Your Rights and Choices',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. You have the right to access, modify, or delete your personal information. If you would like to review or update your information, please contact us at [Contact Email].'
+      'You have the right to access, update, or delete your personal data. If you wish to modify your information or opt out of communications, please contact us at privacy@medilocate.com.'
   },
   {
     section: 8,
-    title: 'Children’s Privacy',
+    title: 'Data Retention',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our website is not intended for children under the age of 13, and we do not knowingly collect personal information from children. If we learn that we have collected information from a child under 13, we will take steps to delete the data.'
+      'We retain personal data for as long as necessary to provide our services and comply with legal obligations. After this period, data is securely deleted or anonymized.'
   },
   {
     section: 9,
-    title: 'Changes to the Privacy Policy',
+    title: 'Children’s Privacy',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. We reserve the right to modify this Privacy Policy at any time. Any changes will be posted on this page and will take effect immediately. Please review this policy regularly to stay informed of any updates.'
+      'MediLocate does not knowingly collect personal information from individuals under 18 years old. If we become aware of such data collection, we will take immediate steps to delete it.'
   },
   {
     section: 10,
+    title: 'Changes to This Policy',
+    content:
+      'We may update this Privacy Policy periodically. Changes will be posted on this page, and significant updates will be communicated through email or platform notifications.'
+  },
+  {
+    section: 11,
     title: 'Contact Us',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. If you have any questions about this Privacy Policy, please contact us at [Contact Email or Phone].'
+      'If you have any questions or concerns about this Privacy Policy, please contact us at privacy@medilocate.com.'
   }
-]
+];
 
-export { termsAndConditions, privacyPolicy }
+export default users;
+
+
+
+
+
+
+
+
+
+export { termsAndConditions, privacyPolicy, users }

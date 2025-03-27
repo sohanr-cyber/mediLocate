@@ -3,6 +3,7 @@
     border-radius: 0;
     overflow: hidden;
     max-width: 250px;
+    min-width: 200px;
     cursor: pointer;
     /* min-width: 170px; */
     box-shadow: var(--box-shadow);
@@ -11,6 +12,19 @@
 
 .wrapper .pic {
     overflow: hidden;
+    position: relative;
+    background: initial;
+    /* aspect-ratio: 1/1; */
+    max-height: 180px;
+}
+
+.wrapper .pic .distance {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--buttonBg);
+    padding: 3px 5px;
+    columns: var(--buttonColor);
 }
 
 .wrapper .pic img {
@@ -23,9 +37,6 @@
 }
 
 
-.wrapper .pic img:hover {
-    transform: scale(1.5) rotate(25deg);
-}
 
 .wrapper .details {
     padding: 10px;
@@ -40,9 +51,11 @@
     white-space: nowrap;
 }
 
-.wrapper .title {
-    margin-bottom: 10px;
-
+.wrapper .departments {
+    margin-bottom: 7px;
+    margin-top: 5px;
+    font-size: 90%;
+    color: grey
 }
 
 .wrapper .price {
