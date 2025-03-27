@@ -113,7 +113,7 @@ const orderCartSeoData = {
   twitter: seoData.twitter
 };
 
-const termsAndConditionsSeoData = {
+const TermsAndConditionsSeoData = {
   title: `Terms and Conditions - ${companyName}`,
   description: `Review the terms and conditions for using ${companyName} to find healthcare services and providers.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
@@ -307,7 +307,7 @@ export {
   orderCartSeoData,
   orderDetailSeoData,
   reviewSeoData,
-  termsAndConditionsSeoData,
+  TermsAndConditionsSeoData,
   privacyPolicySeoData,
   addressSeoData,
   registerSeoData,

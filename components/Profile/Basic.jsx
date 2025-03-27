@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from '../../styles/Profile/Basic.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 const Basic = () => {
+    const router = useRouter()
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
                 <div className={styles.pic}>
-                    <Image src='/images/dr2.png' width={200} height={260} alt="" />
+                    <Image src='/images/dr2.png' width={200} height={260} alt="" onClick={() => router.push(`/profile/update/${router.query.id}`)} />
                 </div>
             </div>
             <div className={styles.right}>
