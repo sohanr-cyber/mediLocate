@@ -30,7 +30,7 @@ import Grid from '@/components/Categories/Explore/Grid'
 import users from '@/utility/data'
 import MapPicker from '@/components/Utility/MapPicker'
 
-export default function Home({ data, contents, departments, symptoms }) {
+export default function Home({  contents, departments, symptoms }) {
   return (
     <>
       <NextSeo
@@ -114,12 +114,10 @@ export async function getStaticProps() {
     )
 
 
-    const { data } = await axios.get(`${BASE_URL}/api/product/bycategory`)
     const end = new Date()
     console.log(`time : ${end - start}ms`)
     return {
       props: {
-        data,
         contents: contents.contents,
         symptoms,
         departments
@@ -130,7 +128,6 @@ export async function getStaticProps() {
     console.error('Error fetching products:', error)
     return {
       props: {
-        data: [],
         contents: [],
         symptoms: [],
         departments: []
