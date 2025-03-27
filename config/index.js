@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
   PASSWORD = process.env.GMAIL_PASS_DEV
   PIXEL_ID = '1040750500772753'
 } else {
-  BASE_URL = 'https://medi-locate-git-main-sohanrcybers-projects.vercel.app'
+  BASE_URL = 'https://medi-locate.vercel.app'
   // BASE_URL = 'https://ecomerce-phi-gold.vercel.app'
   // BASE_URL = 'https://electronics-52h4.vercel.app'
   // BASE_URL = "https://stylehive-kohl.vercel.app"
