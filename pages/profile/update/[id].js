@@ -176,7 +176,7 @@ const Update = ({ profile: data }) => {
                             onChange={e => setProfile({ ...profile, phone: e.target.value })}
                         />
                     </div>
-                    <div className={styles.field}>
+                    {profile.role == "doctor" && (<>     <div className={styles.field}>
                         <label>Education Name</label>
                         <input
                             type="text"
@@ -186,67 +186,67 @@ const Update = ({ profile: data }) => {
                         />
                     </div>
 
-                    <div className={styles.field}>
-                        <label>Speciality</label>
-                        <input
-                            type="text"
-                            placeholder="Enter Your Speciality"
-                            value={profile?.speciality}
-                            onChange={e => setProfile({ ...profile, speciality: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>Speciality</label>
+                            <input
+                                type="text"
+                                placeholder="Enter Your Speciality"
+                                value={profile?.speciality}
+                                onChange={e => setProfile({ ...profile, speciality: e.target.value })}
+                            />
+                        </div>
 
-                    <div className={styles.field}>
-                        <label>Total Experience (Years)</label>
-                        <input
-                            type="number"
-                            placeholder="Enter Total Experience"
-                            value={profile?.totalExperience}
-                            onChange={e => setProfile({ ...profile, totalExperience: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>Total Experience (Years)</label>
+                            <input
+                                type="number"
+                                placeholder="Enter Total Experience"
+                                value={profile?.totalExperience}
+                                onChange={e => setProfile({ ...profile, totalExperience: e.target.value })}
+                            />
+                        </div>
 
-                    <div className={styles.field}>
-                        <label>BMDC Number</label>
-                        <input
-                            type="text"
-                            placeholder="Enter BMDC Number"
-                            value={profile?.bmdcNumber}
-                            onChange={e => setProfile({ ...profile, bmdcNumber: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>BMDC Number</label>
+                            <input
+                                type="text"
+                                placeholder="Enter BMDC Number"
+                                value={profile?.bmdcNumber}
+                                onChange={e => setProfile({ ...profile, bmdcNumber: e.target.value })}
+                            />
+                        </div>
 
-                    <div className={styles.field}>
-                        <label>Working Institution</label>
-                        <input
-                            type="text"
-                            placeholder="Enter Current Workplace"
-                            value={profile?.workingIn}
-                            onChange={e => setProfile({ ...profile, workingIn: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>Working Institution</label>
+                            <input
+                                type="text"
+                                placeholder="Enter Current Workplace"
+                                value={profile?.workingIn}
+                                onChange={e => setProfile({ ...profile, workingIn: e.target.value })}
+                            />
+                        </div>
 
-                    <div className={styles.field}>
-                        <label>Consultation Fee (BDT)</label>
-                        <input
-                            type="number"
-                            placeholder="Enter Consultation Fee"
-                            value={profile?.consultationFee}
-                            onChange={e => setProfile({ ...profile, consultationFee: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>Consultation Fee (BDT)</label>
+                            <input
+                                type="number"
+                                placeholder="Enter Consultation Fee"
+                                value={profile?.consultationFee}
+                                onChange={e => setProfile({ ...profile, consultationFee: e.target.value })}
+                            />
+                        </div>
 
-                    <div className={styles.field}>
-                        <label>Average Consultation Time (Minutes)</label>
-                        <input
-                            type="number"
-                            placeholder="Enter Avg Consultation Time"
-                            value={profile?.avgConsultationTimes}
-                            onChange={e => setProfile({ ...profile, avgConsultationTimes: e.target.value })}
-                        />
-                    </div>
+                        <div className={styles.field}>
+                            <label>Average Consultation Time (Minutes)</label>
+                            <input
+                                type="number"
+                                placeholder="Enter Avg Consultation Time"
+                                value={profile?.avgConsultationTimes}
+                                onChange={e => setProfile({ ...profile, avgConsultationTimes: e.target.value })}
+                            />
+                        </div>
 
-
+                    </>)}
 
                     <div className={styles.field}>
                         <label>Profile Icon</label>

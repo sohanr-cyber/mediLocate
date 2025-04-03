@@ -24,8 +24,8 @@ const Footer = () => {
             <div className={styles.link} onClick={() => router.push('/')}>
               Home
             </div>{' '}
-            <div className={styles.link} onClick={() => router.push('/shop')}>
-              Shop
+            <div className={styles.link} onClick={() => router.push('/')}>
+              Doctor
             </div>
           </div>
           {categories &&

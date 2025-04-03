@@ -3,8 +3,10 @@ import styles from '../../styles/Profile/Basic.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import CreateIcon from '@mui/icons-material/Create';
+import { useSelector } from 'react-redux';
 const Basic = ({ profile }) => {
     const router = useRouter()
+    const userInfo = useSelector(state => state.user.userInfo)
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
@@ -15,7 +17,8 @@ const Basic = ({ profile }) => {
             <div className={styles.right}>
                 <div className={styles.name}>{
                     profile.firstName}{" "}{profile.lastName}
-                    <CreateIcon className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
+                    {router.query.slug == userInfo?.id && <CreateIcon className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
+                    }
                 </div>
 
                 <div className={styles.education}>
