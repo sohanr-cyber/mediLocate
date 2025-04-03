@@ -166,7 +166,7 @@ const Login = () => {
             <Logo />
           </div>
           <h2>Create an Account</h2>
-          <p>We Have Sent An Verification Code To Your Email</p>
+          <p>We Have Sent An Verification Code To Your Email </p>
           <form>
             <input
               type='email'

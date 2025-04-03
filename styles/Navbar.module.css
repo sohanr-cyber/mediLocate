@@ -28,6 +28,12 @@
 }
 
 
+.wrapper .btn {
+    padding: 3px 7px;
+    background: var(--buttonBg);
+    border-radius: 5px;
+    color: white;
+}
 
 
 @keyframes slideIn {

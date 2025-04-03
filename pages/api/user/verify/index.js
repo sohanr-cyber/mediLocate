@@ -98,7 +98,7 @@ handler.put(async (req, res) => {
     await mail.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
-      to: 'sohanur01744@gmail.com',
+      to: user.email,
       name: user.firstName,
       for: 'verification',
       subject: `Account Verification -${companyName}`

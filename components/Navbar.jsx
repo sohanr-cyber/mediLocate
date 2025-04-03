@@ -71,22 +71,12 @@ const Navbar = () => {
           >
             <SearchIcon />
           </div>
-          <div className={styles.item}>
-            <ShoppingCartIcon onClick={() => redirectToCart()} />
-            {isClient && cartItems.length > 0 && (
-              <span>{cartItems.length}</span>
-            )}
-            {isClient && cartItems.length > 0 && (
-              <div className={styles.cartItems}>
-                <CartItems cartItems={cartItems} />
-              </div>
-            )}
-          </div>
-          {isClient && userInfo && (
+
+          {isClient && (userInfo ? (
             <div className={styles.item} onClick={() => router.push(`/profile/${userInfo.id}`)}>
               <AccountCircleIcon />
             </div>
-          )}
+          ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
           <div
             className={`${styles.item} ${styles.menu}`}
             onClick={() => setOpen(prev => !prev)}
