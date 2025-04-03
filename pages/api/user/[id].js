@@ -1,14 +1,17 @@
 import nextConnect from 'next-connect'
 import UserService from '@/services/user-service'
 import { isAuth } from '@/utility'
+import User from '@/database/model/User'
+import db from '@/database/connection'
 
 const handler = nextConnect()
-handler.use(isAuth)
 handler.get(async (req, res) => {
   try {
-    const service = new UserService()
-    const user = await service.FindUserProfileById(req.user._id)
 
+    // const service = new UserService()
+    // const user = await service.FindUserProfileById(req.user._id)
+    await db.connect()
+    const user = await User.findOne({ _id: req.query.id })
     return res.status(200).send(user)
   } catch (error) {
     console.log(error)
@@ -16,6 +19,7 @@ handler.get(async (req, res) => {
   }
 })
 
+handler.use(isAuth)
 handler.put(async (req, res) => {
   try {
     const service = new UserService()

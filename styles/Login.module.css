@@ -72,6 +72,25 @@
 
 }
 
+.field {
+    text-align: left;
+}
+
+.field .flex {
+    display: flex;
+    gap:10px;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.field .flex span {
+    border:1px solid var(--borderColor);
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
 @media (max-width:410px) {
     .wrapper {
         padding: 10px

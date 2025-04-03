@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true // Ensures unique email addresses
     },
+
     password: {
       type: String,
       // required: true,
@@ -25,6 +26,12 @@ const userSchema = new mongoose.Schema(
     fullName: {
       type: String,
       // required: true
+    },
+    image: {
+      type: String,
+    },
+    uid: {
+      type: String,
     },
     salt: {
       type: String
@@ -67,11 +74,21 @@ const userSchema = new mongoose.Schema(
     bmdcNumber: {
       type: String,
     },
-
     consultationFee: {
       type: String,
     },
-
+    followUpFee: {
+      type: String
+    },
+    avgConsultationTime: {
+      type: Number
+    },
+    patientAttended: {
+      type: Number
+    },
+    about: {
+      type: String,
+    },
     totalExperience: {
       type: String,
     },

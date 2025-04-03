@@ -2,51 +2,58 @@ import React from 'react'
 import styles from '../../styles/Profile/Basic.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-const Basic = () => {
+import CreateIcon from '@mui/icons-material/Create';
+const Basic = ({ profile }) => {
     const router = useRouter()
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
                 <div className={styles.pic}>
-                    <Image src='/images/dr2.png' width={200} height={260} alt="" onClick={() => router.push(`/profile/update/${router.query.id}`)} />
+                    <Image src={profile.image} width={200} height={260} alt="" onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
                 </div>
             </div>
             <div className={styles.right}>
-                <div className={styles.name}>Appointment
-                    Asst. Prof. Dr. Masrun Mostafa Chowdhury
+                <div className={styles.name}>{
+                    profile.firstName}{" "}{profile.lastName}
+                    <CreateIcon className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
                 </div>
+
                 <div className={styles.education}>
-                    MBBS,
-                    DDV (Dermatology)
+                    {profile.education}
                 </div>
-                <div className={styles.department}>
+                {profile.department && <div className={styles.department}>
                     Dermatologist
-                </div>
+                </div>}
+
                 <div className={styles.flex}>
                     <div className={styles.item}>
                         <div>Total Experiance</div>
-                        <b>15+ Years</b>
+                        <b>{profile.experiance} Years</b>
                     </div>
                     <div className={styles.item}>
                         <div>BMDC Number
                         </div>
-                        <b>A31476</b>
+                        <b>
+                            {profile.bmbcNumber}
+                        </b>
                     </div>
                     <div className={styles.item}>
                         <div>Total Rating</div>
-                        <b>4.9
-                            (3693)</b>
+                        <b>0.0
+                            (000)</b>
                     </div>
                     <div className={styles.item}>
                         <div>Working In</div>
-                        <b>BIRDEM General Hospital, Dhaka</b>
+                        <b>
+                            {profile.workingIn || "..............."}
+                        </b>
                     </div>
                 </div>
                 <div className={styles.book}>
                     <div className={styles.left}>
                         <div>Consulation Fee</div>
                         <div className={styles.fee}>
-                            BDT 500
+                            BDT {profile.consultationFee || 500}
                         </div>
                     </div>
                     <div className={styles.btn}>

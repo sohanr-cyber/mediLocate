@@ -1,21 +1,13 @@
 import React from 'react'
 import styles from '../../styles/Profile/Info.module.css'
-const Info = () => {
+const Info = ({ profile }) => {
   return (
     <div className={styles.wrapper}>
       <b className={styles.title}>
         About Doctor
       </b>
       <p className={styles.about}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Dolorum, cum dicta praesentium ipsum dolores odit alias tenetur repellendus
-        molestiae aliquid ea minus ut unde id at assumenda nam totam? Eius!
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Dolorum, cum dicta praesentium ipsum dolores odit alias tenetur repellendus
-        molestiae aliquid ea minus ut unde id at assumenda nam totam? Eius!
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Dolorum, cum dicta praesentium ipsum dolores odit alias tenetur repellendus
-        molestiae aliquid ea minus ut unde id at assumenda nam totam? Eius!
+        {profile.about}
       </p>
       <div className={styles.services}>
 
@@ -24,7 +16,7 @@ const Info = () => {
             Consultaion Fee
           </div>
           <div className={styles.fee}>
-            BDT 500
+            BDT {profile.consultationFee || 300}
           </div>
         </div>
         <div className={styles.service}>
@@ -32,7 +24,7 @@ const Info = () => {
             Follow-Up Fee
           </div>
           <div className={styles.fee}>
-            BDT 250
+            BDT {profile.followUpFee || 200}
           </div>
         </div>
         <div className={styles.service}>
@@ -40,23 +32,16 @@ const Info = () => {
             Patient Attended
           </div>
           <div className={styles.fee}>
-            2834
+            {profile.patientAttended || 0}
           </div>
         </div>
-        <div className={styles.service}>
-          <div className={styles.title}>
-            Patient Attended
-          </div>
-          <div className={styles.fee}>
-            2834
-          </div>
-        </div>
+
         <div className={styles.service}>
           <div className={styles.title}>
             Avg. Consultation Time
           </div>
           <div className={styles.fee}>
-            10 minutes
+            {profile.avgConsultationTime || 10} minutes
           </div>
         </div>
         <div className={styles.service}>
@@ -64,7 +49,7 @@ const Info = () => {
             Doctor Code
           </div>
           <div className={styles.fee}>
-            DT6334
+            {profile.uid}
           </div>
         </div>
 

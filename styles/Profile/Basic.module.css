@@ -66,7 +66,14 @@
 
 }
 
-@media (max-width:570px ) {
+.wrapper .icon {
+    color: var(--theme);
+    position: absolute;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+@media (max-width:570px) {
     .wrapper {
         flex-direction: column;
     }

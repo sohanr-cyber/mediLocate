@@ -23,7 +23,9 @@ const Register = () => {
       !user.password ||
       !user.firstName ||
       !user.lastName ||
-      !user.phone
+      !user.phone ||
+      !user.role
+
     ) {
       dispatch(
         showSnackBar({
@@ -113,6 +115,16 @@ const Register = () => {
               value={user.password}
               onChange={e => setUser({ ...user, password: e.target.value })}
             />
+            <div className={styles.field}>
+              <div >Chose Your Role</div>
+              <div className={styles.flex}>
+                {["doctor", "patient", "nurse"].map(i => (
+                  <span onClick={() => setUser({
+                    ...user, role: i
+                  })} style={user.role == i ? { background: "black", color: "white" } : {}}>{i}</span>
+                ))}
+              </div>
+            </div>
             <div className={styles.btn} onClick={() => createAccount()}>
               Create Account
             </div>

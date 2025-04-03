@@ -8,17 +8,17 @@ import {
   ValidateSignature,
   FormateData
 } from '../utility/index'
-import { generateVerificationCode } from '@/utility/helper'
+import { generateUniqueID, generateVerificationCode } from '@/utility/helper'
 import Mail from './mail-service'
 import { companyName } from '@/utility/const'
 
 class UserService {
-  constructor () {
+  constructor() {
     this.repository = new UserRepository()
     this.mailService = new Mail()
   }
 
-  async SignUp (userInputs) {
+  async SignUp(userInputs) {
     const { email, password } = userInputs
     const existingUser = await this.repository.FindUser({ email })
     if (existingUser) {
@@ -32,16 +32,21 @@ class UserService {
     expirationTime.setMinutes(expirationTime.getMinutes() + 5)
     // const profileId = await this.repository.generateId()
 
+    const prefix = userInputs.role == "doctor" ? "DT" : userInputs.role == "nurse" ? "NS" : "PT"
+    const uid = prefix + generateUniqueID([])
+
+
     const existUser = await this.repository.CreateUser({
       ...userInputs,
       password: userPassword,
       salt,
       verificationCode,
-      expirationTime
+      expirationTime,
+      uid
     })
 
     // send code to mail
-    await this.mailService.sendMail({
+    this.mailService.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
       to: existUser.email,
@@ -66,7 +71,7 @@ class UserService {
     })
   }
 
-  async SignIn (userInputs) {
+  async SignIn(userInputs) {
     try {
       console.log(userInputs)
       const { email, password } = userInputs
@@ -102,7 +107,7 @@ class UserService {
     }
   }
 
-  async FindUserProfileById (userId) {
+  async FindUserProfileById(userId) {
     try {
       const existingUser = await this.repository.FindUserProfileById(userId)
       return FormateData(existingUser)
@@ -111,7 +116,7 @@ class UserService {
     }
   }
 
-  async UpdateUser (userInputs) {
+  async UpdateUser(userInputs) {
     try {
       const { email, password, ...DataToUpdate } = userInputs
       const existingUser = await this.repository.UpdateUser(DataToUpdate)
@@ -121,7 +126,7 @@ class UserService {
     }
   }
 
-  async DeleteUserById (userId) {
+  async DeleteUserById(userId) {
     try {
       const result = await this.repository.DeleteUserById(userId)
       if (result) {
