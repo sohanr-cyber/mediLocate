@@ -3,17 +3,17 @@ import styles from '../../../styles/Admin/Home.module.css'
 import SideBar from '@/components/Admin/SideBar'
 import Dashboard from '@/components/Admin/Dashboard/Dashboard'
 import Product from '@/components/Product'
-import Address from '@/components/Admin/Dashboard/Address'
+import Users from '@/components/Admin/Dashboard/Users'
 import BASE_URL from '@/config'
 import axios from 'axios'
 import { parse } from 'cookie'
 
-const index = ({ addresses, totalPages, currentPage, page }) => {
+const index = ({ users, totalPages, currentPage, page }) => {
   return (
     <div className={styles.wrapper}>
-      <Address
-        title={'Address List'}
-        addresses={addresses}
+      <Users
+        title={'Users List'}
+        users={users}
         totalPages={totalPages}
         currentPage={currentPage}
       />
@@ -23,7 +23,7 @@ const index = ({ addresses, totalPages, currentPage, page }) => {
 
 export default index
 
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
   try {
     const { page, query, position } = context.query
     const { id } = context.query
@@ -41,19 +41,17 @@ export async function getServerSideProps (context) {
     const headers = { Authorization: `Bearer ${userInfo.token}` }
 
     const response = await axios.get(
-      `${BASE_URL}/api/address?page=${page || 1}&query=${
-        query || ''
-      }&position=${position}`,
+      `${BASE_URL}/api/user?page=${page || 1}&query=${query || ''
+      }`,
       {
         headers
       }
     )
-    const { addresses, totalPages, page: currentPage } = response.data
-    console.log({ addresses })
+    const { users, totalPages, page: currentPage } = response.data
     return {
       props: {
-        title: 'Address List',
-        addresses,
+        title: 'Users List',
+        users,
         totalPages,
         currentPage
       }
@@ -62,8 +60,8 @@ export async function getServerSideProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        title: 'Address List',
-        addresses: [],
+        title: 'Users List',
+        users: [],
         totalPages: 0,
         currentPage: 0
       }

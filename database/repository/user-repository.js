@@ -2,8 +2,8 @@ import db from '../connection'
 import User from '../model/User'
 
 class UserRepository {
-  constructor () {}
-  async CreateUser (userInputs) {
+  constructor() { }
+  async CreateUser(userInputs) {
     try {
       await db.connect()
       const user = new User({
@@ -19,7 +19,7 @@ class UserRepository {
     }
   }
 
-  async FindUser ({ email }) {
+  async FindUser({ email, phone }) {
     try {
       await db.connect()
       const existingCustomer = await User.findOne({ email: email })
@@ -29,7 +29,7 @@ class UserRepository {
     }
   }
 
-  async FindUserProfileById (userId) {
+  async FindUserProfileById(userId) {
     try {
       await db.connect()
       const existingUser = await User.findOne(
@@ -48,7 +48,7 @@ class UserRepository {
     }
   }
 
-  async UpdateUser (dataToUpdate) {
+  async UpdateUser(dataToUpdate) {
     try {
       await db.connect()
       const existingUser = await User.findOneAndUpdate(
@@ -63,7 +63,7 @@ class UserRepository {
     }
   }
 
-  async DeleteUserById (id) {
+  async DeleteUserById(id) {
     try {
       await db.connect()
       const deletedUser = await User.findOneAndDelete({ _id: id })

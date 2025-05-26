@@ -5,6 +5,8 @@ import { generateVerificationCode } from '@/utility/helper'
 import { GenerateSignature } from '@/utility'
 import nextConnect from 'next-connect'
 import Mail from '@/services/mail-service'
+import Message from '@/services/message-service'
+
 import { companyName } from '@/utility/const'
 const handler = nextConnect()
 
@@ -92,6 +94,14 @@ handler.put(async (req, res) => {
     console.log(verificationCode)
     await user.save()
     await db.disconnect()
+
+    // send Message
+    const messageService = new Message()
+    messageService.sendMessage({
+      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
+      number: user.phone
+    })
+
     // send mail
     const mail = new Mail()
     // send code to mail

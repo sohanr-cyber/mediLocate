@@ -48,6 +48,7 @@ const Login = () => {
         )
         router.push('/verify/reset')
       }
+      
       dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())

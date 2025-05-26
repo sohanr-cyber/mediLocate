@@ -44,8 +44,8 @@ const userSchema = new mongoose.Schema(
     // User roles (optional)
     role: {
       type: String,
-      enum: ['user', 'admin', "doctor"], // Define allowed roles (can be extended)
-      default: 'user'
+      enum: ['patient', 'admin', "doctor", "nurse"], // Define allowed roles (can be extended)
+      default: 'patient'
     },
 
     location: {

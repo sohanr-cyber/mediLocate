@@ -10,19 +10,21 @@ import {
 } from '../utility/index'
 import { generateUniqueID, generateVerificationCode } from '@/utility/helper'
 import Mail from './mail-service'
+import Message from './message-service'
 import { companyName } from '@/utility/const'
 
 class UserService {
   constructor() {
     this.repository = new UserRepository()
     this.mailService = new Mail()
+    this.messageService = new Message()
   }
 
   async SignUp(userInputs) {
-    const { email, password } = userInputs
+    const { email, password, phone } = userInputs
     const existingUser = await this.repository.FindUser({ email })
     if (existingUser) {
-      return FormateData({ error: 'Email Already Exist !' })
+      return FormateData({ error: 'Email & Phone Already Exist !' })
     }
     let salt = await GenerateSalt()
     let userPassword = await GeneratePassword(password, salt)
@@ -45,16 +47,23 @@ class UserService {
       uid
     })
 
-    // send code to mail
-    this.mailService.sendMail({
-      code: verificationCode,
-      expirationTime: '5 minutes',
-      to: existUser.email,
-      name: existUser.firstName,
-      for: 'verification',
-      verification: true,
-      subject: `Account Verification -${companyName}`
+    this.messageService.sendMessage({
+      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
+      number: existUser.phone
     })
+
+    // send code to mail
+    // this.mailService.sendMail({
+    //   code: verificationCode,
+    //   expirationTime: '5 minutes',
+    //   to: existUser.email,
+    //   name: existUser.firstName,
+    //   for: 'verification',
+    //   verification: true,
+    //   subject: `Account Verification -${companyName}`
+    // })
+
+
 
     console.log({ existUser })
 

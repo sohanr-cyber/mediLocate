@@ -6,6 +6,7 @@ import { generateVerificationCode } from '@/utility/helper'
 import nextConnect from 'next-connect'
 const handler = nextConnect()
 import Mail from '@/services/mail-service'
+import Message from '@/services/message-service'
 import { companyName } from '@/utility/const'
 
 // Password Reset Code
@@ -14,6 +15,8 @@ handler.post(async (req, res) => {
   try {
     const { email } = req.body
     const mailService = new Mail()
+    const messageService = new messageService()
+
     await db.connect()
 
     const user = await User.findOne({ email })
@@ -31,7 +34,11 @@ handler.post(async (req, res) => {
     await user.save()
     console.log(user)
     // send notification with Password Reset Code
-    await mailService.sendMail({
+    messageService.sendMessage({
+      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
+      number: user.phone
+    })
+    mailService.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
       subject: `Account Password Reset -${companyName}`,

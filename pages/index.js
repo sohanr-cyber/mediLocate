@@ -63,7 +63,6 @@ export default function Home({  contents, departments, symptoms }) {
           <Row items={departments} />
           {/* <Grid /> */}
         </div>
-        {/* <MapPicker /> */}
 
         <ProductsByCategory2
           products={users}

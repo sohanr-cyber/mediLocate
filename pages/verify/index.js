@@ -82,8 +82,7 @@ const Login = () => {
             }
           })
         )
-        DataTransfer.role == 'admin' ? router.push(`/admin`) : router.push(`/`)
-
+        data.role == 'admin' ? router.push(`/admin`) : router.push(`/profile/update/${userInfo.id}`)
         dispatch(login(data))
       }
       dispatch(finishLoading())
@@ -126,7 +125,6 @@ const Login = () => {
             message: 'Verification Code Sent To Your Mail '
           })
         )
-        // router.push('/verify')
       }
 
       if (data.error) {

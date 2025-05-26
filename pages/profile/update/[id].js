@@ -12,12 +12,17 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import { parse } from 'cookie'
+import MapPicker from '@/components/Utility/MapPicker'
 // Order Craetion Form
 const Update = ({ profile: data }) => {
     const [profile, setProfile] = useState(data)
     const [error, setError] = useState('')
     const dispatch = useDispatch()
     const router = useRouter()
+    const [selectedLocation, setSelectedLocation] = useState({
+        lat: data.location?.coordinates && data.location?.coordinates[0],
+        lng: data.location?.coordinates && data.location?.coordinates[1]
+    })
     const [newProfile, setNewProfile] = useState(false)
     useEffect(() => {
         setProfile(data)
@@ -88,7 +93,7 @@ const Update = ({ profile: data }) => {
     }
 
     const updateProfile = async () => {
-        if (!profile.fullName) {
+        if (!profile.firstName || !profile.lastName) {
             setError('Pleas fill all the necessaary field')
             dispatch(
                 showSnackBar({
@@ -105,7 +110,9 @@ const Update = ({ profile: data }) => {
             const { data } = await axios.put(
                 `/api/user/${router.query.id}`,
                 {
-                    ...profile
+                    ...profile, location:
+                        { coordinates: [selectedLocation?.lat, selectedLocation?.lng] }
+
                 },
                 { headers }
             )
@@ -275,7 +282,10 @@ const Update = ({ profile: data }) => {
                             </div>
                         )}
                     </div>
-
+                    <div className={styles.field}>
+                        <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label>
+                        <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
+                    </div>
 
                 </div>
                 {/* <div className={styles.right}></div> */}
