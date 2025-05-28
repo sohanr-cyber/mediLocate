@@ -15,11 +15,16 @@ handler.post(async (req, res) => {
   try {
     const { email } = req.body
     const mailService = new Mail()
-    const messageService = new messageService()
+    const messageService = new Message()
 
     await db.connect()
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({
+      $or: [
+        { phone: email },
+        { email: email }
+      ]
+    })
 
     if (!user) {
       return res.status(200).json({ error: 'User not found' })

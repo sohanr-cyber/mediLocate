@@ -92,7 +92,7 @@ const userSchema = new mongoose.Schema(
     totalExperience: {
       type: String,
     },
-    phone: { type: String },
+    phone: { type: String, required: true, unique: true },
     isVerified: { type: Boolean, default: false },
     verificationCode: { type: String },
     expirationTime: { type: Date },

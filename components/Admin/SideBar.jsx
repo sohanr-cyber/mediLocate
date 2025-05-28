@@ -348,14 +348,14 @@ const SideBar = ({ setOpen }) => {
           )}
           <div
             className={styles.item}
-            onClick={() => router.push('/admin/address')}
+            onClick={() => router.push('/admin/user')}
           >
             <div className={styles.flex}>
               {' '}
               <div className={styles.icon}>
                 <MapIcon />
               </div>
-              <div className={styles.title}>Address</div>
+              <div className={styles.title}>User</div>
             </div>
           </div>
           <div className={styles.item}>

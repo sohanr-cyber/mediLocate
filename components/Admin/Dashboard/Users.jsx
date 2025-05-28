@@ -124,8 +124,8 @@ const Users = ({
             <tbody>
               {[...filteredUsers]?.map((user, index) => (
                 <tr key={index}>
-                  <td>{user._id.split('').slice(0, 9)}...</td>
-                  <td>{user.firstName}{" "}{user.lastName}</td>
+                  <td >{user._id.split('').slice(0, 9)}...</td>
+                  <td onClick={() => router.push(`/profile/${user._id}`)}>{user.firstName}{" "}{user.lastName}</td>
                   <td
                     onClick={() =>
                       router.push(`/admin/order?query=${user.phone}`)

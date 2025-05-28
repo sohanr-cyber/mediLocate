@@ -22,9 +22,9 @@ class UserService {
 
   async SignUp(userInputs) {
     const { email, password, phone } = userInputs
-    const existingUser = await this.repository.FindUser({ email })
+    const existingUser = await this.repository.FindUser({ phone, email })
     if (existingUser) {
-      return FormateData({ error: 'Email & Phone Already Exist !' })
+      return FormateData({ error: 'Phone or Email Already Exist !' })
     }
     let salt = await GenerateSalt()
     let userPassword = await GeneratePassword(password, salt)
@@ -84,9 +84,9 @@ class UserService {
     try {
       console.log(userInputs)
       const { email, password } = userInputs
-      const existingUser = await this.repository.FindUser({ email })
+      const existingUser = await this.repository.FindUser({ email, phone: email })
       if (!existingUser) {
-        return FormateData({ error: 'User Not Found With This Gmail !' })
+        return FormateData({ error: 'User Not Found With This Email or Phone Number !' })
       }
       if (existingUser) {
         const validPassword = await ValidatePassword(

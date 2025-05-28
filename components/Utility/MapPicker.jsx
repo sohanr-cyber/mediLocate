@@ -43,7 +43,7 @@ const MapPicker = ({ onCoordinateSelect, selectedLocation, setSelectedLocation }
   }, []);
 
   useEffect(() => {
-    updateCoordinates(selectedLocation.lat, selectedLocation.lng)
+    selectedLocation.lat && updateCoordinates(selectedLocation.lat, selectedLocation.lng)
   }, [selectedLocation])
 
   // Function to update coordinates and pan to location

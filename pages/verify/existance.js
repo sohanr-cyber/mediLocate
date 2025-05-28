@@ -67,8 +67,8 @@ const Login = () => {
           <h2>Reset Your Account Password</h2>
           <form>
             <input
-              type='email'
-              placeholder='Enter Your Email'
+              // type='email'
+              placeholder='Enter Your Email/Phone Number'
               value={email}
               onChange={e => setEmail(e.target.value)}
             />

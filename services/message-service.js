@@ -21,7 +21,7 @@ class Message {
                 number,
                 message,
             };
-            console.log("A message going to ", number)
+            console.log("A message going to ", number, "with message - ", message)
             return;
             const { data } = await axios.post(apiUrl, payload, {
                 headers: {

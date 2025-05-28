@@ -55,6 +55,15 @@ const Register = () => {
             }
           })
         )
+      } else {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
       }
 
       dispatch(finishLoading())

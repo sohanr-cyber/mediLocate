@@ -46,7 +46,7 @@ const Login = () => {
         if (data.role == 'admin') {
           router.push('/admin')
         } else {
-          router.push('/')
+          router.push(`/profile/${data.id}`)
         }
       }
 
@@ -89,11 +89,11 @@ const Login = () => {
             <Logo />
           </div>
           <h2>Sign In to Account</h2>
-          <p>Enter Your Email and Password to sign in</p>
+          <p>Enter Your Email/Phone and Password to sign in</p>
           <form>
             <input
-              type='email'
-              placeholder='Enter Your Email'
+              // type='email'
+              placeholder='Enter Your Email Or Phone'
               value={user.email}
               onChange={e => setUser({ ...user, email: e.target.value })}
             />

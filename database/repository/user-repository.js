@@ -22,7 +22,12 @@ class UserRepository {
   async FindUser({ email, phone }) {
     try {
       await db.connect()
-      const existingCustomer = await User.findOne({ email: email })
+      const existingCustomer = await User.findOne({
+        $or: [
+          { phone: phone },
+          { email: email }
+        ]
+      });
       return existingCustomer
     } catch (error) {
       console.log(error)
