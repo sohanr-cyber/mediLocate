@@ -120,7 +120,7 @@ const Register = () => {
             />
             <input
               type='password'
-              placeholder='Enter Your Password'
+              placeholder='Set Your Password'
               value={user.password}
               onChange={e => setUser({ ...user, password: e.target.value })}
             />
