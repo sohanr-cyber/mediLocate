@@ -22,7 +22,7 @@ const Basic = ({ profile }) => {
                 </div>
 
                 <div className={styles.education}>
-                    {profile.education}
+                    {profile.speciality}
                 </div>
                 {profile.department && <div className={styles.department}>
                     Dermatologist
@@ -31,13 +31,13 @@ const Basic = ({ profile }) => {
                 <div className={styles.flex}>
                     <div className={styles.item}>
                         <div>Total Experiance</div>
-                        <b>{profile.experiance} Years</b>
+                        <b>{profile.totalExperience} Years</b>
                     </div>
                     <div className={styles.item}>
                         <div>BMDC Number
                         </div>
                         <b>
-                            {profile.bmbcNumber}
+                            {profile.bmdcNumber}
                         </b>
                     </div>
                     <div className={styles.item}>

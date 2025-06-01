@@ -29,7 +29,7 @@ class UserService {
     let salt = await GenerateSalt()
     let userPassword = await GeneratePassword(password, salt)
 
-    const verificationCode = generateVerificationCode(6)
+    const verificationCode = generateUniqueID([])
     const expirationTime = new Date()
     expirationTime.setMinutes(expirationTime.getMinutes() + 5)
     // const profileId = await this.repository.generateId()
