@@ -25,7 +25,7 @@ const RouteMap = ({ origin, destination }) => {
       {
         origin,
         destination,
-        travelMode: window.google.maps.TravelMode.BICYCLING,
+        travelMode: window.google.maps.TravelMode.WALKING,
       },
       (result, status) => {
         if (status === "OK") {
