@@ -47,7 +47,7 @@ const sortOptions = [
     }
   }
 ]
-const Home = ({ products, totalPages, currentPage, count }) => {
+const Home = ({ users, totalPages, currentPage, count }) => {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const updateRoute = data => {
@@ -87,7 +87,7 @@ const Home = ({ products, totalPages, currentPage, count }) => {
         </div>
       </div>
       <div className={styles.products}>
-        {[...products].map((item, index) => (
+        {[...users].map((item, index) => (
           <Product key={index} item={item} redirect={true} />
         ))}
       </div>
@@ -105,7 +105,7 @@ const Home = ({ products, totalPages, currentPage, count }) => {
 
 export default Home
 
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
   const {
     name,
     categories,
@@ -118,17 +118,15 @@ export async function getServerSideProps (context) {
   } = context.query
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/product/filter?blur=true&name=${name || ''}&categories=${
-        categories || 'all'
-      }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${
-        maxPrice || 'all'
+      `${BASE_URL}/api/user?blur=true&name=${name || ''}&categories=${categories || 'all'
+      }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${maxPrice || 'all'
       }&page=${page || 1}&sortBy=${sortBy || ''}&sortOrder=${sortOrder || ''}`
     )
-    const { products, totalPages, page: currentPage, count } = response.data
+    const { users, totalPages, page: currentPage, count } = response.data
     return {
       props: {
         title: 'Product List',
-        products,
+        users,
         totalPages,
         currentPage,
         count
@@ -138,8 +136,8 @@ export async function getServerSideProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        title: 'Product List',
-        products: []
+        title: 'User List',
+        users: []
       }
     }
   }

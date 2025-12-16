@@ -5,6 +5,7 @@ import { themeBg } from '@/utility/const'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { SlideshowRounded } from '@mui/icons-material'
+import FindNearMe from '../Utility/FindNearMe'
 // const contents = [
 //   {
 //     image:
@@ -23,6 +24,8 @@ import { SlideshowRounded } from '@mui/icons-material'
 //       'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
 //   }
 // ]
+
+
 
 const Header3 = ({ contents }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -65,9 +68,7 @@ const Header3 = ({ contents }) => {
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <p> {slide.description} </p>}
                 {slide.buttonText && slide.buttonHref && (
-                  <button onClick={() => router.push(slide.buttonHref)}>
-                    {slide.buttonText}
-                  </button>
+                  <FindNearMe />
                 )}{' '}
               </div>
             </div>

@@ -75,10 +75,10 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     consultationFee: {
-      type: String,
+      type: Number,
     },
     followUpFee: {
-      type: String
+      type: Number
     },
     avgConsultationTime: {
       type: Number
@@ -90,7 +90,7 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     totalExperience: {
-      type: String,
+      type: Number,
     },
     phone: { type: String, required: true, unique: true },
     isVerified: { type: Boolean, default: false },

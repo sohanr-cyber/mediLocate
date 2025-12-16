@@ -7,6 +7,9 @@ export const userSlice = createSlice({
     userInfo: Cookies.get("userInfo")
       ? JSON.parse(Cookies.get("userInfo"))
       : null,
+    location: Cookies.get("location")
+      ? JSON.parse(Cookies.get("location"))
+      : null,
     // userInfo: null,
   },
 
@@ -16,16 +19,25 @@ export const userSlice = createSlice({
       Cookies.set("userInfo", JSON.stringify(action.payload));
       state.userInfo = action.payload;
     },
-    
     logout: (state) => {
       Cookies.remove("userInfo");
       state.userInfo = null;
     },
-    
+    setLocation: (state, action) => {
+      console.log(action.payload);
+      Cookies.set("location", JSON.stringify(action.payload));
+      state.location = action.payload;
+    },
+    removeLocation: (state) => {
+      Cookies.remove("location");
+      state.location = null;
+    },
+
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setLocation,
+  removeLocation } = userSlice.actions;
 
 export default userSlice.reducer;

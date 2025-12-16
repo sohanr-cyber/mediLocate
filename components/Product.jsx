@@ -16,7 +16,12 @@ const Product = ({ item, redirect, rowDirection }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [myColor, setMyColor] = useState("")
+  const location = useSelector(state => state.user.location)
+  const [isClient, setIsClient] = useState(false)
 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const handleClick = () => {
     redirect && router.push(`/profile/233`)
@@ -36,9 +41,9 @@ const Product = ({ item, redirect, rowDirection }) => {
     // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
       <div className={styles.pic} >
-        <div className={styles.distance}>
-          In {" "}{calculateDistance([23.8103, 90.4125], item.location.coordinates).toFixed(2)} {" "}KM
-        </div>
+        {isClient && location && <div className={styles.distance}>
+          In {" "}{calculateDistance([location.lat, location.lng], item.location.coordinates).toFixed(2)} {" "}KM
+        </div>}
         <Image src={"/images/dr2.png"} width={250} height={250} alt='Not Found' />
       </div>
       <div className={styles.details}>
@@ -50,21 +55,9 @@ const Product = ({ item, redirect, rowDirection }) => {
 
         <Rating ratings={item.ratings} id={item._id} />
 
-        {item.discount ? (
-          <div className={styles.price__wrapper}>
-            <div className={styles.price}>
-              ৳{getPrice(item.price, item.discount)}
-            </div>
-            <div className={styles.flex}>
-              <div className={styles.price}>
-                <s>৳{getPrice(item.fee)}</s>
-              </div>
-              <div className={styles.discount}>{item.discount}%</div>
-            </div>
-          </div>
-        ) : (
-          <div className={styles.price}>৳{getPrice(item.fee)}</div>
-        )}
+
+        <div className={styles.price}>৳{getPrice(item.consultationFee)}</div>
+
       </div>
     </motion.div>
   )

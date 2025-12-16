@@ -15,6 +15,7 @@ import ChatButton from './Chat/ChatButton'
 import Navbar from './Navbar'
 import Navbar2 from './Navs/Navbar2'
 import styles from '@/styles/Layout.module.css'
+import GoogleMapsProvider from './Utility/GoogleMapsProvider'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -62,27 +63,29 @@ const Layout = ({ children }) => {
     }
   }, [notistack])
   return (
-    <div>
-      {loading && <Loading />}
-      {!containsAdmin(router.asPath) ? (
-        <>
-          {' '}
-          <div className={styles.nav1}>
-            <Navbar />
-          </div>
-          <div className={styles.nav2}>
-            <Navbar2 />
-          </div>
-        </>
-      ) : (
-        <AdminNavbar />
-      )}
-      {children}
-      <Footer />
-      <BottomFooter />
-      {!containsAdmin(router.asPath) && <ChatButton />}
-      {loading && <Loading />}
-    </div>
+    <GoogleMapsProvider>
+      <div>
+        {loading && <Loading />}
+        {!containsAdmin(router.asPath) ? (
+          <>
+            {' '}
+            <div className={styles.nav1}>
+              <Navbar />
+            </div>
+            <div className={styles.nav2}>
+              <Navbar2 />
+            </div>
+          </>
+        ) : (
+          <AdminNavbar />
+        )}
+        {children}
+        <Footer />
+        <BottomFooter />
+        {!containsAdmin(router.asPath) && <ChatButton />}
+        {loading && <Loading />}
+      </div>
+    </GoogleMapsProvider>
   )
 }
 

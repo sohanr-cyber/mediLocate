@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "../../styles/Profile/Dr.module.css"
 import Basic from '@/components/Profile/Basic'
 import Info from '@/components/Profile/Info'
 import BASE_URL from '@/config'
 import axios from 'axios'
+import RouteMap from '@/components/Utility/RouteMap'
+import { useSelector } from 'react-redux'
 
 const Dr = ({ profile }) => {
+    const location = useSelector(state => state.user.location)
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
     return (
+        isClient &&
         <div className={styles.wrapper}>
             <Basic profile={profile} />
+            {isClient && location && <RouteMap origin={{
+                lat: 23.8103,
+                lng: 90.4125,
+            }} destination={{
+                lat: 23.8303,
+                lng: 90.4425,
+            }} />}
             <div className={styles.heading}>
                 <div className={styles.option}>
                     Info

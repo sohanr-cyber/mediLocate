@@ -13,10 +13,12 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import { parse } from 'cookie'
 import MapPicker from '@/components/Utility/MapPicker'
+
 // Order Craetion Form
 const Update = ({ profile: data }) => {
     const [profile, setProfile] = useState(data)
     const [error, setError] = useState('')
+    const [isClient, setIsClient] = useState(false)
     const dispatch = useDispatch()
     const router = useRouter()
     const [selectedLocation, setSelectedLocation] = useState({
@@ -25,6 +27,7 @@ const Update = ({ profile: data }) => {
     })
     const [newProfile, setNewProfile] = useState(false)
     useEffect(() => {
+        setIsClient(true)
         setProfile(data)
     }, [router.query])
     const userInfo = useSelector(state => state.user.userInfo)
@@ -284,7 +287,7 @@ const Update = ({ profile: data }) => {
                     </div>
                     <div className={styles.field}>
                         <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label>
-                        <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
+                        {isClient && <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
                     </div>
 
                 </div>

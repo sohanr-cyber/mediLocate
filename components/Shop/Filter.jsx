@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import SkeletonDiv from '../Utility/SkeletonDiv'
-import Colors from './Colors'
 import Categories from './Categories'
+import Experience from './Experience'
+import Ratings from '../Utility/Rating'
 
 const Filter = ({ setOpen }) => {
   const router = useRouter()
@@ -69,17 +70,26 @@ const Filter = ({ setOpen }) => {
           </div>
           <button onClick={() => updateRoute(price)}>Apply</button>
         </div>
+        {/* Experience Filter */}
+        <div className={styles.heading}>Experience</div>
+        <div className={styles.filterOptions}>
+          <Experience />
+        </div>
+        {/* Rating Filter */}
+        <div className={styles.heading}>Rating</div>
+        <div className={styles.filterOptions}>
+          {[5, 4, 3, 2, 1].map(i => (
+            <>
+              <Ratings ratings={i} size={"large"} id={i} /></>
+          ))}
+        </div>
         {/* Category Filter */}
         <div className={styles.heading}>Category</div>
         <div className={styles.filterOptions}>
           <Categories categories={categories} updateRoute={updateRoute} />
         </div>
 
-        {/* Color Family */}
-        <div className={styles.heading}>Color Family</div>
-        <div className={styles.filterOptions} style={{ marginBottom: "35px" }}>
-          <Colors selectedColors={router.query.colors} handleClick={setColor} />
-        </div>
+
       </div>
       <div className={styles.right} onClick={() => setOpen(false)}></div>
     </div>
