@@ -18,6 +18,11 @@ const RouteMap = ({ origin, destination }) => {
 
 
   useEffect(() => {
+    if (!origin || !destination) {
+      console.warn("Origin or destination missing");
+      return;
+    }
+
 
     const service = new window.google.maps.DirectionsService();
 
