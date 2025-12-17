@@ -66,12 +66,28 @@
 
 }
 
+.wrapper .right .flex {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
 .wrapper .icon {
     color: var(--theme);
-    position: absolute;
-    margin-left: 10px;
+    /* position: absolute; */
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--cardBg);
+    padding: 7px;
+    color: black;
 }
+/* 
+.wrapper .icon:nth-child(2) {
+    background-color: rgb(255, 0, 0, 0.2);
+    color: red
+} */
 
 @media (max-width:570px) {
     .wrapper {

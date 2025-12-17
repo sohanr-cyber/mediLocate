@@ -52,7 +52,7 @@ const Filter = ({ setOpen }) => {
           <h3 onClick={() => setOpen(false)}>X</h3>
         </div>
         {/* price filter */}
-        <div className={styles.heading}>Price</div>
+        <div className={styles.heading}>Consultation Fee</div>
         <div className={styles.filterOptions}>
           <div className={styles.fields}>
             <input
@@ -76,13 +76,13 @@ const Filter = ({ setOpen }) => {
           <Experience />
         </div>
         {/* Rating Filter */}
-        <div className={styles.heading}>Rating</div>
+        {/* <div className={styles.heading}>Rating</div>
         <div className={styles.filterOptions}>
           {[5, 4, 3, 2, 1].map(i => (
             <>
               <Ratings ratings={i} size={"large"} id={i} /></>
           ))}
-        </div>
+        </div> */}
         {/* Category Filter */}
         <div className={styles.heading}>Category</div>
         <div className={styles.filterOptions}>

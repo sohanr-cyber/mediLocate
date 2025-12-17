@@ -3,10 +3,25 @@ import styles from '../../styles/Profile/Basic.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import CreateIcon from '@mui/icons-material/Create';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { logout } from '@/redux/userSlice';
+import CallIcon from '@mui/icons-material/Call';
+import PlaceIcon from '@mui/icons-material/Place';
+import { calculateDistance } from '@/utility/helper';
+import FindNearMe from '../Utility/FindNearMe';
 const Basic = ({ profile }) => {
     const router = useRouter()
+    const dispatch = useDispatch()
     const userInfo = useSelector(state => state.user.userInfo)
+    const location = useSelector(state => state.user.location)
+
+    const clearUserInfo = () => {
+        dispatch(logout())
+        router.push('/')
+    }
+
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
@@ -17,8 +32,7 @@ const Basic = ({ profile }) => {
             <div className={styles.right}>
                 <div className={styles.name}>{
                     profile.firstName}{" "}{profile.lastName}
-                    {router.query.slug == userInfo?.id && <CreateIcon className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
-                    }
+
                 </div>
 
                 <div className={styles.education}>
@@ -63,9 +77,29 @@ const Basic = ({ profile }) => {
                         Book Now
                     </div>
                 </div>
+                {profile.location && location.lat && <div className={styles.distance}>
+                    In {" "}{calculateDistance([location.lat, location.lng], [profile.location.coordinates[1], profile.location.coordinates[0]]).toFixed(2)} {" "}KM
+                </div>}
+                <div className={styles.flex} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                    <div className={styles.icon}>
+                        <FindNearMe text={"Locate"} />
+                    </div>
 
+                    <a href={`tel:+88${profile.phoneNumber}`}>
+                        <div className={styles.icon}>
+                            <CallIcon /> Call</div>
+                    </a>
+
+
+                    {router.query.slug == userInfo?.id &&
+                        <div className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)}> <CreateIcon /> Update</div>
+                    }
+                    {router.query.slug == userInfo?.id && <div className={styles.icon} onClick={() => clearUserInfo()}>
+                        <ExitToAppIcon /> Logout</div>
+                    }
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

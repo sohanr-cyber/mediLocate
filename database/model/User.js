@@ -67,6 +67,9 @@ const userSchema = new mongoose.Schema(
     speciality: {
       type: String,
     },
+    education: {
+      type: String,
+    },
     workingIn: {
       type: String,
     },
@@ -91,6 +94,9 @@ const userSchema = new mongoose.Schema(
     },
     totalExperience: {
       type: Number,
+    },
+    experienceDetails: {
+      type: String
     },
     phone: { type: String, required: true, unique: true },
     isVerified: { type: Boolean, default: false },

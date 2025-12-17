@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import { setProduct } from '@/redux/productSlice'
 import Rating from './Utility/Rating'
+import CartItems from './Cart/CartItems'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const userInfo = useSelector(state => state.user.userInfo)
@@ -24,7 +25,7 @@ const Product = ({ item, redirect, rowDirection }) => {
   }, [])
 
   const handleClick = () => {
-    redirect && router.push(`/profile/233`)
+    redirect && router.push(`/profile/${item._id}`)
     dispatch(handleViewProduct(item))
   }
 

@@ -1,3 +1,4 @@
+import { fetchPlaceName } from "@/utility/helper";
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
@@ -9,6 +10,9 @@ export const userSlice = createSlice({
       : null,
     location: Cookies.get("location")
       ? JSON.parse(Cookies.get("location"))
+      : null,
+    address: Cookies.get("address")
+      ? JSON.parse(Cookies.get("address"))
       : null,
     // userInfo: null,
   },
@@ -32,6 +36,18 @@ export const userSlice = createSlice({
       Cookies.remove("location");
       state.location = null;
     },
+
+    setAddress: (state, action) => {
+      console.log(action.payload);
+      Cookies.set("address", JSON.stringify(action.payload));
+      state.address = action.payload;
+    },
+    removeAddress: (state) => {
+      Cookies.remove("address");
+      state.address = null;
+    },
+
+
 
   },
 });

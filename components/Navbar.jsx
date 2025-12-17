@@ -24,6 +24,7 @@ const Navbar = () => {
   const [isClient, setIsClient] = useState(false)
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.userInfo)
+  const address = useSelector(state => state.user.address)
 
   const redirectToCart = () => {
     if (cartItems.length < 1) {
@@ -63,6 +64,7 @@ const Navbar = () => {
         </div>
         <div className={styles.search}>
           <SearchBox />
+
         </div>
         <div className={styles.right}>
           <div
@@ -75,6 +77,7 @@ const Navbar = () => {
           {isClient && (userInfo ? (
             <div className={styles.item} onClick={() => router.push(`/profile/${userInfo.id}`)}>
               <AccountCircleIcon />
+
             </div>
           ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
           <div
@@ -83,6 +86,7 @@ const Navbar = () => {
           >
             <MenuIcon />
           </div>
+
         </div>
       </div>
     </div>

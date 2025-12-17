@@ -245,14 +245,33 @@ const Update = ({ profile: data }) => {
                                 onChange={e => setProfile({ ...profile, consultationFee: e.target.value })}
                             />
                         </div>
+                        <div className={styles.field}>
+                            <label>Follow Up Fee (BDT)</label>
+                            <input
+                                type="number"
+                                placeholder="Enter Follow Up Fee"
+                                value={profile?.followUpFee}
+                                onChange={e => setProfile({ ...profile, followUpFee: e.target.value })}
+                            />
+                        </div>
+                        <div className={styles.field}>
+                            <label>Experiance Details</label>
+                            <textarea
+                                type="text"
+                                placeholder="Share Experince Details"
+                                value={profile?.experienceDetails}
+                                onChange={e => setProfile({ ...profile, experienceDetails: e.target.value })}
+                            />
+                        </div>
+
 
                         <div className={styles.field}>
                             <label>Average Consultation Time (Minutes)</label>
                             <input
                                 type="number"
                                 placeholder="Enter Avg Consultation Time"
-                                value={profile?.avgConsultationTimes}
-                                onChange={e => setProfile({ ...profile, avgConsultationTimes: e.target.value })}
+                                value={profile?.avgConsultationTime}
+                                onChange={e => setProfile({ ...profile, avgConsultationTime: e.target.value })}
                             />
                         </div>
 

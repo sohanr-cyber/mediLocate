@@ -1,4 +1,4 @@
-import BASE_URL from '@/config'
+import BASE_URL, { NEXT_PUBLIC_GOOGLE_MAPS_API_KEY } from '@/config'
 import { companyName, delivery_charge, seoData } from './const'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
@@ -23,6 +23,7 @@ function calculateDistance(referenceLocation, targetLocation) {
   const R = 6371; // Radius of the Earth in km
   const [lat1, lon1] = referenceLocation; // Reference location (e.g., Dhaka center)
   const [lat2, lon2] = targetLocation; // Target location
+  console.log(lat1, lon1, lat2, lon2)
 
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -34,6 +35,7 @@ function calculateDistance(referenceLocation, targetLocation) {
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  console.log(R * c)
 
   return R * c; // Distance in km
 }
@@ -358,6 +360,32 @@ const calculateAverageRating = (reviews) => {
 
 };
 
+const fetchPlaceName = async (lat, lng) => {
+  return new Promise((resolve, reject) => {
+    if (!window.google) return reject("Google Maps not loaded");
+
+    const geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === "OK") {
+        if (results[0]) {
+          const components = results[0].address_components;
+          const district = components.find(c => c.types.includes("administrative_area_level_2"))?.long_name;
+          const upazila = components.find(c => c.types.includes("sublocality_level_1"))?.long_name;
+          const city = components.find(c => c.types.includes("locality"))?.long_name;
+
+          resolve({ district, upazila, city });
+        } else {
+          reject("No results found");
+        }
+      } else {
+        reject("Geocoder failed: " + status);
+      }
+    });
+  });
+};
+
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -381,5 +409,7 @@ export {
   generateSeoData,
   hexToRgba,
   calculateAverageRating,
-  calculateDistance
+  calculateDistance,
+  fetchPlaceName
+
 }

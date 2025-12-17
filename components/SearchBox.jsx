@@ -30,7 +30,7 @@ const SearchBox = () => {
       <div className={styles.field}>
         <input
           type='text'
-          placeholder='Search By Product Name'
+          placeholder='Search By Dr. Name , Degree or symptoms'
           value={name}
           onChange={e => setName(e.target.value)}
         />

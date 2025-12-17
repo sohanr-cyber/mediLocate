@@ -11,8 +11,8 @@ handler.get(async (req, res) => {
     // const service = new UserService()
     // const user = await service.FindUserProfileById(req.user._id)
     await db.connect()
-    const user = await User.findOne({ _id: req.query.id })
-    return res.status(200).send(user)
+    const user = await User.findById(req.query.id);
+    return res.status(200).json(user)
   } catch (error) {
     console.log(error)
     return res.status(500).json({ error: 'Internal Server Error' })
