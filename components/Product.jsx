@@ -42,7 +42,7 @@ const Product = ({ item, redirect, rowDirection }) => {
     // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
       <div className={styles.pic} >
-        {isClient && location.lat && <div className={styles.distance}>
+        {isClient && location?.lat && <div className={styles.distance}>
           In {" "}{calculateDistance([location.lat, location.lng], item.location.coordinates).toFixed(2)} {" "}KM
         </div>}
         <Image src={"/images/dr2.png"} width={250} height={250} alt='Not Found' />

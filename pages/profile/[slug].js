@@ -17,7 +17,7 @@ const Dr = ({ profile }) => {
         isClient &&
         <div className={styles.wrapper}>
             <Basic profile={profile} />
-            {isClient && location && profile.location && <RouteMap origin={{
+            {isClient && location?.lat && profile.location && <RouteMap origin={{
                 ...location
             }} destination={{
                 lat: profile.location.coordinates[1],

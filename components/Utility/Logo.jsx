@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const Logo = ({ color }) => {
   const router = useRouter()
   const location = useSelector(state => state.user.location)
-  const name = `Med${location.lat ? "📍"
+  const name = `Med${location?.lat ? "📍"
     : "i"}Locate`
 
   return (
