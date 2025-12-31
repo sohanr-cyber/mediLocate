@@ -5,23 +5,15 @@ import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import Typography from '@mui/material/Typography'
 
-const steps = [
-  'Pending',
-  'Processing',
-  'Confirmed',
-  'Packing',
-  'Packed',
-  'Delivering',
-  'Delivered'
-]
+const steps = ["pending", "confirmed", "completed", "cancelled", "no-show"]
 
 const index = order =>
   order?.statusTimeline?.findIndex(item => item.status === order.status)
 
-export default function HorizontalLinearAlternativeLabelStepper ({ order }) {
+export default function HorizontalLinearAlternativeLabelStepper({ order }) {
   const [failed, setFailed] = React.useState(
     order?.statusTimeline?.find(
-      i => i.status == 'Failed' || i.status == 'Canceled'
+      i => i.status == 'cancelled' || i.status == 'no-show'
     )
       ? index(order)
       : null
@@ -30,7 +22,7 @@ export default function HorizontalLinearAlternativeLabelStepper ({ order }) {
   React.useEffect(() => {
     setFailed(
       order?.statusTimeline?.find(
-        i => i.status == 'Failed' || i.status == 'Canceled'
+        i => i.status == 'cancelled' || i.status == 'no-show'
       )
         ? index(order)
         : null
@@ -44,7 +36,7 @@ export default function HorizontalLinearAlternativeLabelStepper ({ order }) {
     <>
       <Box sx={{ width: '100%', overflow: 'auto' }}>
         <Stepper activeStep={index(order) + (failed ? 0 : 1)} alternativeLabel>
-          {steps.map((label, index) => {
+          {steps.slice(0,3).map((label, index) => {
             const labelProps = {}
             if (isStepFailed(index)) {
               labelProps.optional = (

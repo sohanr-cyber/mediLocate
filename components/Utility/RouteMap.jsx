@@ -6,14 +6,14 @@ import {
   useJsApiLoader
 } from "@react-google-maps/api";
 
-const containerStyle = {
+const defaultContainerStyle = {
   width: "100%",
   height: "500px",
 };
 
 const defaultCenter = { lat: 23.8103, lng: 90.4125 };
 
-const RouteMap = ({ origin, destination }) => {
+const RouteMap = ({ origin, destination, containerStyle }) => {
   const [directions, setDirections] = useState(null);
 
 
@@ -45,9 +45,15 @@ const RouteMap = ({ origin, destination }) => {
 
   return (
     <GoogleMap
-      mapContainerStyle={containerStyle}
+      mapContainerStyle={containerStyle || defaultContainerStyle}
       center={origin || defaultCenter}
       zoom={13}
+      options={{
+        zoomControl: false,
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false,
+      }}
     >
       {origin && <Marker position={origin} label="A" />}
       {destination && <Marker position={destination} label="D" />}

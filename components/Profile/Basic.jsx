@@ -10,6 +10,8 @@ import CallIcon from '@mui/icons-material/Call';
 import PlaceIcon from '@mui/icons-material/Place';
 import { calculateDistance } from '@/utility/helper';
 import FindNearMe from '../Utility/FindNearMe';
+import { showSnackBar } from '@/redux/notistackSlice';
+import axios from 'axios';
 const Basic = ({ profile }) => {
     const router = useRouter()
     const dispatch = useDispatch()
@@ -20,7 +22,43 @@ const Basic = ({ profile }) => {
         dispatch(logout())
         router.push('/')
     }
+    const headers = { Authorization: `Bearer ${userInfo.token}` }
 
+    const bookNow = async (doctorId, date, startTime, endTime, symptoms = '') => {
+
+        try {
+            // Redirect to login if user is not logged in
+            if (!userInfo) {
+                router.push('/login');
+                return;
+            }
+
+            // Make API call to create booking
+            const { data } = await axios.post('/api/booking', {
+                doctorId: profile._id,
+                date: new Date(),
+                startTime,
+                endTime,
+                symptoms,
+                consultationFee: profile.consultationFee
+            }, {
+                headers
+            });
+
+            // Show success message
+            dispatch(showSnackBar({ message: `Booking successful! Serial: ${data.serial}` }));
+
+            // Optional: redirect to booking details page
+            // router.push(`/booking/${data._id}`);
+        } catch (error) {
+            console.error(error);
+            dispatch(
+                showSnackBar({
+                    message: error.response?.data?.error || 'Failed to book appointment',
+                })
+            );
+        }
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -73,7 +111,7 @@ const Basic = ({ profile }) => {
                             BDT {profile.consultationFee || 500}
                         </div>
                     </div>
-                    <div className={styles.btn}>
+                    <div className={styles.btn} onClick={() => { bookNow() }}>
                         Book Now
                     </div>
                 </div>

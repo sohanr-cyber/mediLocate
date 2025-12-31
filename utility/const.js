@@ -13,21 +13,23 @@ const delivery_charge = {
   'Outside Dhaka': 145,
   'Dhaka Subburb': 150
 }
-
 const statusMessages = {
-  pending: 'Your order is pending. We are processing it.',
-  processing: 'Your order is being processed.',
+  pending:
+    'Your appointment request has been received and is waiting for doctor confirmation.',
+
   confirmed:
-    'Your order has been confirmed and is now being prepared for packing.',
-  packing: 'Your order is currently being packed.',
-  packed: 'Your order has been packed and is ready for delivery.',
-  delivering: 'Your order is out for delivery.',
-  delivered: 'Your order has been delivered. Thank you for shopping with us!',
-  canceled:
-    'Your order has been canceled. If you have any questions, please contact customer support.',
-  failed:
-    'There was an issue processing your order. Please contact customer support for assistance.'
-}
+    'Your appointment has been confirmed. Please arrive on time.',
+
+  completed:
+    'Your appointment has been completed. We hope you had a good consultation.',
+
+  cancelled:
+    'Your appointment has been cancelled. You may book another appointment if needed.',
+
+  "no-show":
+    'You missed your appointment. Please contact the clinic to reschedule.'
+};
+
 const support_number = '01744329811'
 const support_mail = 'contactus@gmail.com'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
@@ -284,8 +286,9 @@ const orderStatusColors = {
   packed: 'rgb(255, 140, 0)', // Dark Orange
   delivering: 'rgb(30, 144, 255)', // Dodger Blue
   delivered: 'rgb(50, 205, 50)', // Lime Green
-  canceled: 'rgb(255, 0, 0)', // Red
+  cancelled: 'rgb(255, 0, 0)', // Red
   failed: 'rgb(139, 0, 0)', // Dark Red
+  "no-show": 'rgb(139, 0, 0)',
   none: `${themeC}`
 }
 

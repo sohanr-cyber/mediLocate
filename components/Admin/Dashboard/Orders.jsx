@@ -124,12 +124,12 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
           <table>
             <thead>
               <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Customer Phone</th>
-                <th>Total Amount</th>
-                <th>Order Status</th>
-                <th>Payment Status</th>
+                <th>Serial</th>
+                <th>Patient Name</th>
+                <th>Dr Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th> Status</th>
                 <th>Date Of Creation</th>
                 <th>Action</th>
                 {/* Add more table headers as needed */}
@@ -140,15 +140,14 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                 <tr
                   key={index}
                   style={{
-                    borderLeft: `3px solid ${
-                      orderStatusColors[order.status.toLowerCase()]
-                    }`
+                    borderLeft: `3px solid ${orderStatusColors[order.status.toLowerCase()]
+                      }`
                   }}
                 >
                   <td onClick={() => router.push(`/order/${order._id}`)}>
-                    {order.trackingNumber.split('').slice(0, 9)}...
+                    {order.serial}
                   </td>
-                  <td>{order.shippingAddress.fullName}</td>
+                  <td>{order.patient.fullName}</td>
                   <td
                     onDoubleClick={() =>
                       router.push(
@@ -156,9 +155,8 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       )
                     }
                   >
-                    {order.shippingAddress.phone}
+                    {order.doctor.fullName}
                   </td>
-                  <td>৳{order.total}</td>
                   <td>
                     <span
                       style={{

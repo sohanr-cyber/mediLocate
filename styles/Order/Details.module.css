@@ -13,6 +13,11 @@
 
 }
 
+.left .note .text {
+    border: 1px dotted var(--borderColor);
+    padding: 10px;
+}
+
 .left .payment span {
     border-radius: 0;
     padding: 3px;
@@ -43,8 +48,20 @@
     padding: var(--buttonPadding)
 }
 
+
+.left .details .item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+
+}
+
 .right {
-    flex: 1
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
 }
 
 .wrapper .statusTimeline .item {
@@ -68,6 +85,21 @@
     padding: 3px 5px;
     border-radius: 0;
     cursor: pointer;
+}
+
+.wrapper .right .mapWrapper {
+    background: var(--cardBg);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.wrapper .right .mapWrapper .title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 110%;
 }
 
 @media (min-width:1024px) {

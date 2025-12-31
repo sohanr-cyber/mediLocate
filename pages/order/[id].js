@@ -10,18 +10,12 @@ import { getTime } from '@/utility/helper'
 import { orderDetailSeoData, statusMessages } from '@/utility/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { NextSeo } from 'next-seo'
+import RouteMap from '@/components/Utility/RouteMap'
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 
-const statuses = [
-  'Pending',
-  'Processing',
-  'Confirmed',
-  'Packing',
-  'Packed',
-  'Delivering',
-  'Delivered',
-  'Canceled',
-  'Failed'
-]
+const statuses = ["pending", "confirmed", "completed", "cancelled", "no-show"]
 const Order = ({ order: orderDetail }) => {
   const [isClient, setIsClient] = useState(false)
   const router = useRouter()
@@ -38,9 +32,8 @@ const Order = ({ order: orderDetail }) => {
     if (
       order.statusTimeline.find(
         i =>
-          i.status == 'Failed' ||
-          i.status == 'Canceled' ||
-          i.status == 'Delivered'
+          i.status == 'cancelled' ||
+          i.status == 'completed' 
       )
     ) {
       return
@@ -48,7 +41,7 @@ const Order = ({ order: orderDetail }) => {
     try {
       dispatch(startLoading())
       const { data } = await axios.put(
-        `/api/order/${router.query.id}`,
+        `/api/booking/${router.query.id}`,
         {
           newStatus: status
         },
@@ -56,7 +49,7 @@ const Order = ({ order: orderDetail }) => {
           headers
         }
       )
-      const { data: order } = await axios.get(`/api/order/${router.query.id}`)
+      const { data: order } = await axios.get(`/api/booking/${router.query.id}`)
       setOrder(order)
       dispatch(finishLoading())
     } catch (error) {
@@ -65,6 +58,18 @@ const Order = ({ order: orderDetail }) => {
       console.log(error)
     }
   }
+
+  const openGoogleMapsDirection = ({
+    originLat,
+    originLng,
+    destLat,
+    destLng,
+  }) => {
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${originLat},${originLng}&destination=${destLat},${destLng}&travelmode=driving`;
+
+    window.open(url, "_blank"); // opens Google Maps
+  };
+
 
   const refund = async () => {
     try {
@@ -90,7 +95,38 @@ const Order = ({ order: orderDetail }) => {
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <div className={styles.flex}>
-            <h2>Order No: #{order.trackingNumber}</h2>
+            <h2>
+              Appointment Details
+            </h2>
+          </div>
+          <div className={styles.details}>
+            <div className={styles.item}>
+              <CalendarMonthIcon className={styles.icon} />
+              <div className={styles.text}>Date :{new Date(order.createdAt).toLocaleString()}  </div>
+            </div>
+            <hr />
+
+            <div className={styles.item}>
+              <QueryBuilderIcon className={styles.icon} />
+              <div className={styles.text}>Time Slot : Thesday , OCT 24, 2025</div>
+            </div>
+            <hr />
+            <div className={styles.item}>
+              <HealthAndSafetyIcon className={styles.icon} />
+              <div className={styles.text}>
+                {order.doctor?.speciality}
+              </div>
+            </div>
+            <hr />
+
+          </div>
+          <div className={styles.note}>
+            <h3>Patient Note</h3>
+            <div className={styles.text}>
+              <i>
+                Experiance Slight chest pain and shortless and broeffah during light excercise.
+              </i>
+            </div>
           </div>
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
@@ -120,11 +156,11 @@ const Order = ({ order: orderDetail }) => {
                 className={styles.item}
                 key={index}
                 style={
-                  _.status === 'Failed' || _.status === 'Canceled'
+                  _.status === 'cancelled' || _.status === 'no-show'
                     ? { color: 'red' }
                     : _.status == 'Delivered'
-                    ? { color: 'green' }
-                    : {}
+                      ? { color: 'green' }
+                      : {}
                 }
               >
                 <div className={styles.timeline}>{getTime(_.timestamp)}</div>
@@ -135,7 +171,7 @@ const Order = ({ order: orderDetail }) => {
             ))}
           </div>
           <button onClick={() => router.push('/shop')}>
-            Go Back To Shopping
+            Go Back To
           </button>{' '}
           {/* <button
             onClick={() => router.push('/shop')}
@@ -147,14 +183,33 @@ const Order = ({ order: orderDetail }) => {
         <div className={styles.right}>
           {isClient && (
             <OrderSummary
-              cartItems={order.items}
-              shipping={order.shippingCost}
-              total={order.total}
-              discount={order.discount}
-              address={order.shippingAddress}
-              paymentMethod={order.paymentMethod}
-              paymentStatus={order.paymentStatus}
-            />
+              user={order.doctor} />
+          )}
+
+          {isClient && (
+            <div className={styles.mapWrapper}>
+              <div className={styles.title}>
+                Location And Dictions
+              </div>
+              <RouteMap origin={
+                {
+                  lat: order.patient.location.coordinates[0],
+                  lng: order.patient.location.coordinates[1]
+                }
+              } destination={{
+                lat: order.doctor.location.coordinates[1],
+                lng: order.doctor.location.coordinates[0]
+              }} containerStyle={{
+                width: "100%",
+                height: "200px"
+              }} />
+              <button onClick={e => openGoogleMapsDirection({
+                originLat: order.patient.location.coordinates[0],
+                originLng: order.patient.location.coordinates[1],
+                destLat: order.doctor.location.coordinates[1],
+                destLng: order.doctor.location.coordinates[0],
+              })}>Get Direction</button>
+            </div>
           )}
         </div>
       </div>
@@ -164,10 +219,11 @@ const Order = ({ order: orderDetail }) => {
 
 export default Order
 
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
   const { id } = context.query
   try {
-    const { data: order } = await axios.get(`${BASE_URL}/api/order/${id}`)
+    const { data: order } = await axios.get(`${BASE_URL}/api/booking/${id}`)
+
     return {
       props: {
         order

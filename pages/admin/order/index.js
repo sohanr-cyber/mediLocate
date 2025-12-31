@@ -8,12 +8,12 @@ import BASE_URL from '@/config'
 import axios from 'axios'
 import { parse } from 'cookie'
 
-const index = ({ orders, totalPages, currentPage, page }) => {
+const index = ({ bookings, totalPages, currentPage, page }) => {
   return (
     <div className={styles.wrapper}>
       <Orders
-        title={'Order List'}
-        orders={orders}
+        title={'Appointment List'}
+        orders={bookings}
         totalPages={totalPages}
         currentPage={currentPage}
       />
@@ -41,19 +41,20 @@ export async function getServerSideProps (context) {
     const headers = { Authorization: `Bearer ${userInfo.token}` }
 
     const response = await axios.get(
-      `${BASE_URL}/api/order?page=${page || 1}&query=${
+      `${BASE_URL}/api/booking?page=${page || 1}&query=${
         query || ''
-      }&status=${status}`,
+      }&status=${status || ""}`,
       {
         headers
       }
     )
-    const { orders, totalPages, page: currentPage } = response.data
-    console.log({ orders })
+    const { bookings, totalPages, page: currentPage } = response.data
+  
+    console.log({ bookings })
     return {
       props: {
-        title: 'Order List',
-        orders,
+        title: 'Appointment List',
+        bookings,
         totalPages,
         currentPage
       }
@@ -62,7 +63,7 @@ export async function getServerSideProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        title: 'Order List',
+        title: 'Appointment List',
         orders: [],
         totalPages: 0,
         currentPage: 0
