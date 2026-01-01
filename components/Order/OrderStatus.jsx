@@ -48,8 +48,8 @@ export default function HorizontalLinearAlternativeLabelStepper({ order }) {
               labelProps.error = true
             }
             return (
-              <Step key={label}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+              <Step key={label} >
+                <StepLabel {...labelProps} >{label}</StepLabel>
               </Step>
             )
           })}

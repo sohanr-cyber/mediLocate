@@ -20,13 +20,7 @@ const bookingSchema = new mongoose.Schema(
       required: false,
     },
 
-    // Date of appointment
-    date: {
-      type: Date,
-      required: true,
-      default: Date.now()
-    },
-
+   
     // Serial number / token
     serial: {
       type: Number,
@@ -34,6 +28,10 @@ const bookingSchema = new mongoose.Schema(
     },
 
     // Time slot in hh:mm format or start/end times
+    dateOfConsultation: {
+      type: Date,
+    },
+
     startTime: {
       type: String,
     },

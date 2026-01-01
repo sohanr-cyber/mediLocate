@@ -9,19 +9,20 @@ const handler = nextConnect();
 
 // GET booking by ID
 handler.get(async (req, res) => {
-    try {
-        await db.connect();
-        const booking = await Booking.findById(req.query.id)
-            .populate('patient', 'fullName phone location image')
-            .populate('doctor', 'fullName speciality workingIn location image');
-        if (!booking) return res.status(404).json({ error: 'Booking not found' });
-        res.status(200).json(booking);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+  try {
+    await db.connect();
+    const booking = await Booking.findById(req.query.id)
+      .populate('patient', 'fullName phone location image')
+      .populate('doctor', 'fullName phone speciality workingIn location image');
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    res.status(200).json(booking);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
+// update status
 handler.put(async (req, res) => {
   const { id: bookingId } = req.query
   const { newStatus } = req.body
@@ -44,7 +45,7 @@ handler.put(async (req, res) => {
 
     const booking = await Booking.findById(bookingId)
       .populate("patient", "name phone email")
-      .populate("doctor", "name department")
+      .populate("doctor", "name department phone")
 
     if (!booking) {
       return res.status(404).json({ message: "Booking not found" })
@@ -92,4 +93,48 @@ handler.put(async (req, res) => {
 })
 
 
+handler.patch(async (req, res) => {
+  try {
+    await db.connect()
+
+    const { id } = req.query
+    const { dateOfConsultation, startTime, endTime } = req.body
+    console.log({ dateOfConsultation, startTime, endTime })
+    // if (!dateOfConsultation || !startTime || !endTime) {
+    //   return res.status(400).json({
+    //     message: 'dateOfConsultation, startTime and endTime are required'
+    //   })
+    // }
+    await db.connect()
+
+    const booking = await Booking.findById(id)
+    console.log(booking)
+
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' })
+    }
+
+    // Optional: prevent update if completed/cancelled
+    // if (['completed', 'cancelled', 'no-show'].includes(booking.status)) {
+    //   return res.status(400).json({
+    //     message: 'Time cannot be updated for this booking status'
+    //   })
+    // }
+
+    booking.dateOfConsultation = dateOfConsultation
+    booking.startTime = startTime
+    booking.endTime = endTime
+
+    await booking.save()
+    await db.disconnect()
+
+    res.status(200).json({
+      message: 'Consultation time updated successfully',
+      booking
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
+})
 export default handler

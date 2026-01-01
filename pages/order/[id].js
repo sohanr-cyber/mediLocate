@@ -6,7 +6,7 @@ import BASE_URL from '@/config'
 import axios from 'axios'
 import OrderStatus from '@/components/Order/OrderStatus'
 import { useRouter } from 'next/router'
-import { getTime } from '@/utility/helper'
+import { calculateDistance, getTime } from '@/utility/helper'
 import { orderDetailSeoData, statusMessages } from '@/utility/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { NextSeo } from 'next-seo'
@@ -14,7 +14,9 @@ import RouteMap from '@/components/Utility/RouteMap'
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-
+import CallIcon from '@mui/icons-material/Call';
+import SocialDistanceIcon from '@mui/icons-material/SocialDistance';
+import TimePicker from '@/components/Order/TimePicker'
 const statuses = ["pending", "confirmed", "completed", "cancelled", "no-show"]
 const Order = ({ order: orderDetail }) => {
   const [isClient, setIsClient] = useState(false)
@@ -23,6 +25,7 @@ const Order = ({ order: orderDetail }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const headers = { Authorization: `Bearer ${userInfo?.token}` }
+  const [updateTime, setUpdateTime] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -33,7 +36,7 @@ const Order = ({ order: orderDetail }) => {
       order.statusTimeline.find(
         i =>
           i.status == 'cancelled' ||
-          i.status == 'completed' 
+          i.status == 'completed'
       )
     ) {
       return
@@ -71,26 +74,15 @@ const Order = ({ order: orderDetail }) => {
   };
 
 
-  const refund = async () => {
-    try {
-      dispatch(startLoading())
-      const { data } = await axios.get(
-        `/api/payment/${router.query.id}`,
-
-        {
-          headers
-        }
-      )
-      dispatch(finishLoading())
-    } catch (error) {
-      dispatch(finishLoading())
-
-      console.log(error)
-    }
+  const handleCall = (e, number) => {
+    router.push(`tel:+88${number}`)
   }
+
+
 
   return (
     <>
+      {updateTime && <TimePicker setOpen={setUpdateTime} order={order} />}
       <NextSeo {...orderDetailSeoData} />
       <div className={styles.wrapper}>
         <div className={styles.left}>
@@ -102,20 +94,45 @@ const Order = ({ order: orderDetail }) => {
           <div className={styles.details}>
             <div className={styles.item}>
               <CalendarMonthIcon className={styles.icon} />
-              <div className={styles.text}>Date :{new Date(order.createdAt).toLocaleString()}  </div>
+              <div className={styles.text}>Date :{order.dateOfConsultation ? new Date(order.dateOfConsultation).toLocaleDateString('en-GB')
+                : " Yet To Set"}                 <button onClick={() => { setUpdateTime(true) }}> Set Date</button>
+              </div>
             </div>
             <hr />
 
             <div className={styles.item}>
               <QueryBuilderIcon className={styles.icon} />
-              <div className={styles.text}>Time Slot : Thesday , OCT 24, 2025</div>
+
+              <div className={styles.text}> Time Slot : {order?.startTime && order?.endTime
+                ? `${order.startTime} - ${order.endTime} `
+                : 'Not Set'}
+                <button onClick={() => { setUpdateTime(true) }}> Set Time</button>
+              </div>
+            </div>
+            <hr />
+
+            <div className={styles.item}>
+              <CallIcon className={styles.icon} />
+              <div className={styles.text}>Doctor Number : {order.doctor.phone} <button onClick={(e) => handleCall(e, order.doctor.phone)}>Call Now</button></div>
+            </div>
+            <hr />
+
+            <div className={styles.item}>
+              <CallIcon className={styles.icon} />
+              <div className={styles.text}>Patient Number :{order.patient.phone} <button onClick={(e) => handleCall(e, order.patient.phone)}>Call Now</button> </div>
             </div>
             <hr />
             <div className={styles.item}>
-              <HealthAndSafetyIcon className={styles.icon} />
-              <div className={styles.text}>
-                {order.doctor?.speciality}
-              </div>
+              <SocialDistanceIcon className={styles.icon} />
+              <div className={styles.text}>Distance  :{calculateDistance(order.doctor.location.coordinates, order.patient.location.coordinates)} KM <button onClick={(e) =>
+                openGoogleMapsDirection({
+                  originLat: order.patient.location.coordinates[0],
+                  originLng: order.patient.location.coordinates[1],
+                  destLat: order.doctor.location.coordinates[1],
+                  destLng: order.doctor.location.coordinates[0],
+                })
+
+              }>Get Direction</button> </div>
             </div>
             <hr />
 
@@ -170,8 +187,8 @@ const Order = ({ order: orderDetail }) => {
               </div>
             ))}
           </div>
-          <button onClick={() => router.push('/shop')}>
-            Go Back To
+          <button onClick={() => router.push('/')}>
+            Go Back
           </button>{' '}
           {/* <button
             onClick={() => router.push('/shop')}

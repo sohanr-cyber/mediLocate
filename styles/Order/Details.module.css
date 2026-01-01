@@ -110,7 +110,7 @@
 
 @media (max-width:720px) {
     .wrapper {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .right {
