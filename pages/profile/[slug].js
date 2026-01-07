@@ -6,13 +6,36 @@ import BASE_URL from '@/config'
 import axios from 'axios'
 import RouteMap from '@/components/Utility/RouteMap'
 import { useSelector } from 'react-redux'
+import Appointment from '@/components/Profile/Appointment'
+import Experiance from '@/components/Profile/Experiance'
+import Reviews from '@/components/Profile/Reviews'
 
 const Dr = ({ profile }) => {
     const location = useSelector(state => state.user.location)
     const [isClient, setIsClient] = useState(false)
+    const [selected, setSelected] = useState("Info")
+    const userInfo = useSelector(state => state.user.userInfo)
+    const headers = { Authorization: `Bearer ${userInfo.token}` }
+    const [myBooking, setMyBooking] = useState(null)
+
+
+    const fetchMyBooking = async () => {
+        const response = await axios.get(
+            `${BASE_URL}/api/booking?userId=${profile._id || ''}`,
+            {
+                headers
+            }
+        )
+        const { bookings, totalPages, page: currentPage } = response.data
+        setMyBooking({ bookings, totalPages, page: currentPage })
+
+    }
+
     useEffect(() => {
         setIsClient(true)
+        fetchMyBooking()
     }, [])
+
     return (
         isClient &&
         <div className={styles.wrapper}>
@@ -24,17 +47,23 @@ const Dr = ({ profile }) => {
                 lng: profile.location.coordinates[0],
             }} />}
             <div className={styles.heading}>
-                <div className={styles.option}>
-                    Info
-                </div>
-                <div className={styles.option}>
-                    Experiance
-                </div>
-                <div className={styles.option}>
-                    Reviews
-                </div>
+                {["Info", "Experiance", "Reviews", "Appointments"].map((item, i) => (
+                    <div className={styles.option} onClick={() => setSelected(item)} style={selected == item ? {
+                        color:"white",
+                        background:"black"
+                    } : {}}>
+                        {item}
+                    </div>
+
+                ))}
+
             </div>
-            <Info profile={profile} />
+            {selected == "Info" ? <Info profile={profile} /> :
+                selected == "Appointments"
+                    ? <Appointment items={myBooking?.bookings} />
+                    : selected == "Experiance"
+                        ? <Experiance profile={profile} /> : selected == "Reviews" ? <Reviews /> :
+                            <Info profie={profile} />}
         </div>
     )
 }

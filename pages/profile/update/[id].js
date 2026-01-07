@@ -13,6 +13,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import { parse } from 'cookie'
 import MapPicker from '@/components/Utility/MapPicker'
+import TextEditor from '@/components/Utility/TextEditor'
 
 // Order Craetion Form
 const Update = ({ profile: data }) => {
@@ -26,6 +27,8 @@ const Update = ({ profile: data }) => {
         lng: data.location?.coordinates && data.location?.coordinates[1]
     })
     const [newProfile, setNewProfile] = useState(false)
+    const [description, setDescription] = useState(profile.experienceDetails)
+
     useEffect(() => {
         setIsClient(true)
         setProfile(data)
@@ -114,7 +117,8 @@ const Update = ({ profile: data }) => {
                 `/api/user/${router.query.id}`,
                 {
                     ...profile, location:
-                        { coordinates: [selectedLocation?.lat, selectedLocation?.lng] }
+                        { coordinates: [selectedLocation?.lat, selectedLocation?.lng] },
+                    experienceDetails: description
 
                 },
                 { headers }
@@ -308,7 +312,12 @@ const Update = ({ profile: data }) => {
                         <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label>
                         {isClient && <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
                     </div>
-
+                    <div className={styles.field}>
+                        <TextEditor
+                            setDescription={setDescription}
+                            description={description}
+                        />
+                    </div>
                 </div>
                 {/* <div className={styles.right}></div> */}
             </form>

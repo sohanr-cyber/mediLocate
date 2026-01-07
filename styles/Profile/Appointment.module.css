@@ -1,0 +1,71 @@
+.wrapper {
+    padding: 10px;
+    background: var(--cardBg);
+
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--borderColor);
+
+}
+
+
+@media (max-width:992px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+    }
+}
+
+
+@media (max-width:720px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+    }
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 15px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+    }
+}
+
+@media (max-width:410px) {
+    .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+    }
+
+    .gridRow {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+
+    .wrapper {
+        padding: 10px;
+    }
+}

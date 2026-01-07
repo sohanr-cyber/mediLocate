@@ -21,9 +21,18 @@ handler.get(async (req, res) => {
             patient,
             status,
             date,
+            userId,
         } = req.query;
 
         const filter = {};
+
+        /* 🔹 doctor OR patient filter */
+        if (userId) {
+            filter.$or = [
+                { doctor: userId },
+                { patient: userId }
+            ]
+        }
 
         // 🔹 Filter by doctor
         if (doctor) {
@@ -60,8 +69,8 @@ handler.get(async (req, res) => {
         console.log(filter)
         // 🔹 Fetch paginated bookings
         const bookings = await Booking.find(filter)
-            .populate("patient", "fullName phone")
-            .populate("doctor", "fullName speciality")
+            .populate("patient", "fullName phone image location")
+            .populate("doctor", "fullName speciality image location")
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(PAGE_SIZE);

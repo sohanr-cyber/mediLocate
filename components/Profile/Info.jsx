@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../../styles/Profile/Info.module.css'
 const Info = ({ profile }) => {
   return (
+    profile &&
     <div className={styles.wrapper}>
       <b className={styles.title}>
         About Doctor

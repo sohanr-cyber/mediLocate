@@ -1,0 +1,10 @@
+.wrapper {
+    padding: 10px;
+    background: var(--cardBg);
+
+}
+
+.wrapper .details {
+    border-top: 1px solid var(--borderColor);
+    padding-top: 15px;
+}

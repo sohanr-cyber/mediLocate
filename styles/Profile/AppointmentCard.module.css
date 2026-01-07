@@ -1,0 +1,32 @@
+.wrapper {
+    background: rgb(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+
+
+.wrapper img {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--borderColor);
+
+}
+
+.wrapper .images {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.wrapper .details {
+    margin-top: 10px;
+}
+
+.wrapper .status {
+    text-align: center;
+    padding: 3px 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 80px;
+    margin-top: 5px;
+}
