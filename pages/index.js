@@ -60,7 +60,7 @@ export default function Home({ contents, departments, symptoms }) {
           ...seoData.openGraph,
           images: [
             {
-              url: contents.find(i => i.position === "header")?.image || '',
+              url: contents.filter(i => i.position === "header")[0].image,
               alt: 'MediLocate',
               width: 1200,
               height: 630,
