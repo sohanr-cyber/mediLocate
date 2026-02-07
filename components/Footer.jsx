@@ -33,7 +33,7 @@ const Footer = () => {
               <div className={styles.flex} key={index}>
                 <div
                   className={styles.link}
-                  onClick={() => router.push(`/shop?categories=${i[0]._id}`)}
+                  onClick={() => router.push(`/dr?categories=${i[0]._id}`)}
                 >
                   {i[0]?.name}
                 </div>

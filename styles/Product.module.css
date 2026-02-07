@@ -3,7 +3,7 @@
     border-radius: 0;
     overflow: hidden;
     max-width: 250px;
-    min-width: 200px;
+    min-width: 140px;
     cursor: pointer;
     /* min-width: 170px; */
     box-shadow: var(--box-shadow);

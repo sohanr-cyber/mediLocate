@@ -54,7 +54,7 @@ const CategoriesSlider = ({ setOpen }) => {
                     <div className={styles.category} key={index}>
                       <div
                         onClick={() =>
-                          router.push(`/shop?categories=${i._id}`)
+                          router.push(`/dr?categories=${i._id}`)
                         }
                       >
                         {i.name}
