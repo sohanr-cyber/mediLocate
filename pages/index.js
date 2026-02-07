@@ -38,7 +38,7 @@ export default function Home({ contents, departments, symptoms }) {
   const [doctors, setDoctors] = useState([])
 
   const fetchUsers = async () => {
-    let params = location.lat ? {
+    let params = location?.lat ? {
       lat: location.lat, lng: location.lng, radius: 10
     } : { radius: 10 }
     const { data } = await axios.get(
