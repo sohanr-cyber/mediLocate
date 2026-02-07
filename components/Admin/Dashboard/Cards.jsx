@@ -25,7 +25,7 @@ const data = [
     title: 'Orders Pending'
   }
 ]
-4
+
 const Cards = ({ summary }) => {
   const result = summary
   return (
@@ -34,7 +34,7 @@ const Cards = ({ summary }) => {
         index={0}
         totalAmount={result.totalAmount}
         status={'None'}
-        title={'Total Order'}
+        title={'Total Appo..nt'}
         total={result.total}
         orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/17385/17385190.png'}
@@ -43,24 +43,14 @@ const Cards = ({ summary }) => {
       <Card
         // item={{ ...data[1], number: total?.totalOrders }}
         index={1}
-        status={'Delivered'}
-        title='Delivered'
-        totalAmount={result.deliveredAmount}
-        total={result.delivered}
+        status={'Completed'}
+        title='Completed'
+        totalAmount={result.completedAmount}
+        total={result.completed}
         orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/6815/6815043.png'}
       />
 
-      <Card
-        // item={{ ...data[1], number: total?.totalOrders }}
-        index={1}
-        status={'Delivering'}
-        title='Delivering'
-        totalAmount={result.deliveringAmount}
-        total={result.delivering}
-        orderTotal={result.total}
-        icon={'https://cdn-icons-png.flaticon.com/128/4847/4847433.png'}
-      />
       <Card
         // item={{ ...data[3], number: total?.totalPending }}
         index={3}
@@ -85,11 +75,11 @@ const Cards = ({ summary }) => {
 
       <Card
         // item={{ ...data[3], number: total.totalCanceled + total.totalFailed }}
-        index={3}
-        totalAmount={result.canceledAmount + result.failedAmount}
-        title={'Failed'}
-        status={'Failed'}
-        total={result.canceled + result.failed}
+        index={4}
+        totalAmount={result.canceledAmount}
+        title={'Cancelled'}
+        status={'Cancelled'}
+        total={result.cancelled}
         orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/1828/1828843.png'}
       />

@@ -6,7 +6,7 @@ import styles from '@/styles/Home.module.css'
 import TopNav from '@/components/TopNav'
 import Navbar from '@/components/Navbar'
 import Header from '@/components/Header'
-import Catergory from './shop/[category]'
+import Catergory from './dr/[category]'
 import Categories from '@/components/Categories/Categories'
 import ProductsByCategory from '@/components/Products/ProductsByCategory'
 import Footer from '@/components/Footer'
@@ -29,8 +29,28 @@ import { seoData } from '@/utility/const'
 import Grid from '@/components/Categories/Explore/Grid'
 import users from '@/utility/data'
 import MapPicker from '@/components/Utility/MapPicker'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 
-export default function Home({  contents, departments, symptoms }) {
+
+export default function Home({ contents, departments, symptoms }) {
+  const location = useSelector(state => state.user.location)
+  const [doctors, setDoctors] = useState([])
+
+  const fetchUsers = async () => {
+    let params = location.lat ? {
+      lat: location.lat, lng: location.lng, radius: 10
+    } : { radius: 10 }
+    const { data } = await axios.get(
+      `${BASE_URL}/api/user/filter`,
+      { params }
+    )
+  }
+
+  useEffect(() => {
+    fetchUsers()
+  }, [location.lat])
+
   return (
     <>
       <NextSeo
@@ -40,7 +60,7 @@ export default function Home({  contents, departments, symptoms }) {
           images: [
             {
               url: contents.find(i => i.position === "header")?.image || '',
-              alt: 'ElectroHub Electronics',
+              alt: 'MediLocate',
               width: 1200,
               height: 630,
             },
@@ -50,14 +70,7 @@ export default function Home({  contents, departments, symptoms }) {
 
 
       <div className={styles.wrapper}>
-        {/* <TopNav /> */}
-        <div className={styles.categories}>
-          {/* <Categories /> */}
-          {/* <List /> */}
-          {/* <List2 /> */}
-        </div>
-        {/* <ImageSlider images={contents.map(item => item.image)} /> */}
-        {/* <Header2 contents={contents} /> */}
+
         <Header3 contents={contents.filter(i => i.position == "header")} />
         <div className={styles.categoriesInRow}>
           <Row items={departments} />

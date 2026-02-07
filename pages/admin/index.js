@@ -25,13 +25,13 @@ const data = result => {
     //   color: orderStatusColors['none']
     // },
     {
-      name: 'Delivered',
+      name: 'Completed',
       value: result.delivered,
-      color: orderStatusColors['delivered']
+      color: orderStatusColors['completed']
     },
     {
-      name: 'Failed',
-      value: result.failed + result.canceled,
+      name: 'Canceled',
+      value:  result.canceled,
       color: orderStatusColors['canceled']
     },
     {
@@ -45,9 +45,9 @@ const data = result => {
       color: orderStatusColors['pending']
     },
     {
-      name: 'Delivering',
-      value: result.delivering,
-      color: orderStatusColors['delivering']
+      name: 'no-show',
+      value: result.noShow,
+      color: orderStatusColors['no-show']
     }
   ]
 }
@@ -118,6 +118,7 @@ const index = ({ summary }) => {
           )}
         </div>
         <div className={styles.right}>
+
           <DateRangeIcon
             onClick={() => setOpen(true)}
             className={styles.icon}

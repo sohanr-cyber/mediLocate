@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/Profile/Basic.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -11,25 +11,35 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { calculateDistance } from '@/utility/helper';
 import FindNearMe from '../Utility/FindNearMe';
 import { showSnackBar } from '@/redux/notistackSlice';
+import DirectionsIcon from '@mui/icons-material/Directions';
+
 import axios from 'axios';
+import { Vazirmatn } from '@next/font/google';
+import ConfirmationModal from '../Utility/ConfirmationModal';
 const Basic = ({ profile }) => {
     const router = useRouter()
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.user.userInfo)
     const location = useSelector(state => state.user.location)
+    const [openModal, setOpenModal] = useState(false)
+
 
     const clearUserInfo = () => {
         dispatch(logout())
         router.push('/')
     }
-    const headers = { Authorization: `Bearer ${userInfo.token}` }
+    const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
     const bookNow = async (doctorId, date, startTime, endTime, symptoms = '') => {
 
         try {
             // Redirect to login if user is not logged in
             if (!userInfo) {
-                router.push('/login');
+                dispatch(showSnackBar({
+                    message: "First Login To Book Appointment",
+
+                }))
+                router.push(`/login?redirect=${doctorId}`);
                 return;
             }
 
@@ -49,7 +59,7 @@ const Basic = ({ profile }) => {
             dispatch(showSnackBar({ message: `Booking successful! Serial: ${data.serial}` }));
 
             // Optional: redirect to booking details page
-            // router.push(`/booking/${data._id}`);
+            router.push(`/booking/${data._id}`);
         } catch (error) {
             console.error(error);
             dispatch(
@@ -62,6 +72,7 @@ const Basic = ({ profile }) => {
 
     return (
         <div className={styles.wrapper}>
+            {openModal && <ConfirmationModal setOpenModal={setOpenModal} bookNow={bookNow} />}
             <div className={styles.left}>
                 <div className={styles.pic}>
                     <Image src={profile.image} width={200} height={260} alt="" onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
@@ -69,70 +80,70 @@ const Basic = ({ profile }) => {
             </div>
             <div className={styles.right}>
                 <div className={styles.name}>{
-                    profile.firstName}{" "}{profile.lastName}
+                    profile.fullName || profile.firstName}{" "}{profile.lastName}
 
                 </div>
 
-                <div className={styles.education}>
+                {profile.role == "doctor" && (<>   <div className={styles.education}>
                     {profile.speciality}
                 </div>
-                {profile.department && <div className={styles.department}>
-                    Dermatologist
-                </div>}
+                    {profile.department && <div className={styles.department}>
+                        Dermatologist
+                    </div>}
 
-                <div className={styles.flex}>
-                    <div className={styles.item}>
-                        <div>Total Experiance</div>
-                        <b>{profile.totalExperience} Years</b>
-                    </div>
-                    <div className={styles.item}>
-                        <div>BMDC Number
+                    <div className={styles.flex}>
+                        <div className={styles.item}>
+                            <div>Total Experiance</div>
+                            <b>{profile.totalExperience} Years</b>
                         </div>
-                        <b>
-                            {profile.bmdcNumber}
-                        </b>
-                    </div>
-                    <div className={styles.item}>
-                        <div>Total Rating</div>
-                        <b>0.0
-                            (000)</b>
-                    </div>
-                    <div className={styles.item}>
-                        <div>Working In</div>
-                        <b>
-                            {profile.workingIn || "..............."}
-                        </b>
-                    </div>
-                </div>
-                <div className={styles.book}>
-                    <div className={styles.left}>
-                        <div>Consulation Fee</div>
-                        <div className={styles.fee}>
-                            BDT {profile.consultationFee || 500}
+                        <div className={styles.item}>
+                            <div>BMDC Number
+                            </div>
+                            <b>
+                                {profile.bmdcNumber}
+                            </b>
+                        </div>
+                        <div className={styles.item}>
+                            <div>Total Rating</div>
+                            <b>0.0
+                                (000)</b>
+                        </div>
+                        <div className={styles.item}>
+                            <div>Working In</div>
+                            <b>
+                                {profile.workingIn || "..............."}
+                            </b>
                         </div>
                     </div>
-                    <div className={styles.btn} onClick={() => { bookNow() }}>
-                        Book Now
+                    <div className={styles.book}>
+                        <div className={styles.left}>
+                            <div>Consulation Fee</div>
+                            <div className={styles.fee}>
+                                BDT {profile.consultationFee || 500}
+                            </div>
+                        </div>
+                        <div className={styles.btn} onClick={() => { setOpenModal(true) }}>
+                            Book Now
+                        </div>
                     </div>
-                </div>
-                {profile.location && location.lat && <div className={styles.distance}>
-                    In {" "}{calculateDistance([location.lat, location.lng], [profile.location.coordinates[1], profile.location.coordinates[0]]).toFixed(2)} {" "}KM
-                </div>}
+                    {profile.location && location.lat && <div className={styles.distance}>
+                        In {" "}{calculateDistance([location.lat, location.lng], [profile.location.coordinates[1], profile.location.coordinates[0]]).toFixed(2)} {" "}KM
+                    </div>}</>)}
                 <div className={styles.flex} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                    <div className={styles.icon}>
+                    {profile.role == "doctor" && <div className={styles.icon}>
                         <FindNearMe text={"Locate"} />
-                    </div>
+                    </div>}
 
-                    <a href={`tel:+88${profile.phoneNumber}`}>
+                    {/* <a href={`tel:+88${profile.phoneNumber}`}>
                         <div className={styles.icon}>
                             <CallIcon /> Call</div>
-                    </a>
+                    </a> */}
 
 
                     {router.query.slug == userInfo?.id &&
                         <div className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)}> <CreateIcon /> Update</div>
                     }
-                    {router.query.slug == userInfo?.id && <div className={styles.icon} onClick={() => clearUserInfo()}>
+                    {router.query.slug == userInfo?.id && <div className={styles.icon} onClick={() => clearUserInfo()} style={{ background: "rgb(255,0,0,0.1", color: "red" }}>
                         <ExitToAppIcon /> Logout</div>
                     }
                 </div>

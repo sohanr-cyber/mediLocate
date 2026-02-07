@@ -200,8 +200,8 @@ function summarizeOrders(orders) {
     summary.canceledAmount += order.canceledAmount
     summary.delivering += order.delivering
     summary.deliveringAmount += order.deliveringAmount
-    summary.delivered += order.delivered
-    summary.deliveredAmount += order.deliveredAmount
+    summary.completed += order.delivered
+    summary.completedAmount += order.deliveredAmount
     summary.confirmed += order.confirmed
     summary.confirmedAmount += order.confirmedAmount
     summary.failedAndCanceled += order.failedAndCanceled
@@ -210,6 +210,8 @@ function summarizeOrders(orders) {
 
   return summary
 }
+
+
 function generateVerificationCode(length) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

@@ -21,8 +21,10 @@ const OrderSummary = ({
           {user.speciality}
         </div>
         <div className={styles.location}>City Medical Center</div>
+        <div></div>
+        <button onClick  = {() => router.push(`/profile/${user._id}`)}>Visit Profile</button>
       </div>
-      
+
     </div>
   )
 }

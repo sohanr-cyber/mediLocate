@@ -95,7 +95,7 @@ const Order = ({ order: orderDetail }) => {
             <div className={styles.item}>
               <CalendarMonthIcon className={styles.icon} />
               <div className={styles.text}>Date :{order.dateOfConsultation ? new Date(order.dateOfConsultation).toLocaleDateString('en-GB')
-                : " Yet To Set"}                 <button onClick={() => { setUpdateTime(true) }}> Set Date</button>
+                : " Yet To Set"}                 {<button onClick={() => { setUpdateTime(true) }}> Set Date</button>}
               </div>
             </div>
             <hr />
@@ -106,8 +106,8 @@ const Order = ({ order: orderDetail }) => {
               <div className={styles.text}> Time Slot : {order?.startTime && order?.endTime
                 ? `${order.startTime} - ${order.endTime} `
                 : 'Not Set'}
-                <button onClick={() => { setUpdateTime(true) }}> Set Time</button>
-              </div>
+                {userInfo._id == order.doctor._id && <button onClick={() => { setUpdateTime(true) }}> Set Time</button>
+                }              </div>
             </div>
             <hr />
 
@@ -148,7 +148,7 @@ const Order = ({ order: orderDetail }) => {
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
           </div>
-          {isClient && userInfo?.role == 'admin' && (
+          {isClient && userInfo?.role == 'admin' || userInfo._id == order.doctor._id && (
             <div className={styles.update__status}>
               {[
                 statuses?.map((item, index) => (

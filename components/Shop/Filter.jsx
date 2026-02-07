@@ -10,6 +10,7 @@ import SkeletonDiv from '../Utility/SkeletonDiv'
 import Categories from './Categories'
 import Experience from './Experience'
 import Ratings from '../Utility/Rating'
+import DistanceFilter from './DistanceFilter'
 
 const Filter = ({ setOpen }) => {
   const router = useRouter()
@@ -29,20 +30,6 @@ const Filter = ({ setOpen }) => {
     setOpen(false)
   }
 
-  const setColor = color => [
-    router.query.colors?.split(',').find(i => i == color)
-      ? updateRoute({
-        colors: router.query.colors
-          .split(',')
-          .filter(i => i != color)
-          .join(',')
-      })
-      : updateRoute({
-        colors: router.query.colors
-          ? [...router.query.colors.split(','), color].join(',')
-          : [color].join(',')
-      })
-  ]
 
   return (
     <div className={styles.wrapper}>
@@ -69,6 +56,11 @@ const Filter = ({ setOpen }) => {
             />
           </div>
           <button onClick={() => updateRoute(price)}>Apply</button>
+        </div>
+        {/* Experience Filter */}
+        <div className={styles.heading}>Distance</div>
+        <div className={styles.filterOptions}>
+          <DistanceFilter />
         </div>
         {/* Experience Filter */}
         <div className={styles.heading}>Experience</div>

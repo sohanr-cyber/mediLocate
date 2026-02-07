@@ -10,7 +10,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import MailBox from '@/components/Utility/MailBox'
 import validator from 'email-validator'
 import { orderStatusColors } from '@/utility/const'
-import { extractRGBA, getTime } from '@/utility/helper'
+import { calculateDistance, extractRGBA, getTime } from '@/utility/helper'
 
 const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
@@ -127,8 +127,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                 <th>Serial</th>
                 <th>Patient Name</th>
                 <th>Dr Name</th>
-                <th>From</th>
-                <th>To</th>
+                <th>Distance</th>
                 <th> Status</th>
                 <th>Date Of Creation</th>
                 <th>Action</th>
@@ -157,6 +156,11 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                   >
                     {order.doctor.fullName}
                   </td>
+                      <td>
+                    <span>
+                      {calculateDistance(order.doctor.location.coordinates, order.patient.location.coordinates).toFixed(1)} KM
+                    </span>
+                  </td>
                   <td>
                     <span
                       style={{
@@ -171,20 +175,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       {order.status}
                     </span>
                   </td>
-                  <td>
-                    <span
-                      style={{
-                        background: `${extractRGBA(
-                          orderStatusColors[order.paymentStatus.toLowerCase()],
-                          0.2
-                        )}`,
-                        padding: '3px 3px',
-                        borderRadius: '5px'
-                      }}
-                    >
-                      {order.paymentStatus}
-                    </span>
-                  </td>
+              
                   <td>{getTime(order.createdAt)}</td>
                   <td className={styles.action}>
                     <span onDoubleClick={() => remove(order._id)}>Delete</span>

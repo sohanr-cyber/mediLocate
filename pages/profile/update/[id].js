@@ -27,7 +27,7 @@ const Update = ({ profile: data }) => {
         lng: data.location?.coordinates && data.location?.coordinates[1]
     })
     const [newProfile, setNewProfile] = useState(false)
-    const [description, setDescription] = useState(profile.experienceDetails)
+    const [description, setDescription] = useState(profile.experienceDetails || "Write Your experiance in details ")
 
     useEffect(() => {
         setIsClient(true)
@@ -133,6 +133,7 @@ const Update = ({ profile: data }) => {
                     }
                 })
             )
+            router.push(`/profile/${router.query.id}`)
         } catch (error) {
             console.log(error)
             dispatch(finishLoading())
@@ -172,7 +173,7 @@ const Update = ({ profile: data }) => {
                         />
                     </div>
 
-                    <div className={styles.field}>
+                    {/* <div className={styles.field}>
                         <label>Full Name</label>
                         <input
                             type="text"
@@ -180,7 +181,7 @@ const Update = ({ profile: data }) => {
                             value={profile?.fullName}
                             onChange={e => setProfile({ ...profile, fullName: e.target.value })}
                         />
-                    </div>
+                    </div> */}
                     <div className={styles.field}>
                         <label>Phone Number</label>
                         <input
@@ -309,15 +310,16 @@ const Update = ({ profile: data }) => {
                         )}
                     </div>
                     <div className={styles.field}>
-                        <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label>
+                        {/* <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label> */}
                         {isClient && <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
                     </div>
-                    <div className={styles.field}>
+                    {isClient && profile.role == "doctor" && <div className={styles.field}>
                         <TextEditor
                             setDescription={setDescription}
                             description={description}
                         />
-                    </div>
+                    </div>}
+
                 </div>
                 {/* <div className={styles.right}></div> */}
             </form>

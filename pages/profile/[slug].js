@@ -9,13 +9,16 @@ import { useSelector } from 'react-redux'
 import Appointment from '@/components/Profile/Appointment'
 import Experiance from '@/components/Profile/Experiance'
 import Reviews from '@/components/Profile/Reviews'
+import FindNearMe from '@/components/Utility/FindNearMe'
 
 const Dr = ({ profile }) => {
+    const headings = profile.role == "doctor" ? ["Info", "Experiance", "Reviews", "Appointments"] : ["Appointment"]
+
     const location = useSelector(state => state.user.location)
     const [isClient, setIsClient] = useState(false)
-    const [selected, setSelected] = useState("Info")
+    const [selected, setSelected] = useState(headings[0])
     const userInfo = useSelector(state => state.user.userInfo)
-    const headers = { Authorization: `Bearer ${userInfo.token}` }
+    const headers = { Authorization: `Bearer ${userInfo?.token}` }
     const [myBooking, setMyBooking] = useState(null)
 
 
@@ -35,36 +38,38 @@ const Dr = ({ profile }) => {
         setIsClient(true)
         fetchMyBooking()
     }, [])
-
     return (
         isClient &&
         <div className={styles.wrapper}>
             <Basic profile={profile} />
-            {isClient && location?.lat && profile.location && <RouteMap origin={{
+            {isClient && profile.role == "doctor" && location?.lat && profile.location && <RouteMap origin={{
                 ...location
             }} destination={{
                 lat: profile.location.coordinates[1],
                 lng: profile.location.coordinates[0],
             }} />}
             <div className={styles.heading}>
-                {["Info", "Experiance", "Reviews", "Appointments"].map((item, i) => (
-                    <div className={styles.option} onClick={() => setSelected(item)} style={selected == item ? {
-                        color:"white",
-                        background:"black"
+                {headings.map((item, i) => (
+                    < div className={styles.option} onClick={() => setSelected(item)} style={selected == item ? {
+                        color: "white",
+                        background: "black"
                     } : {}}>
-                        {item}
+                        {item == "Location" ? <FindNearMe text={"Locate"} />
+                            : item}
                     </div>
 
                 ))}
 
             </div>
-            {selected == "Info" ? <Info profile={profile} /> :
-                selected == "Appointments"
-                    ? <Appointment items={myBooking?.bookings} />
-                    : selected == "Experiance"
-                        ? <Experiance profile={profile} /> : selected == "Reviews" ? <Reviews /> :
-                            <Info profie={profile} />}
-        </div>
+            {
+                selected == "Info" ? <Info profile={profile} /> :
+                    selected == "Appointments"
+                        ? <Appointment items={myBooking?.bookings} />
+                        : selected == "Experiance"
+                            ? <Experiance profile={profile} /> : selected == "Reviews" ? <Reviews /> :
+                                <Info profie={profile} />
+            }
+        </div >
     )
 }
 

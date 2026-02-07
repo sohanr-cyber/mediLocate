@@ -7,7 +7,7 @@ const containerStyle = {
   width: "100%",
   height: "500px",
   position: "relative",
-  border: "1px solid red",
+  // border: "1px solid red",
 };
 
 const dhakaCenter = {
@@ -85,7 +85,7 @@ const MapPicker = ({ onCoordinateSelect, selectedLocation, setSelectedLocation }
   return (
     isClient &&
     <div style={{ width: "100%", position: "relative" }}>
-      <button style={{ bottom: "10px" }} onClick={(e) => { LocateMe(e) }}>Locate</button>   <GoogleMap
+      <button style={{ bottom: "10px",  }} onClick={(e) => { LocateMe(e) }}>Locate📍</button>   <GoogleMap
         mapContainerStyle={containerStyle}
         center={location}
         zoom={14}

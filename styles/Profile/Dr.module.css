@@ -5,10 +5,11 @@
 
 .wrapper .heading {
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-start;
     background: var(--cardBg);
     margin: 10px 0;
     gap:5px;
+    overflow-x: scroll;
     /* padding: 10px; */
 }
 

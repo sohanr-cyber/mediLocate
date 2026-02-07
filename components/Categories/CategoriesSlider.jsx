@@ -6,6 +6,7 @@ import Logo from '../Utility/Logo'
 import { useRouter } from 'next/router'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { themeBg } from '@/utility/const'
+import FindNearMe from '../Utility/FindNearMe'
 
 const CategoriesSlider = ({ setOpen }) => {
   const categories = useSelector(state => state.category.categories)
@@ -41,39 +42,39 @@ const CategoriesSlider = ({ setOpen }) => {
                     <div onClick={() => router.push(`/`)}>Home</div>
                   </div>
                   <div className={styles.category}>
-                    <div onClick={() => router.push(`/doctor`)}>Doctor</div>
+                    <FindNearMe text={"Find Doctor"} />
                   </div>
                 </>
               )}
 
               {categories
                 ? categories.map((i, index) => (
-                    <>
-                      {' '}
-                      <div className={styles.category} key={index}>
-                        <div
-                          onClick={() =>
-                            router.push(`/shop?categories=${i._id}`)
-                          }
-                        >
-                          {i.name}
-                        </div>
-                        {i.children.length > 0 && (
-                          <div
-                            className={styles.plus}
-                            onClick={() => setHistory([...history, i])}
-                          >
-                            {i._id == expand ? '-' : '+'}
-                          </div>
-                        )}
-                      </div>
-                    </>
-                  ))
-                : [1, 2, 3, 4, 5].map((i, index) => (
+                  <>
+                    {' '}
                     <div className={styles.category} key={index}>
-                      <SkeletonDiv key={index} />
+                      <div
+                        onClick={() =>
+                          router.push(`/shop?categories=${i._id}`)
+                        }
+                      >
+                        {i.name}
+                      </div>
+                      {i.children.length > 0 && (
+                        <div
+                          className={styles.plus}
+                          onClick={() => setHistory([...history, i])}
+                        >
+                          {i._id == expand ? '-' : '+'}
+                        </div>
+                      )}
                     </div>
-                  ))}
+                  </>
+                ))
+                : [1, 2, 3, 4, 5].map((i, index) => (
+                  <div className={styles.category} key={index}>
+                    <SkeletonDiv key={index} />
+                  </div>
+                ))}
             </div>
           </>
         )}

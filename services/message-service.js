@@ -6,7 +6,6 @@ const from = process.env.FROM
 
 class Message {
     async sendMessage(data) {
-        return
         console.log(data)
         const { number, message } = data
         if (!number || !message) {

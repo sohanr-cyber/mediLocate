@@ -13,7 +13,7 @@ const SearchBox = () => {
 
   const search = () => {
     dispatch(handleSearch(name))
-    router.push(`/shop?name=${name}`)
+    router.push(`/dr?name=${name}`)
   }
   return (
     <div className={styles.flex}>

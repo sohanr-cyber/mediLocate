@@ -19,30 +19,30 @@ const sortOptions = [
     }
   },
   {
-    value: 'Price Low To High',
+    value: 'Fee Low To High',
     query: {
-      sortBy: 'price',
+      sortBy: 'fee',
       sortOrder: 'asc'
     }
   },
   {
-    value: 'Price Hight To Low',
+    value: 'Fee Hight To Low',
     query: {
-      sortBy: 'price',
+      sortBy: 'fee',
       sortOrder: 'desc'
     }
   },
   {
     value: 'Newest To Oldest',
     query: {
-      sortBy: 'createdAt',
+      sortBy: 'date',
       sortOrder: 'desc'
     }
   },
   {
     value: 'Oldest To Newest',
     query: {
-      sortBy: 'createdAt',
+      sortBy: 'date',
       sortOrder: 'asc'
     }
   }
@@ -105,40 +105,86 @@ const Home = ({ users, totalPages, currentPage, count }) => {
 
 export default Home
 
+
 export async function getServerSideProps(context) {
-  const {
-    name,
-    categories,
-    colors,
-    minPrice,
-    maxPrice,
-    page,
-    sortBy,
-    sortOrder
-  } = context.query
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/api/user?blur=true&name=${name || ''}&categories=${categories || 'all'
-      }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${maxPrice || 'all'
-      }&page=${page || 1}&sortBy=${sortBy || ''}&sortOrder=${sortOrder || ''}`
-    )
-    const { users, totalPages, page: currentPage, count } = response.data
-    return {
-      props: {
-        title: 'Product List',
-        users,
-        totalPages,
-        currentPage,
-        count
-      }
+    const {
+        page = 1,
+        sortBy,
+        sortOrder,
+
+        // distance
+        lat,
+        lng,
+        radius,
+
+        // experience
+        minExperience,
+        maxExperience,
+
+        // fee
+        minFee,
+        maxFee,
+    } = context.query
+
+    try {
+        const params = {
+            page,
+            sortBy,
+            sortOrder,
+
+            lat,
+            lng,
+            radius,
+
+            minExperience,
+            maxExperience,
+
+            minFee,
+            maxFee,
+        }
+
+        // remove empty params
+        Object.keys(params).forEach(
+            (key) =>
+                (params[key] === undefined ||
+                    params[key] === null ||
+                    params[key] === '') &&
+                delete params[key]
+        )
+
+        const response = await axios.get(
+            `${BASE_URL}/api/user/filter`,
+            { params }
+        )
+
+        const {
+            users,
+            totalPages,
+            page: currentPage,
+            count,
+        } = response.data
+
+        return {
+            props: {
+                title: 'User List',
+                users,
+                totalPages,
+                currentPage,
+                count,
+            },
+        }
+    } catch (error) {
+        console.error('Error fetching users:', error)
+
+        return {
+            props: {
+                title: 'User List',
+                users: [],
+                totalPages: 0,
+                currentPage: 1,
+                count: 0,
+            },
+        }
     }
-  } catch (error) {
-    console.error('Error fetching products:', error)
-    return {
-      props: {
-        title: 'User List',
-        users: []
-      }
-    }
-  }
 }
+

@@ -55,7 +55,7 @@ const Card = ({
             <span>({percentage})%</span>
           )}
         </div>
-        <div className={styles.amount}>{totalAmount.toLocaleString()} BDT</div>
+        <div className={styles.amount}>{totalAmount?.toLocaleString()} BDT</div>
       </div>
     </div>
   )
