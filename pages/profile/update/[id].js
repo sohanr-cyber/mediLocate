@@ -173,7 +173,7 @@ const Update = ({ profile: data }) => {
                         />
                     </div>
 
-                    {/* <div className={styles.field}>
+                    <div className={styles.field}>
                         <label>Full Name</label>
                         <input
                             type="text"
@@ -181,7 +181,8 @@ const Update = ({ profile: data }) => {
                             value={profile?.fullName}
                             onChange={e => setProfile({ ...profile, fullName: e.target.value })}
                         />
-                    </div> */}
+                    </div>
+                    
                     <div className={styles.field}>
                         <label>Phone Number</label>
                         <input

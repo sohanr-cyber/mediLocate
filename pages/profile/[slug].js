@@ -40,7 +40,7 @@ const Dr = ({ profile }) => {
         setIsClient(true)
         fetchMyBooking()
     }, [])
-    
+
     const isDoctor = profile?.role === 'doctor'
 
     return (
@@ -59,11 +59,11 @@ const Dr = ({ profile }) => {
                             }. View experience, consultation fees, and book appointments online.`
                         : `View profile details for ${profile?.fullName || 'this user'}.`
                 }
-                canonical={`${process.env.NEXT_PUBLIC_SITE_URL}/dr/${profile?._id}`}
+                canonical={`${process.env.BASE_URL}/dr/${profile?._id}`}
                 openGraph={{
                     type: isDoctor ? 'profile' : 'website',
                     locale: 'en_US',
-                    url: `${process.env.NEXT_PUBLIC_SITE_URL}/dr/${profile?._id}`,
+                    url: `${process.env.BASE_URL}/dr/${profile?._id}`,
                     title: isDoctor
                         ? `${profile?.fullName || 'Doctor'} | ${profile?.speciality || 'Medical Specialist'}`
                         : `${profile?.fullName || 'User Profile'}`,
