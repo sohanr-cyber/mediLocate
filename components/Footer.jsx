@@ -39,7 +39,7 @@ const Footer = () => {
                 </div>
                 <div
                   className={styles.link}
-                  onClick={() => router.push(`/shop?categories=${i[1]._id}`)}
+                  onClick={() => router.push(`/dr?categories=${i[1]._id}`)}
                 >
                   {i[1]?.name}
                 </div>
