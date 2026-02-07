@@ -122,15 +122,16 @@ const Basic = ({ profile }) => {
                                 BDT {profile.consultationFee || 500}
                             </div>
                         </div>
-                        <div className={styles.btn} onClick={() => { setOpenModal(true) }}>
+
+                        {!(router.query.slug == userInfo?.id) && <div className={styles.btn} onClick={() => { setOpenModal(true) }}>
                             Book Now
-                        </div>
+                        </div>}
                     </div>
-                    {profile.location && location.lat && <div className={styles.distance}>
-                        In {" "}{calculateDistance([location.lat, location.lng], [profile.location.coordinates[1], profile.location.coordinates[0]]).toFixed(2)} {" "}KM
+                    {profile?.location && location?.lat && <div className={styles.distance}>
+                        In {" "}{calculateDistance([location.lat, location.lng], profile.location.coordinates).toFixed(2)} {" "}KM
                     </div>}</>)}
                 <div className={styles.flex} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                    {profile.role == "doctor" && <div className={styles.icon}>
+                    {!(router.query.slug == userInfo?.id) && < div className={styles.icon}>
                         <FindNearMe text={"Locate"} />
                     </div>}
 

@@ -27,7 +27,7 @@ const Update = ({ profile: data }) => {
         lng: data.location?.coordinates && data.location?.coordinates[1]
     })
     const [newProfile, setNewProfile] = useState(false)
-    const [description, setDescription] = useState(profile.experienceDetails || "Write Your experiance in details ")
+    const [description, setDescription] = useState(profile.experienceDetails)
 
     useEffect(() => {
         setIsClient(true)
@@ -259,7 +259,7 @@ const Update = ({ profile: data }) => {
                                 onChange={e => setProfile({ ...profile, followUpFee: e.target.value })}
                             />
                         </div>
-                        <div className={styles.field}>
+                        {/* <div className={styles.field}>
                             <label>Experiance Details</label>
                             <textarea
                                 type="text"
@@ -267,7 +267,7 @@ const Update = ({ profile: data }) => {
                                 value={profile?.experienceDetails}
                                 onChange={e => setProfile({ ...profile, experienceDetails: e.target.value })}
                             />
-                        </div>
+                        </div> */}
 
 
                         <div className={styles.field}>
@@ -314,6 +314,7 @@ const Update = ({ profile: data }) => {
                         {isClient && <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
                     </div>
                     {isClient && profile.role == "doctor" && <div className={styles.field}>
+                        <label>Write Your Experiance Details</label>
                         <TextEditor
                             setDescription={setDescription}
                             description={description}

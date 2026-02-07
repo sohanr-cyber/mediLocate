@@ -10,6 +10,7 @@ import Appointment from '@/components/Profile/Appointment'
 import Experiance from '@/components/Profile/Experiance'
 import Reviews from '@/components/Profile/Reviews'
 import FindNearMe from '@/components/Utility/FindNearMe'
+import { useRouter } from 'next/router'
 
 const Dr = ({ profile }) => {
     const headings = profile.role == "doctor" ? ["Info", "Experiance", "Reviews", "Appointments"] : ["Appointment"]
@@ -20,7 +21,7 @@ const Dr = ({ profile }) => {
     const userInfo = useSelector(state => state.user.userInfo)
     const headers = { Authorization: `Bearer ${userInfo?.token}` }
     const [myBooking, setMyBooking] = useState(null)
-
+    const router = useRouter()
 
     const fetchMyBooking = async () => {
         const response = await axios.get(
@@ -42,11 +43,11 @@ const Dr = ({ profile }) => {
         isClient &&
         <div className={styles.wrapper}>
             <Basic profile={profile} />
-            {isClient && profile.role == "doctor" && location?.lat && profile.location && <RouteMap origin={{
+            {isClient && !(router.query.slug == userInfo?.id) && profile.role == "doctor" && location?.lat && profile.location && <RouteMap origin={{
                 ...location
             }} destination={{
-                lat: profile.location.coordinates[1],
-                lng: profile.location.coordinates[0],
+                lat: profile.location.coordinates[0],
+                lng: profile.location.coordinates[1],
             }} />}
             <div className={styles.heading}>
                 {headings.map((item, i) => (

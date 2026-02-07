@@ -45,6 +45,7 @@ export default function Home({ contents, departments, symptoms }) {
       `${BASE_URL}/api/user/filter`,
       { params }
     )
+    setDoctors(data.users)
   }
 
   useEffect(() => {
@@ -78,9 +79,9 @@ export default function Home({ contents, departments, symptoms }) {
         </div>
 
         <ProductsByCategory2
-          products={users}
+          products={doctors}
           structure={'grid'}
-          title={"Doctors Near You"}
+          title={"Doctors Available For You"}
           description={"Find trusted doctors nearby and book appointments easily!"}
         />
 
