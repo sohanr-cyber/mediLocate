@@ -16,6 +16,7 @@ import DirectionsIcon from '@mui/icons-material/Directions';
 import axios from 'axios';
 import { Vazirmatn } from '@next/font/google';
 import ConfirmationModal from '../Utility/ConfirmationModal';
+import { finishLoading, startLoading } from '@/redux/stateSlice';
 const Basic = ({ profile }) => {
     const router = useRouter()
     const dispatch = useDispatch()
@@ -30,9 +31,10 @@ const Basic = ({ profile }) => {
     }
     const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
-    const bookNow = async (doctorId, date, startTime, endTime, symptoms = '') => {
+    const bookNow = async (bookingInfo) => {
 
         try {
+            dispatch(startLoading())
             // Redirect to login if user is not logged in
             if (!userInfo) {
                 dispatch(showSnackBar({
@@ -47,20 +49,21 @@ const Basic = ({ profile }) => {
             const { data } = await axios.post('/api/booking', {
                 doctorId: profile._id,
                 date: new Date(),
-                startTime,
-                endTime,
-                symptoms,
+                startTime:bookingInfo.startTime,
+                endTime:bookingInfo.endTime,
+                symptoms:bookingInfo.note,
                 consultationFee: profile.consultationFee
             }, {
                 headers
             });
-
+            dispatch(finishLoading())
             // Show success message
             dispatch(showSnackBar({ message: `Booking successful! Serial: ${data.serial}` }));
 
             // Optional: redirect to booking details page
             router.push(`/booking/${data._id}`);
         } catch (error) {
+            dispatch(finishLoading())
             console.error(error);
             dispatch(
                 showSnackBar({
@@ -69,6 +72,23 @@ const Basic = ({ profile }) => {
             );
         }
     };
+
+    const initiallzeBooking = () => {
+        if (userInfo) {
+            setOpenModal(true)
+        } else {
+            dispatch(showSnackBar(
+                {
+                    message: "First Login For Booking",
+                    option: {
+                        variant: "info"
+                    }
+                }
+            ))
+            router.push(`/login?redirectTo=profile/${profile._id}`)
+        }
+
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -123,7 +143,9 @@ const Basic = ({ profile }) => {
                             </div>
                         </div>
 
-                        {!(router.query.slug == userInfo?.id) && <div className={styles.btn} onClick={() => { setOpenModal(true) }}>
+                        {!(router.query.slug == userInfo?.id) && <div className={styles.btn} onClick={() => {
+                            initiallzeBooking()
+                        }}>
                             Book Now
                         </div>}
                     </div>

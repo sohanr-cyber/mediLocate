@@ -38,11 +38,11 @@ const SearchBox2 = ({ setOpen }) => {
         <div className={styles.serach}>
           <input
             type='text'
-            placeholder='Search Products ..'
+            placeholder='Search doctors ..'
             value={name}
             onChange={e => setName(e.target.value)}
           />
-          <span onClick={() => router.push(`/shop?name=${name}`)}>
+          <span onClick={() => router.push(`/dr?name=${name}`)}>
             <SearchIcon />
           </span>
         </div>

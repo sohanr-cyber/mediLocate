@@ -106,7 +106,7 @@ const Order = ({ order: orderDetail }) => {
               <div className={styles.text}> Time Slot : {order?.startTime && order?.endTime
                 ? `${order.startTime} - ${order.endTime} `
                 : 'Not Set'}
-                {userInfo._id == order.doctor._id && <button onClick={() => { setUpdateTime(true) }}> Set Time</button>
+                {userInfo?.id == order.doctor._id && <button onClick={() => { setUpdateTime(true) }}> Set Time</button>
                 }              </div>
             </div>
             <hr />
@@ -124,12 +124,12 @@ const Order = ({ order: orderDetail }) => {
             <hr />
             <div className={styles.item}>
               <SocialDistanceIcon className={styles.icon} />
-              <div className={styles.text}>Distance  :{calculateDistance(order.doctor.location.coordinates, order.patient.location.coordinates)} KM <button onClick={(e) =>
+              <div className={styles.text}>Distance  :{calculateDistance(order.doctor.location.coordinates, order.patient.location.coordinates).toFixed(2)} KM <button onClick={(e) =>
                 openGoogleMapsDirection({
                   originLat: order.patient.location.coordinates[0],
                   originLng: order.patient.location.coordinates[1],
-                  destLat: order.doctor.location.coordinates[1],
-                  destLng: order.doctor.location.coordinates[0],
+                  destLat: order.doctor.location.coordinates[0],
+                  destLng: order.doctor.location.coordinates[1],
                 })
 
               }>Get Direction</button> </div>
@@ -137,18 +137,18 @@ const Order = ({ order: orderDetail }) => {
             <hr />
 
           </div>
-          <div className={styles.note}>
+          {order.symptoms && <div className={styles.note}>
             <h3>Patient Note</h3>
             <div className={styles.text}>
               <i>
-                Experiance Slight chest pain and shortless and broeffah during light excercise.
+                {order.symptoms}
               </i>
             </div>
-          </div>
+          </div>}
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
           </div>
-          {isClient && userInfo?.role == 'admin' || userInfo._id == order.doctor._id && (
+          {isClient && userInfo?.role == 'admin' || userInfo?.id == order.doctor._id && (
             <div className={styles.update__status}>
               {[
                 statuses?.map((item, index) => (
@@ -214,8 +214,8 @@ const Order = ({ order: orderDetail }) => {
                   lng: order.patient.location.coordinates[1]
                 }
               } destination={{
-                lat: order.doctor.location.coordinates[1],
-                lng: order.doctor.location.coordinates[0]
+                lat: order.doctor.location.coordinates[0],
+                lng: order.doctor.location.coordinates[1]
               }} containerStyle={{
                 width: "100%",
                 height: "200px"
@@ -223,8 +223,8 @@ const Order = ({ order: orderDetail }) => {
               <button onClick={e => openGoogleMapsDirection({
                 originLat: order.patient.location.coordinates[0],
                 originLng: order.patient.location.coordinates[1],
-                destLat: order.doctor.location.coordinates[1],
-                destLng: order.doctor.location.coordinates[0],
+                destLat: order.doctor.location.coordinates[0],
+                destLng: order.doctor.location.coordinates[1],
               })}>Get Direction</button>
             </div>
           )}

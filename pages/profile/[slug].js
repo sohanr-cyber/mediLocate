@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 
 const Dr = ({ profile }) => {
-    const headings = profile.role == "doctor" ? ["Info", "Experiance", "Reviews", "Appointments"] : ["Appointment"]
+    const headings = profile.role == "doctor" ? ["Info", "Experiance", "Reviews", "Appointments"] : ["Appointments"]
 
     const location = useSelector(state => state.user.location)
     const [isClient, setIsClient] = useState(false)
@@ -25,21 +25,25 @@ const Dr = ({ profile }) => {
     const router = useRouter()
 
     const fetchMyBooking = async () => {
-        const response = await axios.get(
-            `${BASE_URL}/api/booking?userId=${profile._id || ''}`,
-            {
-                headers
-            }
-        )
-        const { bookings, totalPages, page: currentPage } = response.data
-        setMyBooking({ bookings, totalPages, page: currentPage })
+        try {
+            const response = await axios.get(
+                `${BASE_URL}/api/booking?userId=${profile._id || ''}`,
+                {
+                    headers
+                }
+            )
+            const { bookings, totalPages, page: currentPage } = response.data
+            setMyBooking({ bookings, totalPages, page: currentPage })
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 
     useEffect(() => {
         setIsClient(true)
         fetchMyBooking()
-    }, [])
+    }, [router.query.slug])
 
     const isDoctor = profile?.role === 'doctor'
 

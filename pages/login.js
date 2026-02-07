@@ -46,7 +46,7 @@ const Login = () => {
         if (data.role == 'admin') {
           router.push('/admin')
         } else {
-          router.push(`/profile/${data.id}`)
+          router.query.redirectTo ? router.push(router.query.redirectTo) : router.push(`/profile/${data.id}`)
         }
       }
 

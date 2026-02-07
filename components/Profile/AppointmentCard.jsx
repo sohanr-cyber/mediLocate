@@ -3,10 +3,12 @@ import React from 'react'
 import styles from './../../styles/Profile/AppointmentCard.module.css'
 import { calculateDistance, extractRGBA } from '@/utility/helper'
 import { orderStatusColors } from '@/utility/const'
+import {  useRouter } from 'next/router'
 
 const AppointmentCard = ({ item }) => {
+    const router =useRouter()
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} onClick={() => router.push(`/booking/${item._id}`)}>
             <div className={styles.images}
             >
                 <div className={styles.dr}>
