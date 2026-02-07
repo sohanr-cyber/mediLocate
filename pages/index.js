@@ -50,7 +50,7 @@ export default function Home({ contents, departments, symptoms }) {
 
   useEffect(() => {
     fetchUsers()
-  }, [location.lat])
+  }, [location?.lat])
 
   return (
     <>
