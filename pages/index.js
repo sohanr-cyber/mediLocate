@@ -85,12 +85,12 @@ export default function Home({ contents, departments, symptoms }) {
           description={"Find trusted doctors nearby and book appointments easily!"}
         />
 
-        <ProductsByCategory2
+        {/* <ProductsByCategory2
           products={users}
           structure={'grid'}
           title={"Available Doctors Now"}
           description={"Consult verified doctors online anytime, anywhere!"}
-        />
+        /> */}
 
         <div className={styles.categoriesInRow} style={{ textAlign: "center" }}>
           {/* <Row /> */}
