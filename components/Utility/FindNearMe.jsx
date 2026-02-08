@@ -6,7 +6,7 @@ import Address from '../User/Address/Address';
 import { fetchPlaceName } from '@/utility/helper';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import { useRouter } from 'next/router';
-const FindNearMe = ({ text = "Find Near Me" }) => {
+const FindNearMe = ({ text = "Find Near Me", redirect = true, }) => {
     const dispatch = useDispatch()
     const location = useSelector(state => state.user.location)
     const router = useRouter()
@@ -40,15 +40,15 @@ const FindNearMe = ({ text = "Find Near Me" }) => {
         async (lat, lng) => {
             const newLocation = { lat, lng };
             dispatch(setLocation(newLocation))
-           if (newLocation?.lat && newLocation?.lng) {
-            router.push({
-                pathname: "/dr",
-                query: {
-                    lat: newLocation.lat,
-                    lng: newLocation.lng,
-                },
-            });
-        }
+            if (redirect && newLocation?.lat && newLocation?.lng) {
+                router.push({
+                    pathname: "/dr",
+                    query: {
+                        lat: newLocation.lat,
+                        lng: newLocation.lng,
+                    },
+                });
+            }
             // const address = await fetchPlaceName(newLocation.lat, newLocation.lng)
             // console.log(address)
             dispatch(showSnackBar({

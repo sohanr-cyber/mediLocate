@@ -49,9 +49,9 @@ const Basic = ({ profile }) => {
             const { data } = await axios.post('/api/booking', {
                 doctorId: profile._id,
                 date: new Date(),
-                startTime:bookingInfo.startTime,
-                endTime:bookingInfo.endTime,
-                symptoms:bookingInfo.note,
+                startTime: bookingInfo.startTime,
+                endTime: bookingInfo.endTime,
+                symptoms: bookingInfo.note,
                 consultationFee: profile.consultationFee
             }, {
                 headers
@@ -154,7 +154,7 @@ const Basic = ({ profile }) => {
                     </div>}</>)}
                 <div className={styles.flex} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                     {!(router.query.slug == userInfo?.id) && < div className={styles.icon}>
-                        <FindNearMe text={"Locate"} />
+                        <FindNearMe text={"Locate"} redirect={false} />
                     </div>}
 
                     {/* <a href={`tel:+88${profile.phoneNumber}`}>
