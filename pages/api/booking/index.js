@@ -4,6 +4,8 @@ import Booking from '@/database/model/Booking';
 import User from '@/database/model/User'
 import db from '@/database/connection';
 import { generateUniqueID } from '@/utility/helper';
+import Message from '@/services/message-service';
+import BASE_URL from '@/config';
 
 const handler = nextConnect();
 const PAGE_SIZE = 10
@@ -113,7 +115,21 @@ handler.post(isAuth, async (req, res) => {
 
             paymentStatus: 'pending',
         });
-
+        if (booking) {
+            const bookindDetails = await Booking.findById(booking._id)
+                .populate("patient", "fullName phone image location")
+                .populate("doctor", "fullName  phone image location")
+            // send Message
+            const messageService = new Message()
+            messageService.sendMessage({
+                message: `You have New Appointment From MediLocate ${BASE_URL}/booking/${booking._id}`,
+                number: bookindDetails.doctor.phone
+            })
+            messageService.sendMessage({
+                message: ` Your Appointment Details ${BASE_URL}/booking/${booking._id}`,
+                number: bookindDetails.patient.phone
+            })
+        }
         res.status(201).json(booking);
     } catch (error) {
         console.error(error);
