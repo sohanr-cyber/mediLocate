@@ -67,7 +67,7 @@ export default function Home({ contents, departments, symptoms }) {
       {
         url:
           contents?.find(i => i.position === "header")?.image ||
-          "/images/medilocate.jpg", // fallback image
+          `${BASE_URL}/images/medilocate.jpg`, // fallback image
         width: 1200,
         height: 630,
         alt: "MediLocate – Find Nearby Healthcare Services",
