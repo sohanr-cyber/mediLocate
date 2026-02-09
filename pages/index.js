@@ -54,20 +54,34 @@ export default function Home({ contents, departments, symptoms }) {
 
   return (
     <>
-      <NextSeo
-        {...seoData}
-        openGraph={{
-          ...seoData.openGraph,
-          images: [
-            {
-              url: contents.filter(i => i.position === "header")[0].image,
-              alt: 'MediLocate',
-              width: 1200,
-              height: 630,
-            },
-          ],
-        }}
-      />
+     <NextSeo
+  title="MediLocate – Find Nearby Doctors, Hospitals & Clinics"
+  description="MediLocate helps you quickly find nearby doctors, hospitals, clinics, and healthcare services based on your live location."
+  openGraph={{
+    title: "MediLocate – Smart Healthcare Locator",
+    description:
+      "Discover nearby doctors, hospitals, and clinics instantly with MediLocate’s real-time location-based healthcare search.",
+    url: BASE_URL,
+    site_name: "MediLocate",
+    images: [
+      {
+        url:
+          contents?.find(i => i.position === "header")?.image ||
+          "/images/medilocate.jpg", // fallback image
+        width: 1200,
+        height: 630,
+        alt: "MediLocate – Find Nearby Healthcare Services",
+      },
+    ],
+    type: "website",
+  }}
+  twitter={{
+    handle: "@medilocate",
+    site: "@medilocate",
+    cardType: "summary_large_image",
+  }}
+/>
+
 
 
       <div className={styles.wrapper}>
