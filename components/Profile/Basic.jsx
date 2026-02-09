@@ -17,6 +17,7 @@ import axios from 'axios';
 import { Vazirmatn } from '@next/font/google';
 import ConfirmationModal from '../Utility/ConfirmationModal';
 import { finishLoading, startLoading } from '@/redux/stateSlice';
+import VerificationAlertBox from './VerificationAlertBox';
 const Basic = ({ profile }) => {
     const router = useRouter()
     const dispatch = useDispatch()
@@ -104,6 +105,7 @@ const Basic = ({ profile }) => {
 
                 </div>
 
+                {userInfo.id && profile._id == userInfo?.id && !profile.isVerified && <VerificationAlertBox profile={profile} />}
                 {profile.role == "doctor" && (<>   <div className={styles.education}>
                     {profile.speciality}
                 </div>
