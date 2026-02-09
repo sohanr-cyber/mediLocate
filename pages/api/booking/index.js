@@ -71,8 +71,8 @@ handler.get(async (req, res) => {
         console.log(filter)
         // 🔹 Fetch paginated bookings
         const bookings = await Booking.find(filter)
-            .populate("patient", "fullName phone image location")
-            .populate("doctor", "fullName speciality image location")
+            .populate("patient", "fullName firstName lastName phone image location")
+            .populate("doctor", "fullName firstName lastName speciality image location")
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(PAGE_SIZE);

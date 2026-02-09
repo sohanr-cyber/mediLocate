@@ -12,12 +12,22 @@ const FindNearMe = ({ text = "Find Near Me", redirect = true, }) => {
     const router = useRouter()
 
 
-    const dhakaCenter = {
-        lat: 23.8103,
-        lng: 90.4125,
-    };
+
     const findMyLocation = (e) => {
         e.preventDefault()
+
+        if (location.lat) {
+            if (redirect && location?.lat && location?.lng) {
+                router.push({
+                    pathname: "/dr",
+                    query: {
+                        lat: location.lat,
+                        lng: location.lng,
+                    },
+                });
+            }
+            return
+        }
         if (!navigator.geolocation) {
             // updateCoordinates(dhakaCenter.lat, dhakaCenter.lng);
             return;

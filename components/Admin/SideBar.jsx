@@ -261,7 +261,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.icon}>
                 <AssignmentTurnedInIcon />
               </div>
-              <div className={styles.title}>Orders</div>
+              <div className={styles.title}>Booking</div>
             </div>
             <div className={styles.icon}>
               {visible == 'order' ? (
@@ -275,14 +275,14 @@ const SideBar = ({ setOpen }) => {
             <div className={styles.inner__items}>
               <div
                 className={styles.item}
-                onClick={() => router.push('/admin/order')}
+                onClick={() => router.push('/admin/booking')}
               >
                 <div className={styles.flex}>
                   {' '}
                   <div className={styles.icon}>
                     <FormatListBulletedIcon />
                   </div>
-                  <div className={styles.title}>Order List</div>
+                  <div className={styles.title}>Booking List</div>
                 </div>
               </div>
               <div className={styles.item} style={{ display: 'none' }}>

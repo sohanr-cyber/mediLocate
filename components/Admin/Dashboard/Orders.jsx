@@ -143,20 +143,16 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       }`
                   }}
                 >
-                  <td onClick={() => router.push(`/order/${order._id}`)}>
+                  <td onClick={() => router.push(`/booking/${order._id}`)}>
                     {order.serial}
                   </td>
-                  <td>{order.patient.fullName}</td>
+                  <td>{order.patient?.fullName || order.patient?.firstName + " " + order.patient?.lastName}</td>
                   <td
-                    onDoubleClick={() =>
-                      router.push(
-                        `/admin/order?query=${order.shippingAddress.phone}`
-                      )
-                    }
+
                   >
-                    {order.doctor.fullName}
+                    <td>{order.doctor?.fullName || order.doctor?.firstName + " " + order.doctor?.lastName}</td>
                   </td>
-                      <td>
+                  <td>
                     <span>
                       {calculateDistance(order.doctor.location.coordinates, order.patient.location.coordinates).toFixed(1)} KM
                     </span>
@@ -175,11 +171,11 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       {order.status}
                     </span>
                   </td>
-              
+
                   <td>{getTime(order.createdAt)}</td>
                   <td className={styles.action}>
                     <span onDoubleClick={() => remove(order._id)}>Delete</span>
-                    <span onClick={() => router.push(`/order/${order._id}`)}>
+                    <span onClick={() => router.push(`/booking/${order._id}`)}>
                       {' '}
                       View
                     </span>
