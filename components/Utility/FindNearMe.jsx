@@ -16,7 +16,7 @@ const FindNearMe = ({ text = "Find Near Me", redirect = true, }) => {
     const findMyLocation = (e) => {
         e.preventDefault()
 
-        if (location.lat) {
+        if (location?.lat) {
             if (redirect && location?.lat && location?.lng) {
                 router.push({
                     pathname: "/dr",
