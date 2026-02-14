@@ -105,7 +105,7 @@ const Basic = ({ profile }) => {
 
                 </div>
 
-                {userInfo.id && profile._id == userInfo?.id && !profile.isVerified && <VerificationAlertBox profile={profile} />}
+                {userInfo?.id && profile._id == userInfo?.id && !profile.isVerified && <VerificationAlertBox profile={profile} />}
                 {profile.role == "doctor" && (<>   <div className={styles.education}>
                     {profile.speciality}
                 </div>

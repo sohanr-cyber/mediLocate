@@ -13,7 +13,7 @@ import Script from 'next/script'
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <DefaultSeo {...seoData} />
+      {/* <DefaultSeo {...seoData} /> */}
       <Script
         async
         src='https://www.googletagmanager.com/gtag/js?id=G-V1J9SKGV3W'
