@@ -36,16 +36,25 @@ import { useEffect, useState } from 'react'
 export default function Home({ contents, departments, symptoms }) {
   const location = useSelector(state => state.user.location)
   const [doctors, setDoctors] = useState([])
+  const [incoming, setIncoming] = useState(false)
 
   const fetchUsers = async () => {
-    let params = location?.lat ? {
-      lat: location.lat, lng: location.lng, radius: 10
-    } : { radius: 10 }
-    const { data } = await axios.get(
-      `${BASE_URL}/api/user/filter`,
-      { params }
-    )
-    setDoctors(data.users)
+    try {
+      setIncoming(true)
+      let params = location?.lat ? {
+        lat: location.lat, lng: location.lng, radius: 10
+      } : { radius: 10 }
+      const { data } = await axios.get(
+        `${BASE_URL}/api/user/filter`,
+        { params }
+      )
+      setDoctors(data.users)
+      setIncoming(false)
+
+    } catch (error) {
+      console.log(error)
+
+    }
   }
 
   useEffect(() => {
@@ -54,33 +63,33 @@ export default function Home({ contents, departments, symptoms }) {
 
   return (
     <>
-     <NextSeo
-  title="MediLocate – Find Nearby Doctors, Hospitals & Clinics"
-  description="MediLocate helps you quickly find nearby doctors, hospitals, clinics, and healthcare services based on your live location."
-  openGraph={{
-    title: "MediLocate – Smart Healthcare Locator",
-    description:
-      "Discover nearby doctors, hospitals, and clinics instantly with MediLocate’s real-time location-based healthcare search.",
-    url: BASE_URL,
-    site_name: "MediLocate",
-    images: [
-      {
-        url:
-          contents?.find(i => i.position === "header")?.image ||
-          `${BASE_URL}/images/medilocate.jpg`, // fallback image
-        width: 1200,
-        height: 630,
-        alt: "MediLocate – Find Nearby Healthcare Services",
-      },
-    ],
-    type: "website",
-  }}
-  twitter={{
-    handle: "@medilocate",
-    site: "@medilocate",
-    cardType: "summary_large_image",
-  }}
-/>
+      <NextSeo
+        title="MediLocate – Find Nearby Doctors, Hospitals & Clinics"
+        description="MediLocate helps you quickly find nearby doctors, hospitals, clinics, and healthcare services based on your live location."
+        openGraph={{
+          title: "MediLocate – Smart Healthcare Locator",
+          description:
+            "Discover nearby doctors, hospitals, and clinics instantly with MediLocate’s real-time location-based healthcare search.",
+          url: BASE_URL,
+          site_name: "MediLocate",
+          images: [
+            {
+              url:
+                contents?.find(i => i.position === "header")?.image ||
+                `${BASE_URL}/images/medilocate.jpg`, // fallback image
+              width: 1200,
+              height: 630,
+              alt: "MediLocate – Find Nearby Healthcare Services",
+            },
+          ],
+          type: "website",
+        }}
+        twitter={{
+          handle: "@medilocate",
+          site: "@medilocate",
+          cardType: "summary_large_image",
+        }}
+      />
 
 
 
@@ -97,6 +106,7 @@ export default function Home({ contents, departments, symptoms }) {
           structure={'grid'}
           title={"Doctors Available For You"}
           description={"Find trusted doctors nearby and book appointments easily!"}
+          incoming={incoming}
         />
 
         {/* <ProductsByCategory2

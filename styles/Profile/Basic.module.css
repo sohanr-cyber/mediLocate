@@ -9,6 +9,7 @@
     object-fit: cover;
 }
 
+
 .wrapper .right .name {
     font-weight: bold;
     font-size: 125%;
@@ -72,6 +73,9 @@
     align-items: center;
     gap: 10px
 }
+.wrapper .right .profile__completion {
+    margin-bottom: 10px;
+}
 
 .wrapper .icon {
     color: var(--theme);
@@ -84,6 +88,7 @@
     padding: 7px;
     color: black;
 }
+
 /* 
 .wrapper .icon:nth-child(2) {
     background-color: rgb(255, 0, 0, 0.2);

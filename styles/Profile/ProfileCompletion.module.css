@@ -1,0 +1,34 @@
+.profile__completion {
+  max-width: 100%;
+  /* max-width: 480px; */
+  padding: 10px 10px;
+  background: var(--cardBg);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
+  /* margin: 10px 0; */
+  border-radius: 0px;
+  border-left: 3px solid rgb(0, 0, 0);
+}
+
+.profile__completion__header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile__completion__progress {
+  width: 100%;
+  height: 12px;
+  background-color: #7f90af;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.profile__completion__progress_fill {
+  height: 100%;
+  min-width: 4px;
+  /* ensures visible at low percentage */
+  background-color: #2563eb;
+  border-radius: 0px;
+  transition: width 0.4s ease;
+}

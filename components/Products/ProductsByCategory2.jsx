@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Products/ProductsByCategory2.module.css'
 import Product from '../Product'
 import ProgressBar from '../Utility/PBar'
+import SkeletonDiv from '../Utility/SkeletonDiv'
+import { Height } from '@mui/icons-material'
 
 const ProductsByCategory2 = ({
   category,
@@ -10,7 +12,8 @@ const ProductsByCategory2 = ({
   rowDirection,
   structure,
   title,
-  description
+  description,
+  incoming = false
 }) => {
   const [products, setProducts] = useState(data)
   const style = `styles.${structure}`
@@ -28,7 +31,7 @@ const ProductsByCategory2 = ({
         <p>{description}</p>
       </div>
       <div className={`${styles.products} ${style}`}>
-        {products?.map((item, index) => (
+        {!incoming ? [1, 2, 3, 4, 5, 6].map(s => <SkeletonDiv style={{ width: "160px", height: "220px", minWidth:"150px" }} />) : products?.map((item, index) => (
           <Product
             key={index}
             item={item}

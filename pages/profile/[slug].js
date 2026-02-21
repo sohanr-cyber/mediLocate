@@ -12,6 +12,7 @@ import Reviews from '@/components/Profile/Reviews'
 import FindNearMe from '@/components/Utility/FindNearMe'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import ProfileCompletion from '@/components/Profile/ProfileCompletion'
 
 const Dr = ({ profile }) => {
     const headings = profile.role == "doctor" ? ["Info", "Experiance", "Reviews", "Appointments"] : ["Appointments"]
