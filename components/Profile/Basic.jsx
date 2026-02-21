@@ -101,7 +101,7 @@ const Basic = ({ profile }) => {
                 </div>
             </div>
             <div className={styles.right}>
-                {(userInfo?.id == profile._id) || (userInfo.role == "admin") && <div className={styles.profile__completion}>
+                {(userInfo?.id == profile._id) || (userInfo?.role == "admin") && <div className={styles.profile__completion}>
                     <ProfileCompletion user={profile} />
 
                 </div>}
@@ -110,7 +110,7 @@ const Basic = ({ profile }) => {
 
                 </div>
 
-                {(userInfo?.id && profile._id == userInfo?.id) || userInfo.role == "admin" && !profile.isVerified && <VerificationAlertBox profile={profile} />}
+                {(userInfo?.id && profile._id == userInfo?.id) || userInfo?.role == "admin" && !profile.isVerified && <VerificationAlertBox profile={profile} />}
                 {profile.role == "doctor" && (<>   <div className={styles.education}>
                     {profile.speciality}
                 </div>
