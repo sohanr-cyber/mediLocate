@@ -31,15 +31,16 @@ const ProductsByCategory2 = ({
         <p>{description}</p>
       </div>
       <div className={`${styles.products} ${style}`}>
-        {!incoming ? [1, 2, 3, 4, 5, 6].map(s => <SkeletonDiv style={{ width: "160px", height: "220px", minWidth:"150px" }} />) : products?.map((item, index) => (
-          <Product
-            key={index}
-            item={item}
-            redirect={true}
-            structure={structure}
-            rowDirection={true}
-          />
-        ))}
+        {incoming ? [1, 2, 3, 4, 5, 6].map(s => <SkeletonDiv style={{ width: "160px", height: "220px", minWidth: "150px" }} />)
+          : products?.map((item, index) => (
+            <Product
+              key={index}
+              item={item}
+              redirect={true}
+              structure={structure}
+              rowDirection={true}
+            />
+          ))}
       </div>
     </div>
   )
