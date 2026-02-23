@@ -55,8 +55,10 @@ handler.get(async (req, res) => {
 
         await db.connect()
 
-        let users = await User.find(filters).lean()
-
+        let users = await User.find(filters)
+            .sort({ createdAt: -1 })
+            .lean();
+            
         // 🔹 Distance filtering (JS)
         if (lat && lng && radius) {
             const userLat = Number(lat)

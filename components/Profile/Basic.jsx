@@ -97,7 +97,7 @@ const Basic = ({ profile }) => {
             {openModal && <ConfirmationModal setOpenModal={setOpenModal} bookNow={bookNow} />}
             <div className={styles.left}>
                 <div className={styles.pic}>
-                    <Image src={profile.image} width={200} height={260} alt="" onClick={() => router.push(`/profile/update/${router.query.slug}`)} />
+                    <Image src={profile.image} width={200} height={260} alt="" />
                 </div>
             </div>
             <div className={styles.right}>
