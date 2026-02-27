@@ -1,7 +1,8 @@
 import db from '@/database/connection'
 import User from '@/database/model/User'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utility'
+import { GeneratePassword, GenerateSalt, GenerateSignature, isAuth } from '@/utility'
+import { generateUniqueID } from '@/utility/helper'
 import nextConnect from 'next-connect'
 
 const handler = nextConnect()
