@@ -19,6 +19,8 @@ const Logo = ({ color }) => {
           width={210}
           height={55}
           alt="mediLocate"
+          priority
+          unoptimized
         />
 
       </div>
@@ -28,6 +30,8 @@ const Logo = ({ color }) => {
           width={210}
           height={55}
           alt="mediLocate"
+          priority
+          unoptimized
         />
       </div>
     </div>
