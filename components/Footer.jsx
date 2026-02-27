@@ -75,8 +75,7 @@ const Footer = () => {
         <div className={styles.right}>
           <h2 className={styles.heading}>Contact</h2>
           <div className={styles.mail}>
-            Address: House 41(meena bazar, lift 4), Gareeb-e-Newaz Avenue Road,
-            Rangpur
+            Medical Purbogate , Rangpur
           </div>
           <div className={styles.mail}>
             Mail: <span>mail@gmail.com</span>

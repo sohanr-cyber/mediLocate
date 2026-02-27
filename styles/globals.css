@@ -1,20 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Agu+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
 
 :root {
 
   --font: 'Ubuntu', sans-serif;
   --percent: 10%;
-  --box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-
-
-
-
-
-
-
-
+  --box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
   --background: linear-gradient(rgb(197, 228, 255), white, rgb(170, 214, 253), white, rgb(174, 216, 253));
   --nav: rgb(221, 235, 255);
   --cardBg: rgba(151, 226, 255, 0.5);
@@ -35,10 +25,10 @@
 
 
 
+YY
 
 
-
-
+y
 }
 
 ::selection {

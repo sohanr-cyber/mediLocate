@@ -33,6 +33,10 @@ class UserService {
     const expirationTime = new Date()
     expirationTime.setMinutes(expirationTime.getMinutes() + 5)
     // const profileId = await this.repository.generateId()
+    this.messageService.sendMessage({
+      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
+      number:phone
+    })
 
     const prefix = userInputs.role == "doctor" ? "DT" : userInputs.role == "nurse" ? "NS" : "PT"
     const uid = prefix + generateUniqueID([])
@@ -47,11 +51,7 @@ class UserService {
       uid
     })
 
-    this.messageService.sendMessage({
-      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
-      number: existUser.phone
-    })
-
+  
     // send code to mail
     // this.mailService.sendMail({
     //   code: verificationCode,

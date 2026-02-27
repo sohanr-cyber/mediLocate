@@ -28,6 +28,7 @@ class Message {
                     "Content-Type": "application/json",
                 },
             });
+            console.log(data)
             return (data)
         } catch (error) {
             return error
