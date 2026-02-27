@@ -20,7 +20,7 @@ handler.post(async (req, res) => {
     })
 
     if (existingUser) {
-      return res.status(400).json({
+      return res.status(200).json({
         error: "Phone or Email Already Exist!"
       })
     }
