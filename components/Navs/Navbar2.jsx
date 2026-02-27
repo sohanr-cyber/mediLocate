@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CategoriesSlider from '@/components/Categories/CategoriesSlider'
 import { showSnackBar } from '@/redux/notistackSlice'
 import SearchBox2 from '../Search/SearchBox2'
+import ToggleLocation from '../Utility/ToggleLocation'
 
 const Navbar2 = () => {
   const router = useRouter()
@@ -63,7 +64,7 @@ const Navbar2 = () => {
         <Logo />
       </div>
       <div className={styles.right}>
-
+        <ToggleLocation />
         {isClient && (userInfo ? (
           <div className={styles.icon} onClick={() => userInfo.role == "admin" ? router.push(`/admin`) : router.push(`/profile/${userInfo.id}`)}>
             <AccountCircleIcon />

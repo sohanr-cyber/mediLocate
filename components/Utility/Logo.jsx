@@ -13,12 +13,14 @@ const Logo = ({ color }) => {
 
   return (
     <div className={styles.wrapper} onClick={() => router.push('/')}>
-      {Array.from(name).map((char, index) => (
-        <div key={index} style={{ color }}>
-          {char}
-        </div>
-      ))}
+      <div className={styles.logo}>
+        <Image src="/images/logo.png" width={"210"} height={"55"} alt="mediLocate" />
 
+      </div>
+      <div className={styles.mobileLogo}>
+        <Image src="/images/mobileLogo.png" width={"210"} height={"55"} alt="mediLocate" />
+
+      </div>
     </div>
   )
 }

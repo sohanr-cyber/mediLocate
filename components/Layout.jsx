@@ -16,6 +16,7 @@ import Navbar from './Navbar'
 import Navbar2 from './Navs/Navbar2'
 import styles from '@/styles/Layout.module.css'
 import GoogleMapsProvider from './Utility/GoogleMapsProvider'
+import Navbar3 from './Navs/Navbar3'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -74,6 +75,9 @@ const Layout = ({ children }) => {
             </div>
             <div className={styles.nav2}>
               <Navbar2 />
+            </div>
+             <div className={styles.nav3}>
+              <Navbar3 />
             </div>
           </>
         ) : (

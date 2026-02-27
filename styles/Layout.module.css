@@ -6,6 +6,9 @@
     display: none;
 }
 
+.nav3 {
+    display: none;
+}
 
 @media (max-width:1024px) {
     .nav1 {
@@ -13,6 +16,21 @@
     }
 
     .nav2 {
+        display: block;
+    }
+}
+
+
+@media (max-width:570px) {
+    .nav1 {
+        display: none;
+    }
+
+    .nav2 {
+        display: none;
+    }
+
+    .nav3 {
         display: block;
     }
 }

@@ -15,6 +15,7 @@ import userSlice from '@/redux/userSlice'
 import MenuIcon from '@mui/icons-material/Menu'
 import CategoriesSlider from '@/components/Categories/CategoriesSlider'
 import { showSnackBar } from '@/redux/notistackSlice'
+import ToggleLocation from './Utility/ToggleLocation'
 
 const Navbar = () => {
   const router = useRouter()
@@ -73,7 +74,7 @@ const Navbar = () => {
           >
             <SearchIcon />
           </div>
-
+          <ToggleLocation />
           {isClient && (userInfo ? (
             <div className={styles.item} onClick={() => router.push(`/profile/${userInfo.id}`)}>
               <AccountCircleIcon />
