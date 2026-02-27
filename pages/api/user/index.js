@@ -1,12 +1,13 @@
 import db from '@/database/connection'
 import User from '@/database/model/User'
+import Message from '@/services/message-service'
 import UserService from '@/services/user-service'
 import { GeneratePassword, GenerateSalt, GenerateSignature, isAuth } from '@/utility'
 import { generateUniqueID } from '@/utility/helper'
 import nextConnect from 'next-connect'
 
 const handler = nextConnect()
-
+const messageService = new Message()
 handler.post(async (req, res) => {
   try {
     await db.connect()
