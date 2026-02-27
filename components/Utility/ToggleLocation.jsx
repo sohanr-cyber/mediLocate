@@ -58,11 +58,11 @@ const ToggleLocation = () => {
     }
 
     return (
-        <div onClick={turnOnLocation}>
-            {locationRef.current?.lat ? (
-                <LocationOnIcon style={{ color: "red" }} />
+        <div onClick={turnOnLocation} >
+            {locationRef.current?.lat || location?.lat ? (
+                <LocationOnIcon style={{ color: "red", fontSize: "190%" }} />
             ) : (
-                <LocationOffIcon />
+                <LocationOffIcon style={{ fontSize: "190%" }} />
             )}
         </div>
     )

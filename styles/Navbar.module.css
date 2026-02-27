@@ -28,6 +28,10 @@
 }
 
 
+.wrapper .icon {
+    font-size: 120%;
+}
+
 .wrapper .btn {
     padding: 3px 7px;
     background: var(--buttonBg);

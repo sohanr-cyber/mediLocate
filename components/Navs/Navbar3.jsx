@@ -53,6 +53,8 @@ const Navbar3 = () => {
                 <MenuIcon
                     className={styles.icon}
                     onClick={() => setOpen(prev => !prev)}
+                    style={{ fontSize: "180%" }}
+
                 />
                 <div className={styles.mid} style={{ transform: "scale(0.8)", marginLeft: "-10px" }}>
                     <Logo />
@@ -64,14 +66,15 @@ const Navbar3 = () => {
                 <SearchIcon
                     className={styles.icon}
                     onClick={() => setOpenSearch(prev => !prev)}
-                    style={{ fontSize: '200%', marginTop: '5px' }}
+                    style={{ fontSize: '220%', marginTop: '5px' }}
                 />
 
                 <ToggleLocation />
 
                 {isClient && (userInfo ? (
                     <div className={styles.icon} onClick={() => userInfo.role == "admin" ? router.push(`/admin`) : router.push(`/profile/${userInfo.id}`)}>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon style={{ fontSize: "180%" }}
+                        />
                     </div>
                 ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
             </div>
