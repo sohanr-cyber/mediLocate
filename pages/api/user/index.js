@@ -8,16 +8,80 @@ const handler = nextConnect()
 
 handler.post(async (req, res) => {
   try {
-    const service = new UserService()
+    await db.connect()
+
     const { email, password, firstName, lastName, role, phone } = req.body
-    const user = await service.SignUp({ email, password, firstName, lastName, role, phone })
-    res.status(200).json(user)
+
+    // 🔎 Check Existing User
+    const existingUser = await User.findOne({
+      $or: [{ phone }, { email }]
+    })
+
+    if (existingUser) {
+      return res.status(400).json({
+        error: "Phone or Email Already Exist!"
+      })
+    }
+
+    // 🔐 Password Hashing
+    const salt = await GenerateSalt()
+    const userPassword = await GeneratePassword(password, salt)
+
+    // 🔢 Verification Code
+    const verificationCode = generateUniqueID([])
+    const expirationTime = new Date()
+    expirationTime.setMinutes(expirationTime.getMinutes() + 5)
+
+    // 📩 Send SMS
+    await messageService.sendMessage({
+      message: `Your Verification Code for Medilocate is ${verificationCode}. This code will expire in 5 minutes.`,
+      number: phone
+    })
+
+    // 🆔 Generate UID based on role
+    const prefix =
+      role === "doctor"
+        ? "DT"
+        : role === "nurse"
+        ? "NS"
+        : "PT"
+
+    const uid = prefix + generateUniqueID([])
+
+    // 💾 Create User
+    const newUser = await User.create({
+      email,
+      password: userPassword,
+      salt,
+      firstName,
+      lastName,
+      role,
+      phone,
+      verificationCode,
+      expirationTime,
+      uid
+    })
+
+    // 🔑 Generate JWT
+    const token = await GenerateSignature({
+      email: newUser.email,
+      _id: newUser._id,
+      role: newUser.role
+    })
+
+    return res.status(200).json({
+      id: newUser._id,
+      token,
+      role: newUser.role
+    })
+
   } catch (error) {
-    console.log(error)
-    res.status(400)
+    console.error(error)
+    return res.status(500).json({
+      error: "Internal Server Error"
+    })
   }
 })
-
 
 
 handler.get(async (req, res) => {

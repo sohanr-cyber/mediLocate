@@ -36,8 +36,9 @@ handler.put(async (req, res) => {
 
 handler.delete(async (req, res) => {
   try {
-    const service = new UserService()
-    const data = await service.DeleteUserById(req.user_id)
+    console.log("05325")
+    await db.connect()
+    const data = await User.findByIdAndDelete(req.query.id)
     console.log(data)
     res.status(200).json(data)
   } catch (error) {

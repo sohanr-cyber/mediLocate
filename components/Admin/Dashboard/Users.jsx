@@ -118,6 +118,7 @@ const Users = ({
                 <th> Phone</th>
                 <th>Role</th>
                 <th>Email</th>
+                <th>Action</th>
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
@@ -135,6 +136,10 @@ const Users = ({
                   </td>
                   <td>{user.role}</td>
                   <td>{user.email}</td>
+                  <td className={styles.action}>
+                    <span onDoubleClick={() => remove(user._id)}
+                    >Delete</span>
+                  </td>
 
                   {/* Add more table cells as needed */}
                 </tr>
