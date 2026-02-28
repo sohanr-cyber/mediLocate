@@ -182,7 +182,7 @@ const Update = ({ profile: data }) => {
                             onChange={e => setProfile({ ...profile, fullName: e.target.value })}
                         />
                     </div>
-                    
+
                     <div className={styles.field}>
                         <label>Phone Number</label>
                         <input
@@ -294,7 +294,7 @@ const Update = ({ profile: data }) => {
                     <div className={styles.images}>
                         {profile?.image ? (
                             <div className={styles.image__container}>
-                                <Image src={profile.image} alt='' width='180' height={180} />
+                                <Image src={profile.image} alt='' width={180} height={180} unoptimized />
                             </div>
                         ) : (
                             <div

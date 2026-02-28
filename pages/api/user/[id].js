@@ -22,10 +22,14 @@ handler.get(async (req, res) => {
 handler.use(isAuth)
 handler.put(async (req, res) => {
   try {
+    if (!(req.user.role == "admin" || req.query.id == req.user._id)) {
+      return res.statatus(301).json({ "message": "Unauthrozies User" })
+    }
     const service = new UserService()
     const user = await service.UpdateUser({
       ...req.body,
-      _id: req.user._id
+      // _id: req.user._id
+      _id: req.query.id
     })
     console.log(user)
     res.status(200).json(user)

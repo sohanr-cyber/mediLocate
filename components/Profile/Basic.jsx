@@ -97,7 +97,7 @@ const Basic = ({ profile }) => {
             {openModal && <ConfirmationModal setOpenModal={setOpenModal} bookNow={bookNow} />}
             <div className={styles.left}>
                 <div className={styles.pic}>
-                    <Image src={profile.image} width={200} height={260} alt="" />
+                    <Image src={profile.image} width={200} height={260} alt="" unoptimized />
                 </div>
             </div>
             <div className={styles.right}>
@@ -170,7 +170,7 @@ const Basic = ({ profile }) => {
                     </a> */}
 
 
-                    {router.query.slug == userInfo?.id &&
+                    {router.query.slug == userInfo?.id || userInfo.role == "admin" &&
                         <div className={styles.icon} onClick={() => router.push(`/profile/update/${router.query.slug}`)}> <CreateIcon /> Update</div>
                     }
                     {router.query.slug == userInfo?.id && <div className={styles.icon} onClick={() => clearUserInfo()} style={{ background: "rgb(255,0,0,0.1", color: "red" }}>

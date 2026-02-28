@@ -122,7 +122,7 @@ const Login = () => {
         setCooldown(60)
         dispatch(
           showSnackBar({
-            message: 'Verification Code Sent To Your Mail '
+            message: 'Verification Code Sent To Your Phone '
           })
         )
       }
@@ -164,7 +164,7 @@ const Login = () => {
             <Logo />
           </div>
           <h2>Create an Account</h2>
-          <p>We Have Sent An Verification Code To Your Email </p>
+          <p>We Have Sent An Verification Code To Your Phone </p>
           <form>
             <input
               type='email'
