@@ -45,7 +45,7 @@ const Product = ({ item, redirect, rowDirection }) => {
         {isClient && location?.lat && <div className={styles.distance}>
           In {" "}{calculateDistance([location.lat, location.lng], item.location.coordinates).toFixed(2)} {" "}KM
         </div>}
-        <Image src={item.image || '/images/default.png'} width={250} height={250} alt='Not Found' />
+        <Image src={item.image || '/images/default.png'} width={250} height={250} alt='Not Found' unoptimized />
       </div>
       <div className={styles.details}>
         <div className={styles.category}>
