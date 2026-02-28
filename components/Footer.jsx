@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Logo from './Utility/Logo'
 import { useSelector } from 'react-redux'
 import { chunkArray } from '@/utility/helper'
-import { feacebook_page, instagram, whatsapp, footerP } from '@/utility/const'
+import { feacebook_page, instagram, whatsapp, footerP, support_number, support_mail } from '@/utility/const'
 
 const Footer = () => {
   const router = useRouter()
@@ -78,10 +78,12 @@ const Footer = () => {
             Medical Purbogate , Rangpur
           </div>
           <div className={styles.mail}>
-            Mail: <span>mail@gmail.com</span>
+            Mail: <span>
+              {support_mail}
+            </span>
           </div>
           <div className={styles.call}>
-            Phone: <span>+8802305825832</span>
+            Phone: <span>{support_number}</span>
           </div>
           <div className={styles.social__media__links}>
             <Image
@@ -103,7 +105,7 @@ const Footer = () => {
               width='35'
               height='35'
               alt=''
-              onClick={() => router.push(whatsapp)}
+              // onClick={() => router.push(whatsapp)}
             />
           </div>
         </div>

@@ -68,10 +68,10 @@ const Navbar2 = () => {
         <ToggleLocation />
         {isClient && (userInfo ? (
           <div className={styles.icon} onClick={() => userInfo.role == "admin" ? router.push(`/admin`) : router.push(`/profile/${userInfo.id}`)}>
-            <AccountCircleIcon           style={{ fontSize: "180%" }}
-/>
+            <AccountCircleIcon style={{ fontSize: "180%" }}
+            />
           </div>
-        ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
+        ) : <div className={styles.btn} onClick={() => router.push('/login')}>Login/Register </div>)}
       </div>
     </div>
   )

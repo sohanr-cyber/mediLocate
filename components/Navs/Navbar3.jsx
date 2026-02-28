@@ -76,7 +76,7 @@ const Navbar3 = () => {
                         <AccountCircleIcon style={{ fontSize: "180%" }}
                         />
                     </div>
-                ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
+                ) : <div className={styles.btn} onClick={() => router.push('/login')}>Login/Register</div>)}
             </div>
         </div>
     )

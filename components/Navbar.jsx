@@ -80,7 +80,7 @@ const Navbar = () => {
               <AccountCircleIcon />
 
             </div>
-          ) : <div className={styles.btn} onClick={() => router.push('/login')}>Sign In</div>)}
+          ) : <div className={styles.btn} onClick={() => router.push('/login')}>Login/Register</div>)}
           <div
             className={`${styles.item} ${styles.menu}`}
             onClick={() => setOpen(prev => !prev)}

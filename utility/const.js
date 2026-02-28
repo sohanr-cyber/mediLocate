@@ -3,7 +3,7 @@ import BASE_URL from '@/config'
 const companyName = "MediLocate";
 
 const footerP =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
+  'Healthcare should be simple and accessible. MedLocate connects patients with nearby doctors quickly and efficiently using location-based search technology.With just one click, you can find the right doctor at the right place'
 const Inside_Dhaka = 70
 const Outside_Dhaka = 145
 const Dhaka_Subburb = 150
@@ -30,12 +30,12 @@ const statusMessages = {
     'You missed your appointment. Please contact the clinic to reschedule.'
 };
 
-const support_number = '01744329811'
-const support_mail = 'contactus@gmail.com'
+const support_number = '8801776863395'
+const support_mail = 'Khalidarif031@gmail.com'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
 const feacebook_page = 'https://www.facebook.com/'
 const messenger = 'https://www.facebook.com/'
-const whatsapp = 'https://web.whatsapp.com/'
+const whatsapp = `8801776863395`
 const instagram = 'https://www.instagram.com/'
 
 

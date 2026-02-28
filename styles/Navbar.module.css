@@ -34,8 +34,18 @@
 
 .wrapper .btn {
     padding: 3px 7px;
-    background: var(--buttonBg);
+    /* background: var(--buttonBg); */
     border-radius: 5px;
+    border: 1px solid var(--theme);
+    padding:9px 5px;
+    font-size: 95%;
+    color:var(--theme);
+    cursor: pointer;
+
+}
+
+.wrapper .btn:hover {
+    background: var(--hoverColor);
     color: white;
 }
 

@@ -17,6 +17,7 @@ import Navbar2 from './Navs/Navbar2'
 import styles from '@/styles/Layout.module.css'
 import GoogleMapsProvider from './Utility/GoogleMapsProvider'
 import Navbar3 from './Navs/Navbar3'
+import WhatsAppButton from './Utility/WhatsAppButton'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -76,7 +77,7 @@ const Layout = ({ children }) => {
             <div className={styles.nav2}>
               <Navbar2 />
             </div>
-             <div className={styles.nav3}>
+            <div className={styles.nav3}>
               <Navbar3 />
             </div>
           </>
@@ -85,8 +86,9 @@ const Layout = ({ children }) => {
         )}
         {children}
         <Footer />
-        <BottomFooter />
-        {!containsAdmin(router.asPath) && <ChatButton />}
+        {/* <BottomFooter /> */}
+        {!containsAdmin(router.asPath) && <WhatsAppButton includeLocation={true} />
+        }
         {loading && <Loading />}
       </div>
     </GoogleMapsProvider>
