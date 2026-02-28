@@ -8,6 +8,31 @@
     margin-bottom: 35px;
 }
 
+.topMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 1px solid var(--borderColor);
+    padding-bottom: 10px;
+    display:none;
+}
+
+.topMobile .title {
+    width: 90%
+}
+
+
+
+.topMobile .seeMoreMobile {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: center;
+    gap:10px;
+  
+}
 
 .top h3 {
     margin: 0;
@@ -43,6 +68,13 @@
     gap: 15px;
 }
 
+.wrapper .seeMore {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (min-width:1024px) {
     .wrapper {
         padding: 15px var(--percent);
@@ -56,6 +88,18 @@
 @media (max-width:570px) {
     .wrapper {
         padding: 15px;
+    }
+
+    .wrapper .top {
+        display: none;
+
+    }
+    .wrapper .topMobile {
+        display: flex;
+    }
+
+    .wrapper .seeMore {
+        display: none;
     }
 
 

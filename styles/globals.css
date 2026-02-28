@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
 
 :root {
-
   --font: 'Ubuntu', sans-serif;
   --percent: 10%;
   --box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) --background: linear-gradient(rgb(197, 228, 255), white, rgb(170, 214, 253), white, rgb(174, 216, 253));
@@ -19,7 +18,6 @@
   --buttonPadding: 7px 10px;
   --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%);
   --hoverButtonBg: rgb(0, 255, 247);
-
 
 }
 
@@ -108,9 +106,6 @@ button {
   /* font-weight: bold; */
   box-shadow: var(--box-shadow);
 }
-
-
-
 
 label {
   font-weight: bold;

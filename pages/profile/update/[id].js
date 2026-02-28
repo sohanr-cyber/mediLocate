@@ -14,6 +14,7 @@ import { buttonC, themeBg } from '@/utility/const'
 import { parse } from 'cookie'
 import MapPicker from '@/components/Utility/MapPicker'
 import TextEditor from '@/components/Utility/TextEditor'
+import ToggleLocation from '@/components/Utility/ToggleLocation'
 
 // Order Craetion Form
 const Update = ({ profile: data }) => {
@@ -21,6 +22,7 @@ const Update = ({ profile: data }) => {
     const [error, setError] = useState('')
     const [isClient, setIsClient] = useState(false)
     const dispatch = useDispatch()
+    const location = useSelector(state => state.user.location)
     const router = useRouter()
     const [selectedLocation, setSelectedLocation] = useState({
         lat: data.location?.coordinates && data.location?.coordinates[0],
@@ -28,6 +30,18 @@ const Update = ({ profile: data }) => {
     })
     const [newProfile, setNewProfile] = useState(false)
     const [description, setDescription] = useState(profile.experienceDetails)
+
+    useEffect(() => {
+        location?.lat ? setSelectedLocation(
+            {
+                lat: location.lat,
+                lng: location.lng
+            }
+        ) : setSelectedLocation({
+            lat: data.location?.coordinates && data.location?.coordinates[0],
+            lng: data.location?.coordinates && data.location?.coordinates[1]
+        })
+    }, [])
 
     useEffect(() => {
         setIsClient(true)
@@ -99,6 +113,18 @@ const Update = ({ profile: data }) => {
     }
 
     const updateProfile = async () => {
+        if (!(selectedLocation.lat || selectedLocation.lng)) {
+            dispatch(
+                showSnackBar({
+                    message: 'Please Set Your Location',
+                    option: {
+                        variant: 'error'
+                    }
+                })
+            )
+            return
+        }
+
         if (!profile.firstName || !profile.lastName) {
             setError('Pleas fill all the necessaary field')
             dispatch(
@@ -116,7 +142,8 @@ const Update = ({ profile: data }) => {
             const { data } = await axios.put(
                 `/api/user/${router.query.id}`,
                 {
-                    ...profile, location:
+                    ...profile,
+                    location:
                         { coordinates: [selectedLocation?.lat, selectedLocation?.lng] },
                     experienceDetails: description
 
@@ -183,7 +210,7 @@ const Update = ({ profile: data }) => {
                         />
                     </div>
 
-                    <div className={styles.field}>
+                    {/* <div className={styles.field}>
                         <label>Phone Number</label>
                         <input
                             type="text"
@@ -191,7 +218,7 @@ const Update = ({ profile: data }) => {
                             value={profile?.phone}
                             onChange={e => setProfile({ ...profile, phone: e.target.value })}
                         />
-                    </div>
+                    </div> */}
                     {profile.role == "doctor" && (<>     <div className={styles.field}>
                         <label>Education Name</label>
                         <input
@@ -310,6 +337,20 @@ const Update = ({ profile: data }) => {
                             </div>
                         )}
                     </div>
+                    {/* <div className={styles.field}>
+                        {location?.lat}
+                        <div className={styles.toggleLocation}>
+                            <ToggleLocation text={"Find Your Location"} style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "10px",
+                                border: "1px solid grey",
+                                padding: "5px 10px",
+                            }} />
+                        </div>
+
+                    </div> */}
                     <div className={styles.field}>
                         {/* <label>Your Location ({selectedLocation?.lat} , {selectedLocation?.lng})</label> */}
                         {isClient && <MapPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
@@ -321,6 +362,7 @@ const Update = ({ profile: data }) => {
                             description={description}
                         />
                     </div>}
+
 
                 </div>
                 {/* <div className={styles.right}></div> */}

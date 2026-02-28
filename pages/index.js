@@ -107,6 +107,7 @@ export default function Home({ contents, departments, symptoms }) {
           title={"Doctors Available For You"}
           description={"Find trusted doctors nearby and book appointments easily!"}
           incoming={incoming}
+          seeMore={true}
         />
 
         {/* <ProductsByCategory2

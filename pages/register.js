@@ -18,11 +18,11 @@ const Register = () => {
   const [user, setUser] = useState({})
   const createAccount = async () => {
     if (
-      !user.email ||
-      !validate(user.email) ||
+      // !user.email ||
+      // !validate(user.email) ||
       !user.password ||
-      !user.firstName ||
-      !user.lastName ||
+      // !user.firstName ||
+      // !user.lastName ||
       !user.phone ||
       !user.role
 
@@ -92,7 +92,7 @@ const Register = () => {
           </div>
           <h2>Create an Account</h2>
           <form>
-            <input
+            {/* <input
               type='text'
               placeholder='Enter Your First Name'
               value={user?.firstName}
@@ -103,7 +103,7 @@ const Register = () => {
               placeholder='Enter Your Last Name'
               value={user.lastName}
               onChange={e => setUser({ ...user, lastName: e.target.value })}
-            />
+            /> */}
 
             <input
               type='text'
@@ -112,12 +112,12 @@ const Register = () => {
               onChange={e => setUser({ ...user, phone: e.target.value })}
             />
 
-            <input
+            {/* <input
               type='email'
               placeholder='Enter Your Email'
               value={user.email}
               onChange={e => setUser({ ...user, email: e.target.value })}
-            />
+            /> */}
             <input
               type='password'
               placeholder='Set Your Password'

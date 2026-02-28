@@ -2,6 +2,7 @@ import { useCallback, useRef, useEffect, useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { useDispatch } from "react-redux";
 import { showSnackBar } from "@/redux/notistackSlice";
+import { finishLoading, startLoading } from "@/redux/stateSlice";
 
 const containerStyle = {
   width: "100%",
@@ -46,46 +47,62 @@ const MapPicker = ({ onCoordinateSelect, selectedLocation, setSelectedLocation }
     [dispatch, onCoordinateSelect]
   );
 
-  useEffect(() => {
-    if (selectedLocation.lng || selectedLocation.lat) {
-      return
-    }
-    if (!navigator.geolocation) {
-      // updateCoordinates(dhakaCenter.lat, dhakaCenter.lng);
-      return;
-    }
+  // useEffect(() => {
+  //   if (selectedLocation.lng || selectedLocation.lat) {
+  //     return
+  //   }
+  //   if (!navigator.geolocation) {
+  //     // updateCoordinates(dhakaCenter.lat, dhakaCenter.lng);
+  //     return;
+  //   }
 
-    navigator.geolocation.getCurrentPosition(
-      (pos) => updateCoordinates(pos.coords.latitude, pos.coords.longitude),
-      () => updateCoordinates(dhakaCenter.lat, dhakaCenter.lng)
-    );
-  }, [updateCoordinates]);
+  //   navigator.geolocation.getCurrentPosition(
+  //     (pos) => updateCoordinates(pos.coords.latitude, pos.coords.longitude),
+  //     () => updateCoordinates(dhakaCenter.lat, dhakaCenter.lng)
+  //   );
+  // }, [updateCoordinates]);
 
-  const LocateMe = (e) => {
-    e.preventDefault()
-    if (!navigator.geolocation) {
-      // updateCoordinates(dhakaCenter.lat, dhakaCenter.lng);
-      return;
-    }
+const LocateMe = (e) => {
+  e.preventDefault();
 
-    navigator.geolocation.getCurrentPosition(
-      (pos) => updateCoordinates(pos.coords.latitude, pos.coords.longitude),
-      () => updateCoordinates(dhakaCenter.lat, dhakaCenter.lng)
-    );
+  if (!navigator.geolocation) {
+    // Optionally, set default location
+    return;
   }
 
+  // ✅ Start loading
+  dispatch(startLoading());
 
-  const handleMapClick = (e) => {
-    updateCoordinates(e.latLng.lat(), e.latLng.lng());
-  };
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      updateCoordinates(pos.coords.latitude, pos.coords.longitude);
+      // ✅ Finish loading on success
+      dispatch(finishLoading());
+    },
+    () => {
+      updateCoordinates(dhakaCenter.lat, dhakaCenter.lng);
+      // ✅ Finish loading on error
+      dispatch(finishLoading());
+    }
+  );
+};
 
+const handleMapClick = (e) => {
+  // ✅ Start loading
+  dispatch(startLoading());
+
+  updateCoordinates(e.latLng.lat(), e.latLng.lng());
+
+  // ✅ Finish loading immediately since map click is instant
+  dispatch(finishLoading());
+};
 
 
 
   return (
     isClient &&
     <div style={{ width: "100%", position: "relative" }}>
-      <button style={{ bottom: "10px",  }} onClick={(e) => { LocateMe(e) }}>Locate📍</button>   <GoogleMap
+      <button style={{ bottom: "10px",  }} onClick={(e) => { LocateMe(e) }}>Set Your Locateion📍</button>   <GoogleMap
         mapContainerStyle={containerStyle}
         center={location}
         zoom={14}

@@ -6,7 +6,7 @@ import { setLocation } from '@/redux/userSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 
-const ToggleLocation = () => {
+const ToggleLocation = ({ text, style }) => {
     const location = useSelector(state => state.user.location)
     const dispatch = useDispatch()
 
@@ -59,11 +59,14 @@ const ToggleLocation = () => {
 
     return (
         <div onClick={turnOnLocation} >
-            {locationRef.current?.lat || location?.lat ? (
-                <LocationOnIcon style={{ color: "red", fontSize: "190%" }} />
-            ) : (
-                <LocationOffIcon style={{ fontSize: "190%" }} />
-            )}
+            <div style={style ? style : {}}>
+                {text && <span>{text}</span>}
+                {locationRef.current?.lat || location?.lat ? (
+                    <LocationOnIcon style={{ color: "red", fontSize: "190%" }} />
+                ) : (
+                    <LocationOffIcon style={{ fontSize: "190%" }} />
+                )}
+            </div>
         </div>
     )
 }

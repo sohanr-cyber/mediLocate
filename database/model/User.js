@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema(
     // User credentials
     email: {
       type: String,
-      required: true,
-      unique: true // Ensures unique email addresses
+      required: false,
+      unique: false // Ensures unique email addresses
     },
 
     password: {
@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     // User details
     firstName: {
       type: String,
-      required: true
+      required: false,
     },
     lastName: {
       type: String,

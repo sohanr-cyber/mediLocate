@@ -63,6 +63,15 @@
     /* border: 1px solid red */
 }
 
+
+.field .toggleLocation .icon {
+    /* border: 1px solid var(--borderColor); */
+    padding: 5px 10px;
+    background-color: rgb(8, 192, 100);
+
+}
+
+
 .field textarea {
     min-height: 100px;
 }
@@ -105,6 +114,8 @@
     background-color: aquamarine;
     cursor: pointer;
 }
+
+
 
 .images {
     display: flex;

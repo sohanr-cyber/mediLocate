@@ -11,15 +11,19 @@ const messageService = new Message()
 handler.post(async (req, res) => {
   try {
     await db.connect()
-
+  // await User.collection.dropIndex("email_1"); // replace with actual index name
+  // console.log("Email unique index removed");
     const { email, password, firstName, lastName, role, phone } = req.body
 
     // 🔎 Check Existing User
     const existingUser = await User.findOne({
-      $or: [{ phone }, { email }]
+      // $or: [{ phone }, { email }]
+      phone
     })
+    console.log(existingUser)
 
     if (existingUser) {
+      console.log(existingUser.phone, existingUser.email)
       return res.status(200).json({
         error: "Phone or Email Already Exist!"
       })
@@ -45,8 +49,8 @@ handler.post(async (req, res) => {
       role === "doctor"
         ? "DT"
         : role === "nurse"
-        ? "NS"
-        : "PT"
+          ? "NS"
+          : "PT"
 
     const uid = prefix + generateUniqueID([])
 
