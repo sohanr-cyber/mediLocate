@@ -45,7 +45,7 @@ export default function Home({ contents, departments, symptoms }) {
         lat: location.lat, lng: location.lng, radius: 10
       } : { radius: 10 }
       const { data } = await axios.get(
-        `${BASE_URL}/api/user/filter`,
+        "/api/user/filter",
         { params }
       )
       setDoctors(data.users)
