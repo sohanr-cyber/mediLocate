@@ -82,7 +82,7 @@ const Login = () => {
             }
           })
         )
-        data.role == 'admin' ? router.push(`/admin`) : router.push(`/profile/update/${userInfo.id}`)
+        data.role == 'admin' ? router.push(`/admin`) : router.push(`/profile/${userInfo.id}`)
         dispatch(login(data))
       }
       dispatch(finishLoading())
