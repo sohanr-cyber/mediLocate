@@ -31,10 +31,18 @@ handler.get(async (req, res) => {
 
         const filters = {}
 
+        // 🔥 Only users that have bmdcNumber (not null)
+        filters.bmdcNumber = { $exists: true, $ne: null }
+        
         // 🔹 Role filter (default doctor)
         if (role && role !== 'all') {
             filters.role = role
         }
+
+
+
+
+
 
         if (speciality) filters.speciality = speciality
         if (department) filters.departments = department
@@ -58,7 +66,7 @@ handler.get(async (req, res) => {
         let users = await User.find(filters)
             .sort({ createdAt: -1 })
             .lean();
-            
+
         // 🔹 Distance filtering (JS)
         if (lat && lng && radius) {
             const userLat = Number(lat)

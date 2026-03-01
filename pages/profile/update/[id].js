@@ -30,7 +30,8 @@ const Update = ({ profile: data }) => {
     })
     const [newProfile, setNewProfile] = useState(false)
     const [description, setDescription] = useState(profile.experienceDetails)
-
+    const [categories, setCateogries] = useState([])
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         location?.lat ? setSelectedLocation(
             {
@@ -45,6 +46,7 @@ const Update = ({ profile: data }) => {
 
     useEffect(() => {
         setIsClient(true)
+        // fetchCategories()
         setProfile(data)
     }, [router.query])
     const userInfo = useSelector(state => state.user.userInfo)
@@ -175,6 +177,19 @@ const Update = ({ profile: data }) => {
             setError('Error While Updating Profile !')
         }
     }
+
+    const fetchCategories = async () => {
+        try {
+            setLoading(true)
+            const { data } = await axios.get("/api/category")
+            setLoading(false)
+            setCateogries(data.categories)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+
+        }
+    }
     return (
         <div className={styles.wrapper}>
             <h2>{router.query.id ? 'Update' : 'Add'} Profile</h2>
@@ -238,6 +253,17 @@ const Update = ({ profile: data }) => {
                                 onChange={e => setProfile({ ...profile, speciality: e.target.value })}
                             />
                         </div>
+
+                        {/* <div className={styles.field}>
+                            <label>Select Category</label>
+                            <div className={styles.options}>
+                                {categories.map((c, i) => (
+                                    <span className={styles.option} onClick={() => setProfile({ ...profile, speciality: c.name })}>{c.name}</span>
+                                ))}
+                            </div> */}
+
+
+
 
                         <div className={styles.field}>
                             <label>Total Experience (Years)</label>
@@ -366,14 +392,14 @@ const Update = ({ profile: data }) => {
 
                 </div>
                 {/* <div className={styles.right}></div> */}
-            </form>
+            </form >
             {error && <p style={{ color: 'red', margin: '10px' }}>{error}</p>}
             <button
                 onClick={() => (router.query.id ? updateProfile() : saveProfile())}
             >
                 Save Profile
             </button>
-        </div>
+        </div >
     )
 }
 

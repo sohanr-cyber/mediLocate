@@ -15,7 +15,7 @@
     width: 100%;
     font-weight: bold;
     border-bottom: 1px solid var(--borderColor);
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     display:none;
 }
 

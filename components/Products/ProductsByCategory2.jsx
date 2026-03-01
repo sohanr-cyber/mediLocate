@@ -39,7 +39,7 @@ const ProductsByCategory2 = ({
       </div>
       <div className={styles.topMobile}>
         <div className={styles.title}>
-          Available Doctor
+        <h3>  Available Doctor</h3>
         </div>
         <div className={styles.seeMoreMobile} onClick={() => findMore()}>
           <button style={{
