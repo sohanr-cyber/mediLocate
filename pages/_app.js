@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
       <meta name="theme-color" content="#ffffff"></meta>
 
 
-      {/* <DefaultSeo {...seoData} /> */}
+      <DefaultSeo {...seoData} />
       <Script
         async
         src='https://www.googletagmanager.com/gtag/js?id=G-V1J9SKGV3W'
