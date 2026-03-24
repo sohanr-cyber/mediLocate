@@ -68,19 +68,19 @@ const colors = [
 ]
 
 const seoData = {
-  title: `${companyName} - Find Trusted Healthcare Services Nearby`,
+  title: `${companyName} - Book a Doctor at Home | সহজে ডাক্তার বাসায় আনুন`,
   description:
-    "Easily locate hospitals, clinics, pharmacies, and healthcare providers with MediLocate. Your trusted platform for finding quality medical services near you.",
+    "mediLocate.health lets you connect with licensed doctors and schedule home visits at your convenience. Chat, agree on a time, and get professional medical care at your doorstep.",
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Find Trusted Healthcare Services Nearby`,
+    title: `${companyName} - Doctor Home Visit Made Easy`,
     description:
-      "Discover hospitals, clinics, and pharmacies with ease using MediLocate. We connect you to trusted healthcare providers in your area.",
+      "Connect with trusted doctors, discuss your needs, and schedule a home visit at a time that suits you. Healthcare, simplified with mediLocate.health.",
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} - Find Trusted Healthcare Services`,
+        alt: `${companyName} - Doctor at Home Service`,
         width: 1200,
         height: 630
       }
@@ -95,19 +95,19 @@ const seoData = {
 };
 
 const orderCartSeoData = {
-  title: `Your Cart - ${companyName}`,
-  description: `Review and manage your selected healthcare services and products at ${companyName}.`,
+  title: `Your Booking - ${companyName}`,
+  description: `Review your selected doctor visit and appointment details before confirming your booking with ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
-    title: `Your Cart - ${companyName}`,
-    description: `Review and manage your selected healthcare services and products at ${companyName}.`,
+    title: `Your Booking - ${companyName}`,
+    description: `Check doctor details, schedule, and finalize your home visit booking.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
         url: `${BASE_URL}/images/cart.png`,
         width: 1200,
         height: 630,
-        alt: `Your Cart - ${companyName}`
+        alt: `Your Booking - ${companyName}`
       }
     ],
     type: "website"
@@ -116,19 +116,19 @@ const orderCartSeoData = {
 };
 
 const TermsAndConditionSeoData = {
-  title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for using ${companyName} to find healthcare services and providers.`,
+  title: `Terms & Conditions - ${companyName}`,
+  description: `Read the terms for using ${companyName} to connect with doctors and schedule home visit appointments.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
-    title: `Terms and Conditions - ${companyName}`,
-    description: `Understand the guidelines and responsibilities when using ${companyName} for healthcare searches.`,
+    title: `Terms & Conditions - ${companyName}`,
+    description: `Understand your rights and responsibilities when booking doctor home visits via ${companyName}.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
         url: `${BASE_URL}/images/terms-and-conditions.png`,
         width: 1200,
         height: 630,
-        alt: `Terms and Conditions - ${companyName}`
+        alt: `Terms & Conditions - ${companyName}`
       }
     ],
     type: "website"
@@ -138,11 +138,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Learn how ${companyName} protects your personal data while helping you find trusted healthcare providers.`,
+  description: `Learn how ${companyName} protects your personal and medical information while connecting you with doctors.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Find out how ${companyName} ensures your data privacy and security while providing healthcare location services.`,
+    description: `Your data safety matters. See how ${companyName} ensures secure communication and privacy.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -158,19 +158,19 @@ const privacyPolicySeoData = {
 };
 
 const orderDetailSeoData = {
-  title: `Order Details - ${companyName}`,
-  description: `View and track your healthcare service orders with ${companyName}.`,
+  title: `Appointment Details - ${companyName}`,
+  description: `View your scheduled doctor visit, timing, and booking details with ${companyName}.`,
   canonical: `${BASE_URL}/order-details`,
   openGraph: {
-    title: `Order Details - ${companyName}`,
-    description: `View and track your healthcare service orders with ${companyName}.`,
+    title: `Appointment Details - ${companyName}`,
+    description: `Track and manage your doctor home visit appointments بسهولة.`,
     url: `${BASE_URL}/order-details`,
     images: [
       {
         url: `${BASE_URL}/images/order-details.png`,
         width: 1200,
         height: 630,
-        alt: `Order Details - ${companyName}`
+        alt: `Appointment Details - ${companyName}`
       }
     ],
     type: "website"
@@ -179,19 +179,19 @@ const orderDetailSeoData = {
 };
 
 const reviewSeoData = {
-  title: `Review Your Booking - ${companyName}`,
-  description: `Confirm your selected healthcare services and provider details before booking with ${companyName}.`,
+  title: `Confirm Your Appointment - ${companyName}`,
+  description: `Review doctor details and agreed schedule before confirming your home visit appointment.`,
   canonical: `${BASE_URL}/review`,
   openGraph: {
-    title: `Review Your Booking - ${companyName}`,
-    description: `Confirm your selected healthcare services and provider details before booking with ${companyName}.`,
+    title: `Confirm Your Appointment - ${companyName}`,
+    description: `Double-check your doctor selection and visit time before booking.`,
     url: `${BASE_URL}/review`,
     images: [
       {
         url: `${BASE_URL}/images/review-order.png`,
         width: 1200,
         height: 630,
-        alt: `Review Your Booking - ${companyName}`
+        alt: `Confirm Appointment - ${companyName}`
       }
     ],
     type: "website"
@@ -200,19 +200,19 @@ const reviewSeoData = {
 };
 
 const addressSeoData = {
-  title: `Add Your Address - ${companyName}`,
-  description: `Enter your location details to find healthcare services near you on ${companyName}.`,
+  title: `Your Location - ${companyName}`,
+  description: `Enter your address so a doctor can visit you at home at your scheduled time.`,
   canonical: `${BASE_URL}/address`,
   openGraph: {
-    title: `Add Your Address - ${companyName}`,
-    description: `Enter your location details to find healthcare services near you on ${companyName}.`,
+    title: `Your Location - ${companyName}`,
+    description: `Provide your address to arrange a doctor home visit بسهولة.`,
     url: `${BASE_URL}/address`,
     images: [
       {
         url: `${BASE_URL}/images/shipping-address.png`,
         width: 1200,
         height: 630,
-        alt: `Add Your Address - ${companyName}`
+        alt: `Your Location - ${companyName}`
       }
     ],
     type: "website"
@@ -222,11 +222,11 @@ const addressSeoData = {
 
 const loginSeoData = {
   title: `Login - ${companyName}`,
-  description: `Log in to your account at ${companyName} to access your healthcare profile and appointments.`,
+  description: `Log in to book doctor home visits, chat with doctors, and manage your appointments.`,
   canonical: `${BASE_URL}/login`,
   openGraph: {
     title: `Login - ${companyName}`,
-    description: `Log in to your account at ${companyName} to access your healthcare profile and appointments.`,
+    description: `Access your account to schedule and manage doctor visits.`,
     url: `${BASE_URL}/login`,
     images: [
       {
@@ -242,26 +242,25 @@ const loginSeoData = {
 };
 
 const registerSeoData = {
-  title: `Register - ${companyName}`,
-  description: `Create an account at ${companyName} to start booking healthcare services and appointments.`,
+  title: `Sign Up - ${companyName}`,
+  description: `Create your account to connect with doctors and schedule home visit appointments بسهولة.`,
   canonical: `${BASE_URL}/register`,
   openGraph: {
-    title: `Register - ${companyName}`,
-    description: `Create an account at ${companyName} to start booking healthcare services and appointments.`,
+    title: `Sign Up - ${companyName}`,
+    description: `Join ${companyName} and get healthcare at your doorstep.`,
     url: `${BASE_URL}/register`,
     images: [
       {
         url: `${BASE_URL}/images/register.png`,
         width: 1200,
         height: 630,
-        alt: `Register - ${companyName}`
+        alt: `Sign Up - ${companyName}`
       }
     ],
     type: "website"
   },
   twitter: seoData.twitter
 };
-
 const base64Img = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAApACkDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAX/xAAnEAACAgECBQQDAQAAAAAAAAABAgADEQQhEiIxQXETQlFhMjPB0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABgRAQEBAQEAAAAAAAAAAAAAAAABERJB/9oADAMBAAIRAxEAPwDYiJA6mB6SjqrmWwIpzY34jpj6lk1m3F7jX5EMg95ii2zhsdnwUwyHHKRnEtUX5uFTMSwbGRuAf8MvKdX1oxQHSEjYmRrX9DVKxBbBzg+4HYibB6SjrG01pNdythT+we1viJcZsZgrDW8KOWrIAXA5j9Y/vST0o1rqhPpVBtlQ9vPmStTWlhr9dK1bYhU4c+TLGlbToVCWBrXHcYz9AdhLpYuDpCOKRTkFmkqscOy83ffY+ZPCBANLQFI4MgjfJO/mNNNUjq6rzKMAk5k0IAIo4QP/2Q=="
 
 
